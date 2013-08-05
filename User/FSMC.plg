@@ -1,0 +1,492 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\STM32_FSMC_V1.1\User\FSMC.uvproj
+Project File Date:  08/30/2012
+
+<h2>Output:</h2>
+Build target 'STM32_FSMC'
+compiling misc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_crc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_fsmc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_gpio.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_rcc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_usart.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling core_cm3.c...
+assembling startup_stm32f10x_hd.s...
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_crc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_fsmc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_gpio.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_rcc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+compiling stm32f10x_usart.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_crc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_fsmc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_gpio.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_rcc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_usart.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling core_cm3.c...
+Target not created
+Build target 'STM32_FSMC'
+compiling misc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_crc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_fsmc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_gpio.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_rcc.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+compiling stm32f10x_usart.c...
+H:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(8297): error:  #5: cannot open source input file "stm32f10x_conf.h": No such file or directory
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling core_cm3.c...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_stm32f10x_hd.o).
+Target not created
+Build target 'STM32_FSMC'
+linking...
+..\Obj\FSMC.sct(7): error: L6236E: No section matches selector - no section to be FIRST/LAST.
+"..\Obj\FSMC.axf" - 1 Error(s), 0 Warning(s).
+Build target 'STM32_FSMC'
+assembling startup_stm32f10x_hd.s...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_stm32f10x_hd.o).
+Target not created
+Build target 'STM32_FSMC'
+compiling system_stm32f10x.c...
+linking...
+Program Size: Code=820 RO-data=336 RW-data=20 ZI-data=1636  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32_FSMC'
+linking...
+Program Size: Code=820 RO-data=336 RW-data=20 ZI-data=1636  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 0 Warning(s).
+Rebuild target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+assembling startup_stm32f10x_hd.s...
+linking...
+Program Size: Code=820 RO-data=336 RW-data=20 ZI-data=1636  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 1 Warning(s).
+Build target 'STM32_FSMC'
+linking...
+Program Size: Code=820 RO-data=336 RW-data=20 ZI-data=1636  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32_FSMC'
+linking...
+Program Size: Code=820 RO-data=336 RW-data=20 ZI-data=1636  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(99): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(117): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(159): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(178): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(202): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(105): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(132): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(179): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(267): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(331): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(477): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(503): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(540): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(566): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(639): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(703): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(750): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(788): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(836): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_gpio.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(111): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(178): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(286): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(308): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(324): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(346): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(361): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(377): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(397): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(420): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(437): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(466): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(486): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(554): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(613): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(632): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_rcc.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(273): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(338): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(357): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(383): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(404): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(568): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(612): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(638): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(664): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(703): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(731): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(770): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(832): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(865): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(882): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(896): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1067): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1098): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1129): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1188): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1219): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1240): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1253): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1285): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1332): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1406): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1451): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_usart.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(133): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(184): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(306): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(354): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(393): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(451): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(479): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(502): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(521): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(550): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(569): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(595): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(612): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(628): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(644): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(664): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(683): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(708): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(734): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(765): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(792): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(821): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(840): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(878): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(926): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(961): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(1034): warning:  #223-D: function "assert_param" declared implicitly
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol assert_param (referred from misc.o).
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(99): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(117): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(159): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(178): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c(202): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(105): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(132): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(179): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(267): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(331): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(477): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(503): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(540): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(566): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(639): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(703): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(750): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(788): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c(836): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_gpio.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(111): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(178): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(286): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(308): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(324): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(346): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(361): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(377): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(397): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(420): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(437): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(466): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(486): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(554): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(613): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c(632): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_rcc.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(273): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(338): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(357): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(383): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(404): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(568): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(612): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(638): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(664): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(703): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(731): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(770): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(832): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(865): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(882): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(896): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1067): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1098): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1129): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1188): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1219): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1240): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1253): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1285): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1332): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1406): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c(1451): warning:  #223-D: function "assert_param" declared implicitly
+compiling stm32f10x_usart.c...
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(133): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(184): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(306): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(354): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(393): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(451): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(479): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(502): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(521): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(550): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(569): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(595): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(612): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(628): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(644): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(664): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(683): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(708): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(734): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(765): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(792): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(821): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(840): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(878): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(926): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(961): warning:  #223-D: function "assert_param" declared implicitly
+..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c(1034): warning:  #223-D: function "assert_param" declared implicitly
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol assert_param (referred from misc.o).
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(9): warning:  #111-D: statement is unreachable
+compiling misc.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+linking...
+Program Size: Code=820 RO-data=336 RW-data=20 ZI-data=1636  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 1 Warning(s).
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(13): error:  #20: identifier "USART_InitTypeDef" is undefined
+main.c(33): error:  #20: identifier "USART_InitTypeDef" is undefined
+main.c(34): error:  #20: identifier "USART_ClockInitTypeDef" is undefined
+main.c(55): warning:  #223-D: function "LCD_Init" declared implicitly
+main.c(58): warning:  #223-D: function "delayms" declared implicitly
+main.c(60): warning:  #223-D: function "USART1_Printf" declared implicitly
+main.c(47): warning:  #177-D: variable "meu" was declared but never referenced
+main.c(47): warning:  #177-D: variable "dec" was declared but never referenced
+main.c(47): warning:  #177-D: variable "bcd" was declared but never referenced
+main.c(93): warning:  #223-D: function "FLASH_SetLatency" declared implicitly
+main.c(93): error:  #20: identifier "FLASH_Latency_2" is undefined
+main.c(95): warning:  #223-D: function "FLASH_PrefetchBufferCmd" declared implicitly
+main.c(95): error:  #20: identifier "FLASH_PrefetchBuffer_Enable" is undefined
+main.c(182): error:  #20: identifier "FSMC_NORSRAMInitTypeDef" is undefined
+main.c(183): error:  #20: identifier "FSMC_NORSRAMTimingInitTypeDef" is undefined
+main.c(192): error:  #20: identifier "FSMC_AccessMode_B" is undefined
+main.c(194): error:  #20: identifier "FSMC_Bank1_NORSRAM1" is undefined
+main.c(195): error:  #20: identifier "FSMC_DataAddressMux_Disable" is undefined
+main.c(196): error:  #20: identifier "FSMC_MemoryType_NOR" is undefined
+main.c(197): error:  #20: identifier "FSMC_MemoryDataWidth_16b" is undefined
+main.c(198): error:  #20: identifier "FSMC_BurstAccessMode_Disable" is undefined
+main.c(199): error:  #20: identifier "FSMC_WaitSignalPolarity_Low" is undefined
+main.c(200): error:  #20: identifier "FSMC_WrapMode_Disable" is undefined
+main.c(201): error:  #20: identifier "FSMC_WaitSignalActive_BeforeWaitState" is undefined
+main.c(202): error:  #20: identifier "FSMC_WriteOperation_Enable" is undefined
+main.c(203): error:  #20: identifier "FSMC_WaitSignal_Disable" is undefined
+main.c(204): error:  #20: identifier "FSMC_ExtendedMode_Disable" is undefined
+main.c(205): error:  #20: identifier "FSMC_WriteBurst_Disable" is undefined
+main.c(208): warning:  #223-D: function "FSMC_NORSRAMInit" declared implicitly
+main.c(211): warning:  #223-D: function "FSMC_NORSRAMCmd" declared implicitly
+main.c(226): error:  #20: identifier "USART_WordLength_8b" is undefined
+main.c(227): error:  #20: identifier "USART_StopBits_1" is undefined
+main.c(228): error:  #20: identifier "USART_Parity_No" is undefined
+main.c(229): error:  #20: identifier "USART_HardwareFlowControl_None" is undefined
+main.c(230): error:  #20: identifier "USART_Mode_Rx" is undefined
+main.c(230): error:  #20: identifier "USART_Mode_Tx" is undefined
+main.c(233): warning:  #223-D: function "USART_Init" declared implicitly
+main.c(237): warning:  #223-D: function "USART_ITConfig" declared implicitly
+main.c(237): error:  #20: identifier "USART_IT_RXNE" is undefined
+main.c(241): warning:  #223-D: function "USART_Cmd" declared implicitly
+main.c(255): error:  #20: identifier "TIM_TimeBaseInitTypeDef" is undefined
+main.c(258): warning:  #223-D: function "TIM_DeInit" declared implicitly
+main.c(261): error:  #20: identifier "TIM_CounterMode_Up" is undefined
+main.c(266): warning:  #223-D: function "TIM_TimeBaseInit" declared implicitly
+main.c(268): warning:  #223-D: function "TIM_ClearFlag" declared implicitly
+main.c(268): error:  #20: identifier "TIM_FLAG_Update" is undefined
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(55): warning:  #223-D: function "LCD_Init" declared implicitly
+main.c(58): warning:  #223-D: function "delayms" declared implicitly
+main.c(60): warning:  #223-D: function "USART1_Printf" declared implicitly
+main.c(47): warning:  #177-D: variable "meu" was declared but never referenced
+main.c(47): warning:  #177-D: variable "dec" was declared but never referenced
+main.c(47): warning:  #177-D: variable "bcd" was declared but never referenced
+main.c(93): warning:  #223-D: function "FLASH_SetLatency" declared implicitly
+main.c(93): error:  #20: identifier "FLASH_Latency_2" is undefined
+main.c(95): warning:  #223-D: function "FLASH_PrefetchBufferCmd" declared implicitly
+main.c(95): error:  #20: identifier "FLASH_PrefetchBuffer_Enable" is undefined
+compiling misc.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling system_stm32f10x.c...
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(88): warning:  #223-D: function "FLASH_SetLatency" declared implicitly
+main.c(88): error:  #20: identifier "FLASH_Latency_2" is undefined
+main.c(90): warning:  #223-D: function "FLASH_PrefetchBufferCmd" declared implicitly
+main.c(90): error:  #20: identifier "FLASH_PrefetchBuffer_Enable" is undefined
+compiling stm32f10x_flash.c...
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+compiling misc.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_flash.c...
+compiling system_stm32f10x.c...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM_ClearFlag (referred from main.o).
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM_Cmd (referred from main.o).
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM_DeInit (referred from main.o).
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM_ITConfig (referred from main.o).
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM_TimeBaseInit (referred from main.o).
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM1_Configuration (referred from main.o).
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+linking...
+..\Obj\FSMC.axf: Error: L6218E: Undefined symbol TIM1_Configuration (referred from main.o).
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(33): warning:  #223-D: function "TIM1_Configuration" declared implicitly
+main.c(203): error:  #20: identifier "USART_InitStructure" is undefined
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(202): error:  #20: identifier "USART_InitStructure" is undefined
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+main.c(203): error:  #20: identifier "USART_InitStructure" is undefined
+main.c(202): warning:  #177-D: variable "USART_InitStruct" was declared but never referenced
+Target not created
+Build target 'STM32_FSMC'
+compiling main.c...
+linking...
+Program Size: Code=7520 RO-data=336 RW-data=48 ZI-data=1632  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 0 Warning(s).
+Rebuild target 'STM32_FSMC'
+compiling main.c...
+compiling misc.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_flash.c...
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+assembling startup_stm32f10x_hd.s...
+linking...
+Program Size: Code=7520 RO-data=336 RW-data=48 ZI-data=1632  
+FromELF: creating hex file...
+"..\Obj\FSMC.axf" - 0 Error(s), 0 Warning(s).

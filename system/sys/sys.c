@@ -71,8 +71,9 @@ void MY_NVIC_Init(u8 NVIC_PreemptionPriority,u8 NVIC_SubPriority,u8 NVIC_Channel
 	temp&=0xf;//取低四位
 
 	if(NVIC_Channel<32)NVIC->ISER[0]|=1<<NVIC_Channel;//使能中断位(要清除的话,相反操作就OK)
-	else NVIC->ISER[1]|=1<<(NVIC_Channel-32);    
-	NVIC->IPR[IPRADDR]|=temp<<IPROFFSET;//设置响应优先级和抢断优先级   	    	  				   
+	else NVIC->ISER[1]|=1<<(NVIC_Channel-32);
+		//下面的优先级无法设置：删掉使用默认优先级是否可以？？
+	//NVIC->IPR[IPRADDR]|=temp<<IPROFFSET;//设置响应优先级和抢断优先级   	    	  				   
 }
 
 //外部中断配置函数

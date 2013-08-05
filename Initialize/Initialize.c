@@ -424,9 +424,9 @@ u8 MCU_Init(void)//单片机初始化
 	
 	RCC_Configuration(); 
 	GPIO_Configuration();
-	LCD9320_GPIO_Init();
+//LCD9320_GPIO_Init();
 	FSMC_LCD_Init(); 
-	Touch_GPIO_Init();
+//	Touch_GPIO_Init();
 // 	RTC_Configuration();
 	USART1_Configuration();
 // 	ADC1_Configuration(1);

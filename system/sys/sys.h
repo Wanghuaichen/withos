@@ -1,14 +1,15 @@
 #ifndef __SYS_H
 #define __SYS_H	 
 
-#define newversion
+//#define newversion
 
-#ifdef newversion
+//#ifdef newversion
 #include <stm32f10x.h>
-#else
-#include <stm32f10x_map.h>
-#include <stm32f10x_nvic.h> 
-#endif
+#include "mynvic.h"
+//#else
+//#include <stm32f10x_map.h>
+//#include <stm32f10x_nvic.h> 
+//#endif
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32开发板

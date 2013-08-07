@@ -52,6 +52,8 @@ unsigned LCD_Color2Index_M565(LCD_COLOR Color) {
   g = (Color>> (16 - G_BITS)) & G_MASK;
   b = (Color>> (24 - B_BITS)) & B_MASK;
   return b + (g << B_BITS) + (r << (G_BITS + B_BITS));
+	
+	//return (r << 3) + (b << 8) + (g << 13) + (g >> 3);
 }
 
 /*********************************************************************

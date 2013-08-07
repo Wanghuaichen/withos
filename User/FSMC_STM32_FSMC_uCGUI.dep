@@ -919,10 +919,10 @@ I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x504DA784)
 I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4D783BB4)
 I (..\system\mynvic.h)(0x51FF162E)
-F (..\uCGUI\LCDDriver\LCD_GUI.C)(0x5201BDC8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_gui.o" --omf_browse "..\Obj\lcd_gui.crf" --depend "..\Obj\lcd_gui.d")
+F (..\uCGUI\LCDDriver\LCD_GUI.C)(0x5201DA53)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_gui.o" --omf_browse "..\Obj\lcd_gui.crf" --depend "..\Obj\lcd_gui.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -1064,13 +1064,13 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\HARDWARE\cTouch\gt811.h)(0x514D2667)
 I (..\system\sys\sys.h)(0x51FF216C)
 I (..\system\mynvic.h)(0x51FF162E)
 F (..\uCGUI\Config\GUIConf.h)(0x51FF1725)()
 F (..\uCGUI\Config\GUITouchConf.h)(0x504E3378)()
-F (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)()
+F (..\uCGUI\Config\LCDConf.h)(0x5201C34C)()
 F (..\system\sys\sys.c)(0x51FF155F)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\sys.o" --omf_browse "..\Obj\sys.crf" --depend "..\Obj\sys.d")
 I (..\system\sys\sys.h)(0x51FF216C)
 I (D:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x51FF06C1)
@@ -2252,7 +2252,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\AntiAlias\GUIAAChar2.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guiaachar2.o" --omf_browse "..\Obj\guiaachar2.crf" --depend "..\Obj\guiaachar2.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -2268,7 +2268,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\AntiAlias\GUIAAChar4.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guiaachar4.o" --omf_browse "..\Obj\guiaachar4.crf" --depend "..\Obj\guiaachar4.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -2284,7 +2284,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\AntiAlias\GUIAACircle.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guiaacircle.o" --omf_browse "..\Obj\guiaacircle.crf" --depend "..\Obj\guiaacircle.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -2315,7 +2315,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\AntiAlias\GUIAALine.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guiaaline.o" --omf_browse "..\Obj\guiaaline.crf" --depend "..\Obj\guiaaline.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -2344,7 +2344,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (D:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x50F96150)
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (D:\Keil\ARM\ARMCC\bin\..\include\math.h)(0x50F96150)
@@ -2407,7 +2407,7 @@ I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
-F (..\uCGUI\ConvertColor\LCDP565.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdp565.o" --omf_browse "..\Obj\lcdp565.crf" --depend "..\Obj\lcdp565.d")
+F (..\uCGUI\ConvertColor\LCDP565.c)(0x5201CA2A)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdp565.o" --omf_browse "..\Obj\lcdp565.crf" --depend "..\Obj\lcdp565.d")
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
@@ -2462,7 +2462,7 @@ I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
-F (..\uCGUI\ConvertColor\LCDPM565.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdpm565.o" --omf_browse "..\Obj\lcdpm565.crf" --depend "..\Obj\lcdpm565.d")
+F (..\uCGUI\ConvertColor\LCDPM565.c)(0x5201D283)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdpm565.o" --omf_browse "..\Obj\lcdpm565.crf" --depend "..\Obj\lcdpm565.d")
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
@@ -2475,7 +2475,7 @@ I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 F (..\uCGUI\ConvertMono\LCDP0.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdp0.o" --omf_browse "..\Obj\lcdp0.crf" --depend "..\Obj\lcdp0.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -2826,7 +2826,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_BMP_Serialize.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_bmp_serialize.o" --omf_browse "..\Obj\gui_bmp_serialize.crf" --depend "..\Obj\gui_bmp_serialize.d")
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
@@ -3304,7 +3304,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\GUI_DispStringInRectMax.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_dispstringinrectmax.o" --omf_browse "..\Obj\gui_dispstringinrectmax.crf" --depend "..\Obj\gui_dispstringinrectmax.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
@@ -3349,7 +3349,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_DrawBitmapEx.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_drawbitmapex.o" --omf_browse "..\Obj\gui_drawbitmapex.crf" --depend "..\Obj\gui_drawbitmapex.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -3365,7 +3365,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (D:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 F (..\uCGUI\Core\GUI_DrawBitmapExp.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_drawbitmapexp.o" --omf_browse "..\Obj\gui_drawbitmapexp.crf" --depend "..\Obj\gui_drawbitmapexp.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
@@ -3383,7 +3383,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_DrawBitmapMag.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_drawbitmapmag.o" --omf_browse "..\Obj\gui_drawbitmapmag.crf" --depend "..\Obj\gui_drawbitmapmag.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -3400,7 +3400,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_DrawFocusRect.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_drawfocusrect.o" --omf_browse "..\Obj\gui_drawfocusrect.crf" --depend "..\Obj\gui_drawfocusrect.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -3579,7 +3579,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_GetBitmapPixelIndex.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_getbitmappixelindex.o" --omf_browse "..\Obj\gui_getbitmappixelindex.crf" --depend "..\Obj\gui_getbitmappixelindex.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -3595,7 +3595,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_GetClientRect.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_getclientrect.o" --omf_browse "..\Obj\gui_getclientrect.crf" --depend "..\Obj\gui_getclientrect.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -3836,7 +3836,7 @@ F (..\uCGUI\Core\GUI_MOUSE.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -3851,7 +3851,7 @@ I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 F (..\uCGUI\Core\GUI_MOUSE_DriverPS2.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_mouse_driverps2.o" --omf_browse "..\Obj\gui_mouse_driverps2.crf" --depend "..\Obj\gui_mouse_driverps2.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -3906,7 +3906,7 @@ I (D:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -3960,7 +3960,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_SelectLCD.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_selectlcd.o" --omf_browse "..\Obj\gui_selectlcd.crf" --depend "..\Obj\gui_selectlcd.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -3977,7 +3977,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\GUI_SetColor.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_setcolor.o" --omf_browse "..\Obj\gui_setcolor.crf" --depend "..\Obj\gui_setcolor.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -4091,7 +4091,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_SetLUTColorEx.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_setlutcolorex.o" --omf_browse "..\Obj\gui_setlutcolorex.crf" --depend "..\Obj\gui_setlutcolorex.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4108,7 +4108,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_SetLUTEntry.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_setlutentry.o" --omf_browse "..\Obj\gui_setlutentry.crf" --depend "..\Obj\gui_setlutentry.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -4150,7 +4150,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_SetTextAlign.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_settextalign.o" --omf_browse "..\Obj\gui_settextalign.crf" --depend "..\Obj\gui_settextalign.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -4204,7 +4204,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_SIF_Prop.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_sif_prop.o" --omf_browse "..\Obj\gui_sif_prop.crf" --depend "..\Obj\gui_sif_prop.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -4220,12 +4220,12 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUI_TOUCH.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\gui_touch.o" --omf_browse "..\Obj\gui_touch.crf" --depend "..\Obj\gui_touch.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -4243,7 +4243,7 @@ I (D:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -4454,7 +4454,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUICharP.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guicharp.o" --omf_browse "..\Obj\guicharp.crf" --depend "..\Obj\guicharp.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4471,7 +4471,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUICirc.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guicirc.o" --omf_browse "..\Obj\guicirc.crf" --depend "..\Obj\guicirc.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4488,7 +4488,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUIColor2Index.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guicolor2index.o" --omf_browse "..\Obj\guicolor2index.crf" --depend "..\Obj\guicolor2index.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -4517,7 +4517,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\GUICurs.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guicurs.o" --omf_browse "..\Obj\guicurs.crf" --depend "..\Obj\guicurs.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
@@ -4535,7 +4535,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\GUIEncJS.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guiencjs.o" --omf_browse "..\Obj\guiencjs.crf" --depend "..\Obj\guiencjs.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -4698,7 +4698,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_API.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_api.o" --omf_browse "..\Obj\lcd_api.crf" --depend "..\Obj\lcd_api.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4715,7 +4715,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_DrawBitmap_565.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_drawbitmap_565.o" --omf_browse "..\Obj\lcd_drawbitmap_565.crf" --depend "..\Obj\lcd_drawbitmap_565.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4732,7 +4732,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_DrawBitmap_M565.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_drawbitmap_m565.o" --omf_browse "..\Obj\lcd_drawbitmap_m565.crf" --depend "..\Obj\lcd_drawbitmap_m565.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4749,11 +4749,11 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_DrawVLine.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_drawvline.o" --omf_browse "..\Obj\lcd_drawvline.crf" --depend "..\Obj\lcd_drawvline.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -4769,7 +4769,7 @@ I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 F (..\uCGUI\Core\LCD_GetColorIndex.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_getcolorindex.o" --omf_browse "..\Obj\lcd_getcolorindex.crf" --depend "..\Obj\lcd_getcolorindex.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -4788,7 +4788,7 @@ I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
 I (..\uCGUI\Core\GUIType.h)(0x455F3A56)
@@ -4800,7 +4800,7 @@ I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
 I (..\uCGUI\Core\GUIType.h)(0x455F3A56)
@@ -4825,12 +4825,12 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_L0_Generic.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_l0_generic.o" --omf_browse "..\Obj\lcd_l0_generic.crf" --depend "..\Obj\lcd_l0_generic.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -4867,7 +4867,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_Rotate180.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_rotate180.o" --omf_browse "..\Obj\lcd_rotate180.crf" --depend "..\Obj\lcd_rotate180.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -4883,7 +4883,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\LCD_RotateCCW.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_rotateccw.o" --omf_browse "..\Obj\lcd_rotateccw.crf" --depend "..\Obj\lcd_rotateccw.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4900,7 +4900,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\LCD_RotateCW.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_rotatecw.o" --omf_browse "..\Obj\lcd_rotatecw.crf" --depend "..\Obj\lcd_rotatecw.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -4917,7 +4917,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\LCD_SelectLCD.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_selectlcd.o" --omf_browse "..\Obj\lcd_selectlcd.crf" --depend "..\Obj\lcd_selectlcd.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
@@ -4935,7 +4935,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\Core\LCD_SetAPI.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_setapi.o" --omf_browse "..\Obj\lcd_setapi.crf" --depend "..\Obj\lcd_setapi.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
@@ -4953,11 +4953,11 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCD_SetClipRectEx.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_setcliprectex.o" --omf_browse "..\Obj\lcd_setcliprectex.crf" --depend "..\Obj\lcd_setcliprectex.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -4973,7 +4973,7 @@ I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 F (..\uCGUI\Core\LCD_UpdateColorIndices.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcd_updatecolorindices.o" --omf_browse "..\Obj\lcd_updatecolorindices.crf" --depend "..\Obj\lcd_updatecolorindices.d")
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -5002,7 +5002,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCDColor.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdcolor.o" --omf_browse "..\Obj\lcdcolor.crf" --depend "..\Obj\lcdcolor.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -5019,7 +5019,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCDGetP.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdgetp.o" --omf_browse "..\Obj\lcdgetp.crf" --depend "..\Obj\lcdgetp.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -5036,7 +5036,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCDInfo.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdinfo.o" --omf_browse "..\Obj\lcdinfo.crf" --depend "..\Obj\lcdinfo.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\LCD.h)(0x4123EF60)
@@ -5044,7 +5044,7 @@ I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
 I (..\uCGUI\Core\GUIType.h)(0x455F3A56)
@@ -5056,7 +5056,7 @@ I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
 I (..\uCGUI\Core\GUIType.h)(0x455F3A56)
@@ -5068,7 +5068,7 @@ I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
 I (..\uCGUI\Core\GUIType.h)(0x455F3A56)
@@ -5089,7 +5089,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCDL0Mag.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdl0mag.o" --omf_browse "..\Obj\lcdl0mag.crf" --depend "..\Obj\lcdl0mag.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -5106,7 +5106,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCDP1.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdp1.o" --omf_browse "..\Obj\lcdp1.crf" --depend "..\Obj\lcdp1.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -5139,7 +5139,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Core\LCDRLE8.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\lcdrle8.o" --omf_browse "..\Obj\lcdrle8.crf" --depend "..\Obj\lcdrle8.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -5156,7 +5156,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\Font\F6x8.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\f6x8.o" --omf_browse "..\Obj\f6x8.crf" --depend "..\Obj\f6x8.d")
 I (..\uCGUI\Core\GUI_FontIntern.h)(0x509509BF)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -5578,7 +5578,7 @@ F (..\uCGUI\MultiLayer\LCD_1.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -5590,7 +5590,7 @@ F (..\uCGUI\MultiLayer\LCD_2.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -5602,7 +5602,7 @@ F (..\uCGUI\MultiLayer\LCD_3.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -5614,7 +5614,7 @@ F (..\uCGUI\MultiLayer\LCD_4.c)(0x4123EF60)(-c --cpu Cortex-M3 -D__MICROLIB -g -
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x4123EF60)
 I (..\uCGUI\Config\GUIConf.h)(0x51FF1725)
 I (..\uCGUI\Core\LCD_Protected.h)(0x4123EF60)
@@ -10021,7 +10021,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\MemDev\GUIDEV_1.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_1.o" --omf_browse "..\Obj\guidev_1.crf" --depend "..\Obj\guidev_1.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
@@ -10039,7 +10039,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\MemDev\GUIDEV_8.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_8.o" --omf_browse "..\Obj\guidev_8.crf" --depend "..\Obj\guidev_8.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
@@ -10057,7 +10057,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\MemDev\GUIDEV_16.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_16.o" --omf_browse "..\Obj\guidev_16.crf" --depend "..\Obj\guidev_16.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
@@ -10075,7 +10075,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 I (..\uCGUI\MemDev\GUIDEV_8.c)(0x40F63B4E)
 F (..\uCGUI\MemDev\GUIDEV_AA.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_aa.o" --omf_browse "..\Obj\guidev_aa.crf" --depend "..\Obj\guidev_aa.d")
@@ -10093,7 +10093,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 F (..\uCGUI\MemDev\GUIDEV_Auto.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_auto.o" --omf_browse "..\Obj\guidev_auto.crf" --depend "..\Obj\guidev_auto.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10123,7 +10123,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_Clear.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_clear.o" --omf_browse "..\Obj\guidev_clear.crf" --depend "..\Obj\guidev_clear.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI.h)(0x455F3BA4)
@@ -10153,7 +10153,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_CopyFromLCD.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_copyfromlcd.o" --omf_browse "..\Obj\guidev_copyfromlcd.crf" --depend "..\Obj\guidev_copyfromlcd.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10169,7 +10169,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_CreateFixed.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_createfixed.o" --omf_browse "..\Obj\guidev_createfixed.crf" --depend "..\Obj\guidev_createfixed.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10185,7 +10185,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_GetDataPtr.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_getdataptr.o" --omf_browse "..\Obj\guidev_getdataptr.crf" --depend "..\Obj\guidev_getdataptr.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10201,7 +10201,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_GetXSize.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_getxsize.o" --omf_browse "..\Obj\guidev_getxsize.crf" --depend "..\Obj\guidev_getxsize.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10244,7 +10244,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 I (..\uCGUI\WM\WM.h)(0x4123EF62)
 F (..\uCGUI\MemDev\GUIDEV_ReduceYSize.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_reduceysize.o" --omf_browse "..\Obj\guidev_reduceysize.crf" --depend "..\Obj\guidev_reduceysize.d")
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10314,7 +10314,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_WriteAlpha.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_writealpha.o" --omf_browse "..\Obj\guidev_writealpha.crf" --depend "..\Obj\guidev_writealpha.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -10331,7 +10331,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_WriteEx.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_writeex.o" --omf_browse "..\Obj\guidev_writeex.crf" --depend "..\Obj\guidev_writeex.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
@@ -10348,7 +10348,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\MemDev\GUIDEV_XY2PTR.c)(0x40F63B4E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\guidev_xy2ptr.o" --omf_browse "..\Obj\guidev_xy2ptr.crf" --depend "..\Obj\guidev_xy2ptr.d")
 I (..\uCGUI\Core\GUI_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\GUI_Protected.h)(0x4123EF60)
@@ -10364,7 +10364,7 @@ I (..\uCGUI\Core\GUI_X.h)(0x4123EF60)
 I (..\uCGUI\WM\WM_GUI.h)(0x4123EF62)
 I (..\uCGUI\Core\LCD_Private.h)(0x4123EF60)
 I (..\uCGUI\Core\LCD_ConfDefaults.h)(0x45483614)
-I (..\uCGUI\Config\LCDConf.h)(0x51FF26BB)
+I (..\uCGUI\Config\LCDConf.h)(0x5201C34C)
 F (..\uCGUI\WM\WM.c)(0x453CF174)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I D:\Keil\ARM\RV31\INC -I D:\Keil\ARM\CMSIS\Include -I D:\Keil\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\wm.o" --omf_browse "..\Obj\wm.crf" --depend "..\Obj\wm.d")
 I (D:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (D:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)

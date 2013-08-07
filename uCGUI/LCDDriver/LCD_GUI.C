@@ -6,6 +6,23 @@
 **uC/GUI底层接口深度优化，尽量降低函数嵌套调用层数，否则堆栈占用太多内存导致GUI运行失败！
 **
 ******************************************************************************************/
+LCD_COLOR LCD_Index2Color_565(int Index);
+LCD_COLOR LCD_Index2Color_M565(int Index);
+
+unsigned LCD_Color2Index_565(LCD_COLOR Color);
+unsigned LCD_Color2Index_M565(LCD_COLOR Color);
+
+
+u16 ili9320_BGR2RGB(u16 c)
+{
+  u16  r, g, b;
+
+  b =  c  & 0x1f;
+  g = (c>>5)  & 0x3f;
+  r = (c>>11) & 0x1f;
+  
+  return( (b<<11) | (g<<5) | r );
+}
 
 int LCD_L0_Init(void)
 {  
@@ -16,7 +33,9 @@ int LCD_L0_Init(void)
 void LCD_L0_SetPixelIndex(int x, int y, int PixelIndex)
 {
 		u16 tmp = POINT_COLOR;
-		POINT_COLOR = PixelIndex;
+	
+	
+		POINT_COLOR = PixelIndex;//LCD_Index2Color_M565(PixelIndex);
 	LCD_DrawPoint(x, y);
 	POINT_COLOR = tmp;
 	//LCD_Fast_DrawPoint(x, y, PixelIndex);
@@ -29,7 +48,7 @@ void LCD_L0_SetPixelIndex(int x, int y, int PixelIndex)
 }
 unsigned int LCD_L0_GetPixelIndex(int x, int y)
 {
-	return LCD_ReadPoint(x, y);
+	return LCD_ReadPoint(x, y);//LCD_Color2Index_M565(LCD_ReadPoint(x, y));
 	//return LCD_ReadPoint(x, y);
 	/**(__IO uint16_t *) (Bank1_LCD_C)= 32;
   *(__IO uint16_t *) (Bank1_LCD_D)= x;
@@ -50,11 +69,8 @@ void LCD_L0_XorPixel(int x, int y) {
   LCD_PIXELINDEX PixelIndex = LCD_L0_GetPixelIndex(x, y);
   LCD_L0_SetPixelIndex(x, y, LCD_NUM_COLORS - PixelIndex - 1);
 }
-
-/*********************************************************************
-*
-*       LCD_L0_DrawHLine
-*/
+/*
+#include "GUI_Protected.h"
 void LCD_L0_DrawHLine  (int x0, int y,  int x1) {
   if (GUI_Context.DrawMode & LCD_DRAWMODE_XOR) {
     for (; x0 <= x1; x0++) {
@@ -62,15 +78,12 @@ void LCD_L0_DrawHLine  (int x0, int y,  int x1) {
     }
   } else {
     for (; x0 <= x1; x0++) {
-      LCD_L0_SetPixelIndex(x0, y, POINT_COLOR);
+      LCD_L0_SetPixelIndex(x0, y, GUI_Context.Color);
     }
   }
 }
 
-/*********************************************************************
-*
-*       LCD_L0_DrawVLine
-*/
+
 void LCD_L0_DrawVLine  (int x, int y0,  int y1) {
   if (GUI_Context.DrawMode & LCD_DRAWMODE_XOR) {
     for (; y0 <= y1; y0++) {
@@ -78,10 +91,40 @@ void LCD_L0_DrawVLine  (int x, int y0,  int y1) {
     }
   } else {
     for (; y0 <= y1; y0++) {
-      LCD_L0_SetPixelIndex(x, y0, POINT_COLOR);
+      LCD_L0_SetPixelIndex(x, y0, GUI_Context.Color);
     }
   }
 }
+*/
+/*********************************************************************
+*
+*       LCD_L0_DrawHLine
+*/
+
+void LCD_L0_DrawHLine  (int x0, int y,  int x1) {
+  if (GUI_Context.DrawMode & LCD_DRAWMODE_XOR) {
+    for (; x0 <= x1; x0++) {
+      LCD_L0_XorPixel(x0, y);
+    }
+  } else {
+    for (; x0 <= x1; x0++) {
+      LCD_L0_SetPixelIndex(x0, y, LCD_COLORINDEX);
+    }
+  }
+}
+
+void LCD_L0_DrawVLine  (int x, int y0,  int y1) {
+  if (GUI_Context.DrawMode & LCD_DRAWMODE_XOR) {
+    for (; y0 <= y1; y0++) {
+      LCD_L0_XorPixel(x, y0);
+    }
+  } else {
+    for (; y0 <= y1; y0++) {
+      LCD_L0_SetPixelIndex(x, y0, LCD_COLORINDEX);
+    }
+  }
+}
+
 /*void LCD_L0_XorPixel(int x, int y)
 {
 	u16 Index ;

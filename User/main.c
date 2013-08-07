@@ -201,9 +201,10 @@ int main(void)
 	SysTick_Configuration(); 
 	MCU_Init();
 	OSInit();
-	
-
 	delay_init();//SystemCoreClock);	    	 
+	GUI_Delay(100);
+
+	
 	GUI_Init();
 
 			//GUI_SetBkColor(GUI_BLUE);

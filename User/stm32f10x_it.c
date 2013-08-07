@@ -136,17 +136,17 @@ void PendSV_Handler(void)
   * @retval None
   */
 //系统时钟中断服务函数
-void SysTick_Handler(void)
-{
+//void SysTick_Handler(void)
+//{
 //   OS_CPU_SR  cpu_sr;
-	OSIntEnter(); 
+//	OSIntEnter(); 
 //   OS_ENTER_CRITICAL();                         /* Tell uC/OS-II that we are starting an ISR          */
 //   OSIntNesting++;
 //   OS_EXIT_CRITICAL();
-  OSTimeTick();        /* Call uC/OS-II's OSTimeTick()               */
-  OSIntExit();         /* Tell uC/OS-II that we are leaving the ISR  */
-}
-void USART1_IRQHandler(void)
+//  OSTimeTick();        /* Call uC/OS-II's OSTimeTick()               */
+//  OSIntExit();         /* Tell uC/OS-II that we are leaving the ISR  */
+//}
+/*void USART1_IRQHandler(void)
 {
 	OSIntEnter(); 
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
@@ -154,7 +154,7 @@ void USART1_IRQHandler(void)
 		printf("\r\n");
 	}
 	OSIntExit(); 
-}
+}*/
  /*
 ********************************************************************************
 ** 函数名称 ： TIM1_UP_IRQHandler(void)

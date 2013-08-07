@@ -1,5 +1,6 @@
 #include "bmp.h"
 #include "Fat_API.h"
+void LCD_Fast_DrawPoint(unsigned short, unsigned short, unsigned short);
 u8 File_Buffer[1024];
 FIL f_file;
 //小尺寸的bmp解码,解码filename这个BMP文件		
@@ -87,7 +88,7 @@ u8 BmpDecode(u8 *filename,u16 x,u16 y,u16 width,u16 height,u8 Mode)//尺寸小于240
 							color=(*bmpbuf++)>>3;		   		 	//B
 							color+=((u16)(*bmpbuf++)<<3)&0X07E0;	//G
 							color+=(((u16)*bmpbuf++)<<8)&0XF800;	//R
- 						 	Draw_Pixel(x+tx,y+ty,color);//显示图片	
+ 						 	LCD_Fast_DrawPoint(x+tx,y+ty,color);//显示图片	
 							tx++;
 						}
 						bmpbuf+=rowadd;//跳过填充区
@@ -105,7 +106,7 @@ u8 BmpDecode(u8 *filename,u16 x,u16 y,u16 width,u16 height,u8 Mode)//尺寸小于240
 								color=((u16)*bmpbuf&0X1F);			//R
 								color+=(((u16)*bmpbuf++)&0XE0)<<1; 	//G
 		 						color+=((u16)*bmpbuf++)<<9;  	    //R,G	 
-							    Draw_Pixel(x+tx,y+ty,color);//显示图片	
+							    LCD_Fast_DrawPoint(x+tx,y+ty,color);//显示图片	
 								tx++;
 							}
 						}else  //RGB 565
@@ -114,7 +115,7 @@ u8 BmpDecode(u8 *filename,u16 x,u16 y,u16 width,u16 height,u8 Mode)//尺寸小于240
 							{											 
 								color=*bmpbuf++;  			//G,B
 		 						color+=((u16)*bmpbuf++)<<8;	//R,G	 
-							  	Draw_Pixel(x+tx,y+ty,color);//显示图片	
+							  	LCD_Fast_DrawPoint(x+tx,y+ty,color);//显示图片	
 								tx++;
 							}
 						}

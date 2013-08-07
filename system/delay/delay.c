@@ -1,5 +1,6 @@
 #include "delay.h"
 #include "sys.h"
+#include "includes.h"	
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //如果使用ucos,则包括下面的头文件即可.
 #if SYSTEM_SUPPORT_UCOS
@@ -48,7 +49,29 @@ void SysTick_Handler(void)
     OSIntExit();        //触发任务切换软中断
 }
 #endif
-			   
+
+void delay_init()	 
+{
+
+#ifdef OS_CRITICAL_METHOD 	//如果OS_CRITICAL_METHOD定义了,说明使用ucosII了.
+	u32 reload;
+#endif
+	SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK_Div8);	//选择外部时钟  HCLK/8
+	fac_us=SystemCoreClock/8000000;	//为系统时钟的1/8  
+	 
+#ifdef OS_CRITICAL_METHOD 	//如果OS_CRITICAL_METHOD定义了,说明使用ucosII了.
+	reload=SystemCoreClock/8000000;		//每秒钟的计数次数 单位为K	   
+	reload*=1000000/OS_TICKS_PER_SEC;//根据OS_TICKS_PER_SEC设定溢出时间
+							//reload为24位寄存器,最大值:16777216,在72M下,约合1.86s左右	
+	fac_ms=1000/OS_TICKS_PER_SEC;//代表ucos可以延时的最少单位	   
+	SysTick->CTRL|=SysTick_CTRL_TICKINT_Msk;   	//开启SYSTICK中断
+	SysTick->LOAD=reload; 	//每1/OS_TICKS_PER_SEC秒中断一次	
+	SysTick->CTRL|=SysTick_CTRL_ENABLE_Msk;   	//开启SYSTICK    
+#else
+	fac_ms=(u16)fac_us*1000;//非ucos下,代表每个ms需要的systick时钟数   
+#endif
+}
+/*			   
 //初始化延迟函数
 //当使用ucos的时候,此函数会初始化ucos的时钟节拍
 //SYSTICK的时钟固定为HCLK时钟的1/8
@@ -72,7 +95,7 @@ void delay_init(u8 SYSCLK)
 #else
 	fac_ms=(u16)fac_us*1000;//非ucos下,代表每个ms需要的systick时钟数   
 #endif
-}								    
+}	*/							    
 
 #ifdef OS_CRITICAL_METHOD 	//如果OS_CRITICAL_METHOD定义了,说明使用ucosII了.
 //延时nus
@@ -103,7 +126,7 @@ void delay_us(u32 nus)
 //nms:要延时的ms数
 void delay_ms(u16 nms)
 {	
-	if(OSRunning==TRUE)//如果os已经在跑了	    
+	if(OSRunning != 0)//如果os已经在跑了	    
 	{		  
 		if(nms>=fac_ms)//延时的时间大于ucos的最少时间周期 
 		{

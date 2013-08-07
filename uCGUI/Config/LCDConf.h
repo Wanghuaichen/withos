@@ -32,7 +32,7 @@ Purpose     : Sample configuration file
 
 #define LCD_BITSPERPIXEL   (16)
 
-#define LCD_CONTROLLER      -1//9320
+#define LCD_CONTROLLER      -1//9320//-1//9320
 #define LCD_FIXEDPALETTE   (565)
 #define LCD_SWAP_RB        (1)
 // #define LCD_SWAP_XY        (1)

@@ -31,46 +31,46 @@ _lcd_dev lcddev;
 //regval:寄存器值
 void LCD_WR_REG(u16 regval)
 { 
-	LCD->LCD_REG=regval;//写入要写的寄存器序号	 
+	myLCD->LCD_REG=regval;//写入要写的寄存器序号	 
 }
 //写LCD数据
 //data:要写入的值
 void LCD_WR_DATA(u16 data)
 {										    	   
-	LCD->LCD_RAM=data;		 
+	myLCD->LCD_RAM=data;		 
 }
 //读LCD数据
 //返回值:读到的值
 u16 LCD_RD_DATA(void)
 {										    	   
-	return LCD->LCD_RAM;		 
+	return myLCD->LCD_RAM;		 
 }					   
 //写寄存器
 //LCD_Reg:寄存器地址
 //LCD_RegValue:要写入的数据
 void LCD_WriteReg(u8 LCD_Reg, u16 LCD_RegValue)
 {	
-	LCD->LCD_REG = LCD_Reg;		//写入要写的寄存器序号	 
-	LCD->LCD_RAM = LCD_RegValue;//写入数据	    		 
+	myLCD->LCD_REG = LCD_Reg;		//写入要写的寄存器序号	 
+	myLCD->LCD_RAM = LCD_RegValue;//写入数据	    		 
 }	   
 //读寄存器
 //LCD_Reg:寄存器地址
 //返回值:读到的数据
 u16 LCD_ReadReg(u8 LCD_Reg)
 {										   
-	LCD->LCD_REG = LCD_Reg;		//写入要写的寄存器序号	 
-	return LCD->LCD_RAM;
+	myLCD->LCD_REG = LCD_Reg;		//写入要写的寄存器序号	 
+	return myLCD->LCD_RAM;
 }   
 //开始写GRAM
 void LCD_WriteRAM_Prepare(void)
 {
- 	LCD->LCD_REG=lcddev.wramcmd;	  
+ 	myLCD->LCD_REG=lcddev.wramcmd;	  
 }	 
 //LCD写GRAM
 //RGB_Code:颜色值
 void LCD_WriteRAM(u16 RGB_Code)
 {							    
-	LCD->LCD_RAM = RGB_Code;//写十六位GRAM
+	myLCD->LCD_RAM = RGB_Code;//写十六位GRAM
 }	 
 //读取个某点的颜色值	 
 //x,y:坐标
@@ -81,10 +81,10 @@ u16 LCD_ReadPoint(u16 x,u16 y)
  	LCD_SetCursor(x,y);	    
 	while(t<0X1FFF)
 	{	
-		if(LCD->LCD_REG&0x0001)break; 
+		if(myLCD->LCD_REG&0x0001)break; 
 		t++;		   
 	}					   
-	return LCD->LCD_RAM; 	
+	return myLCD->LCD_RAM; 	
 }
 //LCD背光设置
 //pwm:背光等级,0~63.越大越亮.
@@ -163,19 +163,19 @@ void LCD_DrawPoint(u16 x,u16 y)
 {
 	LCD_SetCursor(x,y);		//设置光标位置 
 	LCD_WriteRAM_Prepare();	//开始写入GRAM
-	LCD->LCD_RAM=POINT_COLOR; 
+	myLCD->LCD_RAM=POINT_COLOR; 
 }
 //快速画点
 //x,y:坐标
 //color:颜色
 void LCD_Fast_DrawPoint(u16 x,u16 y,u16 color)
 {	  		 		   
-	LCD->LCD_REG=lcddev.setycmd;
-	LCD->LCD_RAM=y; 
- 	LCD->LCD_REG=lcddev.setxcmd; 
-	LCD->LCD_RAM=x; 
-	LCD->LCD_REG=lcddev.wramcmd; 
-	LCD->LCD_RAM=color; 
+	myLCD->LCD_REG=lcddev.setycmd;
+	myLCD->LCD_RAM=y; 
+ 	myLCD->LCD_REG=lcddev.setxcmd; 
+	myLCD->LCD_RAM=x; 
+	myLCD->LCD_REG=lcddev.wramcmd; 
+	myLCD->LCD_RAM=color; 
 }	
 //设置LCD显示方向（7寸屏,不能简单的修改为横屏显示）
 //dir:0,竖屏；1,横屏
@@ -265,7 +265,7 @@ void LCD_Clear(u16 color)
 	LCD_WriteRAM_Prepare();     //开始写入GRAM	 	  
 	for(index=0;index<totalpoint;index++)
 	{
-		LCD->LCD_RAM=color;	   
+		myLCD->LCD_RAM=color;	   
 	}
 }  
 //在指定区域内填充单个颜色
@@ -280,7 +280,7 @@ void LCD_Fill(u16 sx,u16 sy,u16 ex,u16 ey,u16 color)
 	{
 	 	LCD_SetCursor(sx,i);      				//设置光标位置 
 		LCD_WriteRAM_Prepare();     			//开始写入GRAM	  
-		for(j=0;j<xlen;j++)LCD->LCD_RAM=color;	//送入LCD	    
+		for(j=0;j<xlen;j++)myLCD->LCD_RAM=color;	//送入LCD	    
 	}
 }  
 //在指定区域内填充指定颜色块			 
@@ -296,7 +296,7 @@ void LCD_Color_Fill(u16 sx,u16 sy,u16 ex,u16 ey,u16 *color)
 	{
  		LCD_SetCursor(sx,sy+i);   	//设置光标位置 
 		LCD_WriteRAM_Prepare();     //开始写入GRAM
-		for(j=0;j<width;j++)LCD->LCD_RAM=color[i*height+j];//写入数据 
+		for(j=0;j<width;j++)myLCD->LCD_RAM=color[i*height+j];//写入数据 
 	}	  
 }  
 //画线

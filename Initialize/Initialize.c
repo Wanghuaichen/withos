@@ -2,7 +2,7 @@
 #include "ff.h"
 #include "diskio.h"
 #include "Hardwear.h"
-
+int fputc(int ch, FILE *f);
 TIM_TimeBaseInitTypeDef  TIM4_TimeBaseStructure;
 TIM_OCInitTypeDef        TIM4_OCInitStructure;
 TIM_BDTRInitTypeDef      TIM4_BDTRInitStructure;
@@ -19,11 +19,11 @@ extern SDCardInfo SDCard_Info;
 * Output         : None
 * Return         : None
 *******************************************************************************/
-int fputc(int ch, FILE *f)
+/*int fputc(int ch, FILE *f)
 {
   USART1_Putchar((u8) ch);
   return ch;
-}
+*/
 int fgetc(FILE *f)
 {
   /* Loop until received a char */
@@ -333,7 +333,7 @@ void TIM1_Configuration(void)
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //ÏòÉÏ¼ÆÊýÄ£Ê½£¨´Ó0¼Çµ½ÉèÖÃÖµÒç³ö£©
   TIM_TimeBaseStructure.TIM_Period =10000;	                   //10ms¶¨Ê±,ËüµÄÈ¡Öµ±ØÐëÔÚ0x0000ºÍ0xFFFFÖ®¼ä
   TIM_TimeBaseStructure.TIM_ClockDivision = 0x0;			        //ÉèÖÃÁË¶¨Ê±Æ÷Ê±ÖÓ·Ö¸î£¬
-  TIM_TimeBaseStructure.TIM_RepetitionCounter = 0x0;		      //ÉèÖÃÁËÖÜÆÚ¼ÆÊýÆ÷Öµ£¬ËüµÄÈ¡Öµ±ØÐëÔÚ0x00ºÍ0xFFÖ®¼ä¡
+  TIM_TimeBaseStructure.TIM_RepetitionCounter = 0x0;		      //ÉèÖÃÁËÖÜÆÚ¼ÆÊýÆ÷Öµ£¬ËüµÄÈ¡Öµ±ØÐëÔÚ0x00ºÍ0xFFÖ®¼ä?
   TIM_TimeBaseInit(TIM1,&TIM_TimeBaseStructure);	            // ¸ù¾ÝTIM_TimeBaseInitStructÖÐÖ¸¶¨µÄ²ÎÊý³õÊ¼»¯TIMxµÄÊ±¼ä»ùÊýµ¥Î»
   TIM_ClearFlag(TIM1, TIM_FLAG_Update);      //ÇåÖÐ¶Ï£¬ÒÔÃâÒ»ÆôÓÃÖÐ¶ÏºóÁ¢¼´²úÉúÖÐ¶Ï   
   TIM_ITConfig(TIM1, TIM_IT_Update, ENABLE); //Ê¹ÄÜTIM1ÖÐ¶ÏÔ´ 
@@ -416,6 +416,7 @@ u8 SPI1_ReadWriteByte(u8 byte)
   /* Return the byte read from the SPI bus */
   return SPI1->DR;
 }
+int LCD_L0_Init(void);
 u8 MCU_Init(void)//µ¥Æ¬»ú³õÊ¼»¯
 {
 	u8 retry = 0;
@@ -425,7 +426,7 @@ u8 MCU_Init(void)//µ¥Æ¬»ú³õÊ¼»¯
 	RCC_Configuration(); 
 	GPIO_Configuration();
 //LCD9320_GPIO_Init();
-	FSMC_LCD_Init(); 
+	LCD_L0_Init();//FSMC_LCD_Init(); 
 //	Touch_GPIO_Init();
 // 	RTC_Configuration();
 	USART1_Configuration();

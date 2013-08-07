@@ -28,8 +28,8 @@ extern u8 TouchFlag;
 ************************************************************************************************/
 #define Touch_STK_SIZE            128      //触摸检测任务
 #define Menu_STK_SIZE             256      //GUI菜单运行任务
-#define START_STK_SIZE            32       //起始任务
-#define LED_STK_SIZE              64       //LED任务
+#define START_STK_SIZE            132       //起始任务
+#define LED_STK_SIZE              164       //LED任务
 #define Setting_STK_SIZE          256      //设置任务
 #define FileBrowser_STK_SIZE      256      //文件浏览器任务
 #define MusicPlayer_STK_SIZE      320      //音乐播放器任务

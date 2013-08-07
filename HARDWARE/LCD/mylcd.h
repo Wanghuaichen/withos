@@ -50,7 +50,7 @@ typedef struct
 //使用NOR/SRAM的 Bank1.sector4,地址位HADDR[27,26]=11 A10作为数据命令区分线 
 //注意设置时STM32内部会右移一位对其! 111110=0X3E			    
 #define LCD_BASE        ((u32)(0x6C000000 | 0x000007FE))
-#define LCD             ((LCD_TypeDef *) LCD_BASE)
+#define myLCD             ((LCD_TypeDef *) LCD_BASE)
 //////////////////////////////////////////////////////////////////////////////////
 //LCD 指令定义
 #define LCD_CUR_Y  		0X00

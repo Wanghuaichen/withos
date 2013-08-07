@@ -113,7 +113,7 @@ static void _cbBkWindow(WM_MESSAGE *pMsg)
          break;
       }
       break;
-    default:
+    default:BUTTON_SetText(pMsg ->hWinSrc, "psd");break;
       WM_DefaultProc(pMsg);
   }
 }
@@ -128,7 +128,7 @@ void Task_Menu(void *pdata)
   GUI_Init();	
   MainMenu_Init();
 	LED1 = 0;
-	//WM_SetCallback(hDesktopWindow, _cbBkWindow);
+	WM_SetCallback(hDesktopWindow, _cbBkWindow);
 	while(1) {
 	/*	if(TouchCmd == 1 && Menu_ID == MainMenu_ID){
 			TouchCmd = 0;	

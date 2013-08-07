@@ -44,19 +44,28 @@ WM_HWIN hDesktopWindow;//桌面的句柄
 **********************************************************************************************************/
 void MainMenu_Init(void)
 {	BUTTON_Handle hbut;
-	u8 i = 0;
+	
+	
+	
+	/*u8 i = 0;
 	SingleList   pos   = NULL;
-	MainMenu_pHead = SingleListNodeCreate();  /* 创建单向链表表头节点，这个链表将永远不会被销毁    */
+	MainMenu_pHead = SingleListNodeCreate();
 	pos = MainMenu_pHead;
 	Menu_ID = MainMenu_ID;
-	/***********************一些默认设置****************************/
+
+	
   FRAMEWIN_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
 	FRAMEWIN_SetDefaultTitleHeight(19);	
 	FRAMEWIN_SetDefaultBarColor(1, ThemeColor); 
 	SCROLLBAR_SetDefaultWidth  (18);
 	LISTBOX_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
-	LISTBOX_SetDefaultBkColor(2, ThemeColor);
+	LISTBOX_SetDefaultBkColor(2, ThemeColor);*/
+	
+	
 	BUTTON_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
+	
+	
+	
 	GUI_SetBkColor(GUI_BLACK); 	
 	GUI_SetColor(GUI_BLACK);
 	WM_SetDesktopColor(DesktopColor); 
@@ -72,7 +81,7 @@ void MainMenu_Init(void)
   hButton_mainmenu[5] = BUTTON_Create(5, 310+220, 90, 90, GUI_ID_BUTTON5, WM_CF_SHOW); 
 	hButton_mainmenu[6] = BUTTON_Create(100, 310+220, 90, 90, GUI_ID_BUTTON6, WM_CF_SHOW); 
 	hButton_mainmenu[7] = BUTTON_Create(5, 405+220, 185, 90, GUI_ID_BUTTON7, WM_CF_SHOW); */
-	#define basey 5
+/*	#define basey 5
 	  hButton_mainmenu[0] = BUTTON_Create(5, basey, 90, 90, GUI_ID_BUTTON0, WM_CF_SHOW);   
 	hButton_mainmenu[1] = BUTTON_Create(100, basey, 90, 90, GUI_ID_BUTTON1, WM_CF_SHOW);
 	hButton_mainmenu[2] = BUTTON_Create(5, basey+95, 90, 90, GUI_ID_BUTTON2, WM_CF_SHOW);   
@@ -90,7 +99,7 @@ void MainMenu_Init(void)
     BUTTON_SetBkColor  (hButton_mainmenu[i],1,GUI_GRAY);
 		pos = SingleListInsert(MainMenu_pHead,pos,hButton_mainmenu[i]);//将所有主界面按钮句柄插入链表
 	}
-  /* Set the button text */   
+
 	BUTTON_SetText(hButton_mainmenu[0]," 音乐");
 	BUTTON_SetText(hButton_mainmenu[1]," 存储设备");
 	BUTTON_SetText(hButton_mainmenu[2]," 文本");
@@ -106,7 +115,7 @@ void MainMenu_Init(void)
 	BUTTON_SetBitmapEx (hButton_mainmenu[4],0, &bmphotobitmap, 110, 15);
 	BUTTON_SetBitmapEx (hButton_mainmenu[5],0, &bmFFT1pp, 20, 15);
 	BUTTON_SetBitmapEx (hButton_mainmenu[6],0, &bmgame4pp, 25, 15);
-	BUTTON_SetBitmapEx (hButton_mainmenu[7],0, &bmoscilloscope1pp, 85, 15);
+	BUTTON_SetBitmapEx (hButton_mainmenu[7],0, &bmoscilloscope1pp, 85, 15);*/
 /*	while(WM_GetWindowOrgY(hButton_mainmenu[0]) > 25) {
 		if(WM_GetWindowOrgY(hButton_mainmenu[0]) > 55 ) {
 			WM_Move(MainMenu_pHead,0,-30);
@@ -115,13 +124,11 @@ void MainMenu_Init(void)
 		}
   }*/
 	//hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
-	hText = TEXT_Create(600, 100,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
+	hText = TEXT_CreateAsChild(390, 100,39, 16, hDesktopWindow, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_HCENTER);
 	TEXT_SetFont(hText,&GUI_Font13_ASCII);
 	TEXT_SetTextColor(hText,GUI_WHITE);
-	
-	#define BUTTON_RIGHT_MIDDLE 8511
 
-	hbut = BUTTON_CreateAsChild(600-30, 240-30, 60, 60,hDesktopWindow,  GUI_ID_OK, WM_CF_SHOW);   
+	hbut = BUTTON_CreateAsChild(400-200, 240-100, 400, 200, hDesktopWindow,  GUI_ID_OK, WM_CF_SHOW);   
 	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
 	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
 	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);

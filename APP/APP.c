@@ -27,7 +27,7 @@ void TaskStart(void * pdata)
 // 	OSTimeDly(200);
 	OSTaskCreate(Task_LED_DEMO, (void * )0, (OS_STK *)&TASK_LED_STK[LED_STK_SIZE-1], LED_DEMO_TASK_Prio);
 	OSTaskCreate(Task_Menu, (void * )0, (OS_STK *)&TASK_Menu_STK[Menu_STK_SIZE-1], Menu_TASK_Prio);
-	OSTaskCreate(Task_Touch, (void * )0, (OS_STK *)&TASK_Touch_STK[Touch_STK_SIZE-1], Touch_TASK_Prio);
+//	OSTaskCreate(Task_Touch, (void * )0, (OS_STK *)&TASK_Touch_STK[Touch_STK_SIZE-1], Touch_TASK_Prio);
 // 	OSStatInit();
 	OSTaskDel(OS_PRIO_SELF);//删除自己	OSTaskSuspend(START_TASK_Prio);
 }
@@ -38,6 +38,7 @@ void TaskStart(void * pdata)
 ** output parameters:  无
 ** Returned value:     无
 **********************************************************************************************************/
+int curkey;
 void Task_Touch(void *pdata)
 {
 	GUI_PID_STATE  TouchPoint;
@@ -72,6 +73,8 @@ void Task_Touch(void *pdata)
 ** output parameters:  无
 ** Returned value:     无
 **********************************************************************************************************/
+
+
 	#define BUTTON_RIGHT_MIDDLE 8511
 unsigned int buttonCounter = 0;
 char str[10];
@@ -80,7 +83,7 @@ void Task_Menu(void *pdata)
   GUI_Init();	
   MainMenu_Init();
 	while(1) {
-		if(TouchCmd == 1 && Menu_ID == MainMenu_ID){
+	/*	if(TouchCmd == 1 && Menu_ID == MainMenu_ID){
 			TouchCmd = 0;	
 		  switch(GUI_GetKey()) {
 			
@@ -117,12 +120,22 @@ void Task_Menu(void *pdata)
 					TouchCmd = 1;
 					break;
 		  }
-	  }
-		if(GUI_GetKey() == BUTTON_RIGHT_MIDDLE){
+	  }*/
+		/*if((curkey = GUI_GetKey()) == BUTTON_RIGHT_MIDDLE){
 				++buttonCounter;
 				int2str(str, buttonCounter);
 				TEXT_SetText(hText, str);
 		}
+		else{
+			int2str(str, curkey);
+			TEXT_SetText(hText, str);
+		}*/
+		curkey = GUI_WaitKey();
+				++buttonCounter;
+				int2str(str, buttonCounter);
+				TEXT_SetText(hText, str);
+				
+				
 	  WM_MoveCtrl();
 		GUI_Exec();//重绘
 	  delay_ms(20);//OSTimeDly(3);

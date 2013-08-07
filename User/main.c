@@ -47,8 +47,37 @@ void delay_clk(u16 n)
   * @param  None
   * @retval None
   */
+
+static void _cbBkWindow(WM_MESSAGE *pMsg)
+{
+  int NCode, Id,i;
+  switch (pMsg->MsgId) {
+    /*case WM_PAINT:
+      //WM_Paint(WM_GetFirstChild(pMsg ->hwin));
+			//WM_Paint(pMsg ->hwin);
+      break;*/
+    case WM_NOTIFY_PARENT:
+      //Id    = WM_GetId(pMsg->hWinSrc);     
+      NCode = pMsg->Data.v;                
+      switch (NCode) {
+        case WM_NOTIFICATION_RELEASED:   
+					BUTTON_SetText(pMsg ->hWinSrc, "psd");		
+            /*if(Id==BUTTON_ODER)
+            {
+              //????               }
+            }*/
+         break;
+      }
+      break;
+    default:
+      WM_DefaultProc(pMsg);
+  }
+}
+
+
+
 	
-#define bigger_stk_size 128
+#define bigger_stk_size 256
 OS_STK  myTask_STK[bigger_stk_size];
 void myTask(void *data)
 {
@@ -65,20 +94,44 @@ void myTask(void *data)
 	#define mytextid 666
 	#define mybuttonid 888
 	
+	FRAMEWIN_Handle hFrame; 
+BUTTON_Handle hButton1; 
+BUTTON_Handle hButton2; 
+
+	
+	
+	GUI_Init();
+	BUTTON_SetDefaultBkColor(GUI_GREEN, 0);//(hbutton, 0, GUI_GREEN);
+	BUTTON_SetDefaultBkColor(GUI_YELLOW, 0);
+	GUI_SetColor(GUI_YELLOW);
+	GUI_SetBkColor(GUI_BLUE);
+	
+	
+hFrame = FRAMEWIN_Create("test",0,WM_CF_SHOW,0,0,150,150); 
+  WM_Paint(hFrame); 
+  hButton1 = BUTTON_CreateAsChild(20,20,60,30,hFrame,1,WM_CF_SHOW); 
+  BUTTON_SetText(hButton1,"OK"); 
+  WM_Paint(hButton1);
+	WM_SetCallback(hFrame, _cbBkWindow);
+	
 /*	GUI_SetBkColor(GUI_BLACK); 	
 	GUI_SetColor(GUI_BLACK);
 	WM_SetDesktopColor(DesktopColor); 
 	hdesktop = WM_GetDesktopWindow();//获取桌面的句柄
 	*/
 	
-	htext = TEXT_Create(x1, y1 -100, 80*2, 50, mytextid, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
-	TEXT_SetTextColor(hText,GUI_WHITE);
+	/*
+	TEXT_SetDefaultTextColor(GUI_GREEN);
+	htext = TEXT_Create(x1+100, y1-60, 100, 50, mytextid, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
+	 WM_Paint(htext);
 	
 	hbutton = BUTTON_Create(x1, y1, BUTTONsizeX, BUTTONsizeY, mybuttonid, WM_CF_SHOW);
-	BUTTON_SetBkColor(hbutton, 0, GUI_GREEN);
-	BUTTON_SetBkColor(hbutton, 1, GUI_YELLOW);
+
 	BUTTON_SetText(hbutton, "click!");
 
+  WM_Paint(hbutton);
+	
+	*/
 /*	htext = TEXT_CreateAsChild(x1, y1 -100, 80*2, 50, hdesktop, mytextid, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
 	TEXT_SetTextColor(hText,GUI_WHITE);
 	
@@ -86,7 +139,7 @@ void myTask(void *data)
 	BUTTON_SetBkColor(hbutton, 0, GUI_GREEN);
 	BUTTON_SetBkColor(hbutton, 1, GUI_YELLOW);
 	BUTTON_SetText(hbutton, "click!");*/
-	GUI_Exec();
+
   //GUI_InvertRect(x1, y1, x2, y2);
 
 	if(!htext){
@@ -121,8 +174,8 @@ void myTask(void *data)
 	
 }
 
-#define mySTART_STK_SIZE 32
-OS_STK  TASK_START_STK[START_STK_SIZE];
+#define mySTART_STK_SIZE 64
+//OS_STK  TASK_START_STK[START_STK_SIZE];
 OS_STK  myTASK_START_STK[mySTART_STK_SIZE];
 void startTask(void *data)
 {
@@ -153,10 +206,10 @@ int main(void)
 		//GUI_Clear();
 //LED0 = 0;LED1=0;
 //GUI_DispString("Hello World!");	
-//	myTask(0);
-	OSTaskCreate(TaskStart,	   //task pointer
+
+	OSTaskCreate(startTask,	   //task pointer
 					(void *)0,	       //parameter
-					(OS_STK *)&TASK_START_STK[START_STK_SIZE-1],//task stack top pointer
+					(OS_STK *)&myTASK_START_STK[mySTART_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority
 	
 	OSStart();                 //开始多任务执行

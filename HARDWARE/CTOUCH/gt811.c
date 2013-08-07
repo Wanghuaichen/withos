@@ -3,6 +3,8 @@
 #include "usart.h"
 #include "delay.h"	 
 #include "mynvic.h"
+#include "LCD_Private.h"      /* private modul definitions & config */
+#include "GUI_Protected.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32开发板
@@ -47,7 +49,8 @@ void EXTI15_10_IRQHandler(void)
 	{				  
 		ctp_dev.tpsta|=0X80;//标记有有效触摸
 	}		 
-	EXTI->PR=1<<10;  //清除LINE10上的中断标志位  	   
+	EXTI->PR=1<<10;  //清除LINE10上的中断标志位  	
+	GUI_TOUCH_Exec();
 } 
 //向GT811写入一次数据
 //reg:起始寄存器地址

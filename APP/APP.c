@@ -1,5 +1,6 @@
 #include "APP.h"
 #include "led.h"
+#include "stringutils.h"
 #include "delay.h"
 /*************************************************任务堆栈声明********************************************/
 OS_STK  TASK_Touch_STK[Touch_STK_SIZE];
@@ -71,6 +72,9 @@ void Task_Touch(void *pdata)
 ** output parameters:  无
 ** Returned value:     无
 **********************************************************************************************************/
+	#define BUTTON_RIGHT_MIDDLE 8511
+unsigned int buttonCounter = 0;
+char str[10];
 void Task_Menu(void *pdata)
 {
   GUI_Init();	
@@ -114,6 +118,11 @@ void Task_Menu(void *pdata)
 					break;
 		  }
 	  }
+		if(GUI_GetKey() == BUTTON_RIGHT_MIDDLE){
+				++buttonCounter;
+				int2str(str, buttonCounter);
+				TEXT_SetText(hText, str);
+		}
 	  WM_MoveCtrl();
 		GUI_Exec();//重绘
 	  delay_ms(20);//OSTimeDly(3);
@@ -130,16 +139,8 @@ void Task_Menu(void *pdata)
 void Task_LED_DEMO(void *pdata)
 {
 	unsigned char ledCnt = 0;
-	#define BUTTON_RIGHT_MIDDLE 8511
-	BUTTON_Handle hbut;
-	hbut = BUTTON_Create(600-30, 240-30, 600+30, 240+30, BUTTON_RIGHT_MIDDLE, WM_CF_SHOW);   
-	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
-	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
-	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);
-	BUTTON_SetText(hbut, "press!");
-	GUI_Exec();//重绘
 	
-	delay_ms(5000);
+	
 	LED0 = 1;
 	while(1){ 
 		LED0 = ~LED0;

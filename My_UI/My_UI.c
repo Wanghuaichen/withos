@@ -43,7 +43,7 @@ WM_HWIN hDesktopWindow;//桌面的句柄
 ** Returned value:     无
 **********************************************************************************************************/
 void MainMenu_Init(void)
-{
+{	BUTTON_Handle hbut;
 	u8 i = 0;
 	SingleList   pos   = NULL;
 	MainMenu_pHead = SingleListNodeCreate();  /* 创建单向链表表头节点，这个链表将永远不会被销毁    */
@@ -104,9 +104,20 @@ void MainMenu_Init(void)
 			WM_Move(MainMenu_pHead,0,-7);
 		}
   }
-	hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
+	//hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
+	hText = TEXT_Create(600, 180,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
 	TEXT_SetFont(hText,&GUI_Font13_ASCII);
 	TEXT_SetTextColor(hText,GUI_WHITE);
+	
+	#define BUTTON_RIGHT_MIDDLE 8511
+
+	hbut = BUTTON_Create(600-30, 240-30, 60, 60, BUTTON_RIGHT_MIDDLE, WM_CF_SHOW);   
+	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
+	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
+	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);
+	BUTTON_SetText(hbut, "press!");
+	GUI_Exec();//重绘
+	
 // 	TEXT_SetBkColor(hText,GUI_BLACK);
 	
 	/* 所有的窗口自动的使用存储设备 */

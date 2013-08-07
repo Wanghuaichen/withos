@@ -40,7 +40,13 @@
 * Returns    : none
 *********************************************************************************************************
 */
-
+#include "delay.h"
+void  OSTimeDly_back (INT32U ticks)
+{
+    INT8U      y;
+		delay_ms(ticks);
+		return;
+}
 void  OSTimeDly (INT32U ticks)
 {
     INT8U      y;
@@ -68,6 +74,8 @@ void  OSTimeDly (INT32U ticks)
         OS_Sched();                              /* Find next task to run!                             */
     }
 }
+
+
 /*$PAGE*/
 /*
 *********************************************************************************************************

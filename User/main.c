@@ -202,10 +202,8 @@ int main(void)
 	MCU_Init();
 	OSInit();
 	delay_init();//SystemCoreClock);	    	 
-	GUI_Delay(100);
-
-	
-	GUI_Init();
+	//GUI_Delay(100);
+	//OSTimeDly(10); //deadloop
 
 			//GUI_SetBkColor(GUI_BLUE);
 		//GUI_Clear();

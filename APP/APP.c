@@ -1,5 +1,6 @@
 #include "APP.h"
-
+#include "led.h"
+#include "delay.h"
 /*************************************************任务堆栈声明********************************************/
 OS_STK  TASK_Touch_STK[Touch_STK_SIZE];
 OS_STK  TASK_Menu_STK[Menu_STK_SIZE];
@@ -20,6 +21,7 @@ OS_STK  TASK_TextBrowser_STK[TextBrowser_STK_SIZE];
 void TaskStart(void * pdata)
 {
 	pdata = pdata;
+	LED_Init();
 // 	OSTaskCreate(OS_TaskStat, (void * )0, (OS_STK *)&TASK_STAT_STK[OS_TASK_IDLE_STK_SIZE-1],OS_TASK_STAT_PRIO);//建立统计任务
 // 	OSTimeDly(200);
 	OSTaskCreate(Task_LED_DEMO, (void * )0, (OS_STK *)&TASK_LED_STK[LED_STK_SIZE-1], LED_DEMO_TASK_Prio);
@@ -38,6 +40,8 @@ void TaskStart(void * pdata)
 void Task_Touch(void *pdata)
 {
 	GUI_PID_STATE  TouchPoint;
+	unsigned ledSwitchCnt = 0;
+	LED1 = 0;
 	while(1){
 		GUI_TOUCH_Exec() ;
 		GUI_TOUCH_GetState(&TouchPoint);
@@ -50,7 +54,13 @@ void Task_Touch(void *pdata)
 				TouchFlag = TouchUnPress;	
 			}
 		}
-	  OSTimeDly(6);   //保证50Hz以上的执行频率
+		
+		++ledSwitchCnt;
+		if(ledSwitchCnt == 50){
+				ledSwitchCnt = 0;
+				LED1 = ~LED1;
+		}
+	  delay_ms(20);//OSTimeDly(6);   //保证50Hz以上的执行频率
 	}
 }
 /********************************************************************************************************** 
@@ -106,7 +116,7 @@ void Task_Menu(void *pdata)
 	  }
 	  WM_MoveCtrl();
 		GUI_Exec();//重绘
-	  OSTimeDly(3);
+	  delay_ms(20);//OSTimeDly(3);
 	}
 }
 /********************************************************************************************************** 
@@ -116,7 +126,29 @@ void Task_Menu(void *pdata)
 ** output parameters:  无
 ** Returned value:     无
 **********************************************************************************************************/
+
 void Task_LED_DEMO(void *pdata)
+{
+	unsigned char ledCnt = 0;
+	#define BUTTON_RIGHT_MIDDLE 8511
+	BUTTON_Handle hbut;
+	hbut = BUTTON_Create(600-30, 240-30, 600+30, 240+30, BUTTON_RIGHT_MIDDLE, WM_CF_SHOW);   
+	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
+	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
+	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);
+	BUTTON_SetText(hbut, "press!");
+	GUI_Exec();//重绘
+	
+	delay_ms(5000);
+	LED0 = 1;
+	while(1){ 
+		LED0 = ~LED0;
+
+		delay_ms(1000);
+	}
+}
+
+/*void Task_LED_DEMO(void *pdata)
 {
 	char  time_chars[] = {0,0,':',0,0,0};
   u32   time_now;
@@ -138,3 +170,4 @@ void Task_LED_DEMO(void *pdata)
 // // 		printf("OSCPUUsage = %d\r\n",OSCPUUsage);
 	}
 }
+*/

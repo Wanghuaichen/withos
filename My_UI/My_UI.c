@@ -115,13 +115,13 @@ void MainMenu_Init(void)
 		}
   }*/
 	//hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
-	hText = TEXT_Create(600, 180,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
+	hText = TEXT_Create(600, 100,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
 	TEXT_SetFont(hText,&GUI_Font13_ASCII);
 	TEXT_SetTextColor(hText,GUI_WHITE);
 	
 	#define BUTTON_RIGHT_MIDDLE 8511
 
-	hbut = BUTTON_Create(600-30, 240-30, 60, 60, BUTTON_RIGHT_MIDDLE, WM_CF_SHOW);   
+	hbut = BUTTON_CreateAsChild(600-30, 240-30, 60, 60,hDesktopWindow,  GUI_ID_OK, WM_CF_SHOW);   
 	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
 	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
 	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);

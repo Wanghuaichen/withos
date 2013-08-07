@@ -73,15 +73,62 @@ void Task_Touch(void *pdata)
 ** output parameters:  Œﬁ
 ** Returned value:     Œﬁ
 **********************************************************************************************************/
+static void _DemoButton(void) {
+  BUTTON_Handle hButton;
+  GUI_SetFont(&GUI_Font8x16);
+  GUI_DispStringHCenterAt("Click on button...", 160, 90);
+hButton = BUTTON_Create(110, 110, 100, 40, GUI_ID_OK, WM_CF_SHOW);
+  /* Set the button text */
+  BUTTON_SetText(hButton, "Click me...");
+  /* Let window manager handle the button */
+  while (GUI_WaitKey() != GUI_ID_OK);
+  /* Delete the button*/
+  BUTTON_Delete(hButton);
+  GUI_ClearRect(0, 50, 319, 239);
+  GUI_Exec();//GUI_Delay(1000);
+	delay_ms(20);
+}
+
+
+static void _cbBkWindow(WM_MESSAGE *pMsg)
+{
+  int NCode, Id,i;
+  switch (pMsg->MsgId) {
+    case WM_PAINT:
+      WM_Paint(WM_GetFirstChild(pMsg ->hWin));
+	  WM_Paint(pMsg ->hWin);
+      break;
+    case WM_NOTIFY_PARENT:
+      Id    = WM_GetId(pMsg->hWinSrc);     
+      NCode = pMsg->Data.v;                
+      switch (NCode) {
+        case WM_NOTIFICATION_RELEASED:   
+			BUTTON_SetText(pMsg ->hWinSrc, "psd");
+			WM_Paint(WM_GetFirstChild(pMsg ->hWin));
+			WM_Paint(pMsg ->hWin);			
+            /*if(Id==BUTTON_ODER)
+            {
+              //????               }
+            }*/
+         break;
+      }
+      break;
+    default:
+      WM_DefaultProc(pMsg);
+  }
+}
 
 
 	#define BUTTON_RIGHT_MIDDLE 8511
 unsigned int buttonCounter = 0;
+unsigned char led1cnt = 0;
 char str[10];
 void Task_Menu(void *pdata)
 {
   GUI_Init();	
   MainMenu_Init();
+	LED1 = 0;
+	//WM_SetCallback(hDesktopWindow, _cbBkWindow);
 	while(1) {
 	/*	if(TouchCmd == 1 && Menu_ID == MainMenu_ID){
 			TouchCmd = 0;	
@@ -130,13 +177,19 @@ void Task_Menu(void *pdata)
 			int2str(str, curkey);
 			TEXT_SetText(hText, str);
 		}*/
-		curkey = GUI_WaitKey();
-				++buttonCounter;
-				int2str(str, buttonCounter);
-				TEXT_SetText(hText, str);
+//		curkey = GUI_WaitKey();
+	//			++buttonCounter;
+		//		int2str(str, buttonCounter);
+			//	TEXT_SetText(hText, str);
 				
+				//_DemoButton();
 				
-	  WM_MoveCtrl();
+	  //WM_MoveCtrl();
+		led1cnt++;
+		if(led1cnt == 50){
+			LED1 = ~LED1;
+			led1cnt = 0;
+		}
 		GUI_Exec();//÷ÿªÊ
 	  delay_ms(20);//OSTimeDly(3);
 	}

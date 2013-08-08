@@ -9,9 +9,11 @@
 
 void _cbBkFrameWithButton(WM_MESSAGE *pMsg)
 {
-
+	static unsigned counter = 0;
   int NCode, Id,i;
 	BUTTON_Handle hbutton = WM_GetFirstChild(pMsg ->hWin);
+	GUI_DispDecMin(++counter);
+	
 	
 	GUI_DispStringHCenterAt("callback is working", 400, 430);
 	if(!hbutton){
@@ -22,8 +24,8 @@ void _cbBkFrameWithButton(WM_MESSAGE *pMsg)
 	}
 	BUTTON_SetText(hbutton, "abutton");
 	WM_InvalidateWindow(hbutton);
-	
-	
+	GUI_GotoXY(400, 460);
+	GUI_DispDecMin(pMsg ->MsgId);
   switch (pMsg->MsgId) {
 		
     case WM_PAINT:
@@ -31,7 +33,11 @@ void _cbBkFrameWithButton(WM_MESSAGE *pMsg)
 			BUTTON_SetDefaultBkColor(GUI_BLUE, BUTTON_CI_PRESSED);
 			GUI_DispString("\npaint	");
       break;
-		
+		case WM_TOUCH:
+			GUI_GotoXY(200, 100);
+			GUI_DispString("touch point:	");
+			
+			break;
     case WM_NOTIFY_PARENT:
 			BUTTON_SetText(pMsg ->hWinSrc, "button message");
       Id    = WM_GetId(pMsg->hWinSrc);     
@@ -45,8 +51,11 @@ void _cbBkFrameWithButton(WM_MESSAGE *pMsg)
 				default:
 					BUTTON_SetText(pMsg ->hWinSrc, "default	");
       }
-      //break;
+      break;
 			
+		case WM_PID_STATE_CHANGED:
+				GUI_DispString("WM_PID_STATE_CHANGED");
+
     default:
       WM_DefaultProc(pMsg);
 			GUI_DispString("default");
@@ -76,7 +85,7 @@ void frameWithButton(void)
 	LED0 = 0;
 	while(1){
 		GUI_Exec();
-		delay_ms(20);
+		delay_ms(5);
 		++ledcnt;
 		if(ledcnt == 50){
 			LED0 = !LED0;

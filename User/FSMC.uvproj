@@ -407,6 +407,11 @@
               <FilePath>..\Libraries\stringutils\int2str.c</FilePath>
             </File>
             <File>
+              <FileName>listbox2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\listbox2.c</FilePath>
+            </File>
+            <File>
               <FileName>frameWithButton.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\frameWithButton.c</FilePath>

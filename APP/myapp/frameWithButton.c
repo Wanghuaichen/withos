@@ -70,18 +70,19 @@ void frameWithButton(void)
 	FRAMEWIN_Handle hframe;
 	BUTTON_Handle hbutton;
 	GUI_Init();
-	GUI_SetBkColor(GUI_GREEN);
+/*	GUI_SetBkColor(GUI_GREEN);
 	GUI_SetColor(GUI_BLACK);
-	GUI_Clear();
+	GUI_Clear();*/
 	
 	
-		BUTTON_SetDefaultBkColor(GUI_YELLOW, BUTTON_CI_PRESSED);
-		BUTTON_SetDefaultBkColor(GUI_BLUE, BUTTON_CI_UNPRESSED);
+	//	BUTTON_SetDefaultBkColor(GUI_YELLOW, BUTTON_CI_PRESSED);
+		//BUTTON_SetDefaultBkColor(GUI_BLUE, BUTTON_CI_UNPRESSED);
 	
 	
-	hframe = FRAMEWIN_Create("the frame", _cbBkFrameWithButton, WM_CF_SHOW, 0, 0, 800, 400); 
+	hframe = FRAMEWIN_Create("the frame", &_cbBkFrameWithButton, WM_CF_SHOW, 5, 5, 795, 400); 
 	hbutton = BUTTON_CreateAsChild(400-50, 240 - 30, 100, 60, hframe, GUI_ID_OK, WM_CF_SHOW);
-	
+	WM_SelectWindow(hbutton);
+	WM_SetFocus(hbutton);
 	LED0 = 0;
 	while(1){
 		GUI_Exec();

@@ -18,6 +18,7 @@
   */  
 
 /* Includes ------------------------------------------------------------------*/
+void MainTasklistbox2a(void);
 #include "stm32f10x.h"
 #include "Hardwear.h"
 #include "Initialize.h"
@@ -183,6 +184,8 @@ hFrame = FRAMEWIN_Create("test",0,WM_CF_SHOW,0,0,150,150);
 }
 #include "frameWithbutton.h"
 #define mySTART_STK_SIZE 64
+#define START_STK_SIZE 256
+
 OS_STK  TASK_START_STK[START_STK_SIZE];
 OS_STK  myTASK_START_STK[mySTART_STK_SIZE];
 void startTask(void *data)
@@ -196,6 +199,7 @@ void startTask(void *data)
 	
 }
 
+void MainTask(void);
 
 int main(void)
 {
@@ -215,7 +219,7 @@ int main(void)
 //LED0 = 0;LED1=0;
 //GUI_DispString("Hello World!");	
 
-	OSTaskCreate(startTask,	   //task pointer
+	OSTaskCreate(MainTask,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&TASK_START_STK[START_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority

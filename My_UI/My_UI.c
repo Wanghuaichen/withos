@@ -47,7 +47,7 @@ void MainMenu_Init(void)
 	
 	
 	
-	/*u8 i = 0;
+	u8 i = 0;
 	SingleList   pos   = NULL;
 	MainMenu_pHead = SingleListNodeCreate();
 	pos = MainMenu_pHead;
@@ -59,7 +59,7 @@ void MainMenu_Init(void)
 	FRAMEWIN_SetDefaultBarColor(1, ThemeColor); 
 	SCROLLBAR_SetDefaultWidth  (18);
 	LISTBOX_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
-	LISTBOX_SetDefaultBkColor(2, ThemeColor);*/
+	LISTBOX_SetDefaultBkColor(2, ThemeColor);
 	
 	
 	BUTTON_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
@@ -72,7 +72,7 @@ void MainMenu_Init(void)
 	hDesktopWindow = WM_GetDesktopWindow();//获取桌面的句柄
 	/**************************************************************/
 	 /* Create the button*/   
-/*  hButton_mainmenu[0] = BUTTON_Create(5, 25+220, 90, 90, GUI_ID_BUTTON0, WM_CF_SHOW);   
+  hButton_mainmenu[0] = BUTTON_Create(5, 25+220, 90, 90, GUI_ID_BUTTON0, WM_CF_SHOW);   
 	hButton_mainmenu[1] = BUTTON_Create(100, 25+220, 90, 90, GUI_ID_BUTTON1, WM_CF_SHOW);
 	hButton_mainmenu[2] = BUTTON_Create(5, 120+220, 90, 90, GUI_ID_BUTTON2, WM_CF_SHOW);   
 	hButton_mainmenu[3] = BUTTON_Create(100, 120+220, 90, 90, GUI_ID_BUTTON3, WM_CF_SHOW);
@@ -80,8 +80,8 @@ void MainMenu_Init(void)
 	
   hButton_mainmenu[5] = BUTTON_Create(5, 310+220, 90, 90, GUI_ID_BUTTON5, WM_CF_SHOW); 
 	hButton_mainmenu[6] = BUTTON_Create(100, 310+220, 90, 90, GUI_ID_BUTTON6, WM_CF_SHOW); 
-	hButton_mainmenu[7] = BUTTON_Create(5, 405+220, 185, 90, GUI_ID_BUTTON7, WM_CF_SHOW); */
-/*	#define basey 5
+	hButton_mainmenu[7] = BUTTON_Create(5, 405+220, 185, 90, GUI_ID_BUTTON7, WM_CF_SHOW); 
+	#define basey 5
 	  hButton_mainmenu[0] = BUTTON_Create(5, basey, 90, 90, GUI_ID_BUTTON0, WM_CF_SHOW);   
 	hButton_mainmenu[1] = BUTTON_Create(100, basey, 90, 90, GUI_ID_BUTTON1, WM_CF_SHOW);
 	hButton_mainmenu[2] = BUTTON_Create(5, basey+95, 90, 90, GUI_ID_BUTTON2, WM_CF_SHOW);   
@@ -115,14 +115,14 @@ void MainMenu_Init(void)
 	BUTTON_SetBitmapEx (hButton_mainmenu[4],0, &bmphotobitmap, 110, 15);
 	BUTTON_SetBitmapEx (hButton_mainmenu[5],0, &bmFFT1pp, 20, 15);
 	BUTTON_SetBitmapEx (hButton_mainmenu[6],0, &bmgame4pp, 25, 15);
-	BUTTON_SetBitmapEx (hButton_mainmenu[7],0, &bmoscilloscope1pp, 85, 15);*/
-/*	while(WM_GetWindowOrgY(hButton_mainmenu[0]) > 25) {
+	BUTTON_SetBitmapEx (hButton_mainmenu[7],0, &bmoscilloscope1pp, 85, 15);
+	while(WM_GetWindowOrgY(hButton_mainmenu[0]) > 25) {
 		if(WM_GetWindowOrgY(hButton_mainmenu[0]) > 55 ) {
 			WM_Move(MainMenu_pHead,0,-30);
 		} else {
 			WM_Move(MainMenu_pHead,0,-7);
 		}
-  }*/
+  }
 	//hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
 	hText = TEXT_CreateAsChild(390, 100,39, 16, hDesktopWindow, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_HCENTER);
 	TEXT_SetFont(hText,&GUI_Font13_ASCII);

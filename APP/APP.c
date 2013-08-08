@@ -27,8 +27,8 @@ void TaskStart(void * pdata)
 // 	OSTimeDly(200);
 	OSTaskCreate(Task_LED_DEMO, (void * )0, (OS_STK *)&TASK_LED_STK[LED_STK_SIZE-1], LED_DEMO_TASK_Prio);
 	OSTaskCreate(Task_Menu, (void * )0, (OS_STK *)&TASK_Menu_STK[Menu_STK_SIZE-1], Menu_TASK_Prio);
-//	OSTaskCreate(Task_Touch, (void * )0, (OS_STK *)&TASK_Touch_STK[Touch_STK_SIZE-1], Touch_TASK_Prio);
-// 	OSStatInit();
+	OSTaskCreate(Task_Touch, (void * )0, (OS_STK *)&TASK_Touch_STK[Touch_STK_SIZE-1], Touch_TASK_Prio);
+ //	OSStatInit();
 	OSTaskDel(OS_PRIO_SELF);//É¾³ý×Ô¼º	OSTaskSuspend(START_TASK_Prio);
 }
 /********************************************************************************************************** 
@@ -122,7 +122,7 @@ static void _cbBkWindow(WM_MESSAGE *pMsg)
 	#define BUTTON_RIGHT_MIDDLE 8511
 unsigned int buttonCounter = 0;
 unsigned char led1cnt = 0;
-char str[10];
+
 void Task_Menu(void *pdata)
 {
   GUI_Init();	
@@ -130,7 +130,7 @@ void Task_Menu(void *pdata)
 	LED1 = 0;
 	WM_SetCallback(hDesktopWindow, _cbBkWindow);
 	while(1) {
-	/*	if(TouchCmd == 1 && Menu_ID == MainMenu_ID){
+		if(TouchCmd == 1 && Menu_ID == MainMenu_ID){
 			TouchCmd = 0;	
 		  switch(GUI_GetKey()) {
 			
@@ -167,7 +167,7 @@ void Task_Menu(void *pdata)
 					TouchCmd = 1;
 					break;
 		  }
-	  }*/
+	  }
 		/*if((curkey = GUI_GetKey()) == BUTTON_RIGHT_MIDDLE){
 				++buttonCounter;
 				int2str(str, buttonCounter);
@@ -184,7 +184,7 @@ void Task_Menu(void *pdata)
 				
 				//_DemoButton();
 				
-	  //WM_MoveCtrl();
+	  WM_MoveCtrl();
 		led1cnt++;
 		if(led1cnt == 50){
 			LED1 = ~LED1;
@@ -202,7 +202,7 @@ void Task_Menu(void *pdata)
 ** Returned value:     ÎÞ
 **********************************************************************************************************/
 
-void Task_LED_DEMO(void *pdata)
+/*void Task_LED_DEMO(void *pdata)
 {
 	unsigned char ledCnt = 0;
 	
@@ -213,9 +213,9 @@ void Task_LED_DEMO(void *pdata)
 
 		delay_ms(1000);
 	}
-}
+}*/
 
-/*void Task_LED_DEMO(void *pdata)
+void Task_LED_DEMO(void *pdata)
 {
 	char  time_chars[] = {0,0,':',0,0,0};
   u32   time_now;
@@ -237,4 +237,3 @@ void Task_LED_DEMO(void *pdata)
 // // 		printf("OSCPUUsage = %d\r\n",OSCPUUsage);
 	}
 }
-*/

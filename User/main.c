@@ -51,6 +51,7 @@ void delay_clk(u16 n)
 static void _cbBkWindow(WM_MESSAGE *pMsg)
 {
   int NCode, Id,i;
+
   switch (pMsg->MsgId) {
     /*case WM_PAINT:
       //WM_Paint(WM_GetFirstChild(pMsg ->hwin));
@@ -70,13 +71,15 @@ static void _cbBkWindow(WM_MESSAGE *pMsg)
       }
       break;
     default:
+
       WM_DefaultProc(pMsg);
   }
 }
 
 
 
-	
+	#include "gt811.h"
+
 #define bigger_stk_size 256
 OS_STK  myTask_STK[bigger_stk_size];
 void myTask(void *data)
@@ -97,10 +100,15 @@ void myTask(void *data)
 	FRAMEWIN_Handle hFrame; 
 BUTTON_Handle hButton1; 
 BUTTON_Handle hButton2; 
+GUI_Init();
 
+/*	while(1){
+		ctp_dev.scan();
+		GUI_DispHexAt(ctp_dev.x[0], 350, 240, 8);
+		GUI_DispHexAt(ctp_dev.y[0], 450, 240, 8);
+		delay_ms(20);
+	}*/
 	
-	
-	GUI_Init();
 	BUTTON_SetDefaultBkColor(GUI_GREEN, 0);//(hbutton, 0, GUI_GREEN);
 	BUTTON_SetDefaultBkColor(GUI_YELLOW, 0);
 	GUI_SetColor(GUI_YELLOW);
@@ -120,7 +128,7 @@ hFrame = FRAMEWIN_Create("test",0,WM_CF_SHOW,0,0,150,150);
 	hdesktop = WM_GetDesktopWindow();//获取桌面的句柄
 	*/
 	
-	/*
+
 	TEXT_SetDefaultTextColor(GUI_GREEN);
 	htext = TEXT_Create(x1+100, y1-60, 100, 50, mytextid, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
 	 WM_Paint(htext);
@@ -131,7 +139,7 @@ hFrame = FRAMEWIN_Create("test",0,WM_CF_SHOW,0,0,150,150);
 
   WM_Paint(hbutton);
 	
-	*/
+
 /*	htext = TEXT_CreateAsChild(x1, y1 -100, 80*2, 50, hdesktop, mytextid, WM_CF_SHOW, "text",TEXT_CF_RIGHT);
 	TEXT_SetTextColor(hText,GUI_WHITE);
 	
@@ -175,7 +183,7 @@ hFrame = FRAMEWIN_Create("test",0,WM_CF_SHOW,0,0,150,150);
 }
 
 #define mySTART_STK_SIZE 64
-//OS_STK  TASK_START_STK[START_STK_SIZE];
+OS_STK  TASK_START_STK[START_STK_SIZE];
 OS_STK  myTASK_START_STK[mySTART_STK_SIZE];
 void startTask(void *data)
 {
@@ -207,9 +215,9 @@ int main(void)
 //LED0 = 0;LED1=0;
 //GUI_DispString("Hello World!");	
 
-	OSTaskCreate(startTask,	   //task pointer
+	OSTaskCreate(TaskStart,	   //task pointer
 					(void *)0,	       //parameter
-					(OS_STK *)&myTASK_START_STK[mySTART_STK_SIZE-1],//task stack top pointer
+					(OS_STK *)&TASK_START_STK[START_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority
 	
 	OSStart();                 //开始多任务执行

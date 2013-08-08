@@ -23,10 +23,10 @@ Purpose     : Configures touch screen module
 
 
 
-#define GUI_TOUCH_AD_LEFT    270//130   
-#define GUI_TOUCH_AD_RIGHT   3715//1910
-#define GUI_TOUCH_AD_TOP     183//3160
-#define GUI_TOUCH_AD_BOTTOM  3763//1930
+#define GUI_TOUCH_AD_LEFT    0//270//130   
+#define GUI_TOUCH_AD_RIGHT   800//3715//1910
+#define GUI_TOUCH_AD_TOP     0//183//3160
+#define GUI_TOUCH_AD_BOTTOM  480//3763//1930
 
 #define GUI_TOUCH_SWAP_XY    0
 #define GUI_TOUCH_MIRROR_X   0

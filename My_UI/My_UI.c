@@ -42,37 +42,78 @@ WM_HWIN hDesktopWindow;//桌面的句柄
 ** output parameters:  
 ** Returned value:     无
 **********************************************************************************************************/
+
+void _cbBkWindow(WM_MESSAGE *pMsg)
+{
+  int NCode, Id,i;
+  switch (pMsg->MsgId) {
+		
+    case WM_PAINT:
+      break;
+		
+    case WM_NOTIFY_PARENT:
+			BUTTON_SetText(pMsg ->hWinSrc, "pressed");
+      Id    = WM_GetId(pMsg->hWinSrc);     
+      NCode = pMsg->Data.v;                
+      switch (NCode) {
+        case WM_NOTIFICATION_RELEASED:   
+					BUTTON_SetText(pMsg ->hWinSrc, "released");
+					break;
+				default:
+					BUTTON_SetText(pMsg ->hWinSrc, "pressed");
+      }
+      break;
+			
+    default:
+      WM_DefaultProc(pMsg);
+  }
+}
+
 void MainMenu_Init(void)
-{	BUTTON_Handle hbut;
-	
-	
+{	
+	BUTTON_Handle hbut;
+	TEXT_Handle htxt;
+	FRAMEWIN_Handle hframe;
 	
 	u8 i = 0;
 	SingleList   pos   = NULL;
 	MainMenu_pHead = SingleListNodeCreate();
 	pos = MainMenu_pHead;
 	Menu_ID = MainMenu_ID;
-
-	
-  FRAMEWIN_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
+	  FRAMEWIN_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
 	FRAMEWIN_SetDefaultTitleHeight(19);	
 	FRAMEWIN_SetDefaultBarColor(1, ThemeColor); 
 	SCROLLBAR_SetDefaultWidth  (18);
 	LISTBOX_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
-	LISTBOX_SetDefaultBkColor(2, ThemeColor);
+	LISTBOX_SetDefaultBkColor(2, ThemeColor);	
 	
-	
-	BUTTON_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);
-	
-	
+	BUTTON_SetDefaultFont(&GUI_FontHZ_MicrosoftFont_13);	
 	
 	GUI_SetBkColor(GUI_BLACK); 	
 	GUI_SetColor(GUI_BLACK);
 	WM_SetDesktopColor(DesktopColor); 
+	
+	hframe = FRAMEWIN_Create("the big frame 800*480", _cbBkWindow, WM_CF_SHOW, 0, 0, 700, 400);
+//	WM_SetCallback(hDesktopWindow, _cbBkWindow);
+	
+			//hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
+	htxt = TEXT_CreateAsChild(390, 100,39, 16, hframe, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_HCENTER);
+	TEXT_SetFont(hText,&GUI_Font13_ASCII);
+	TEXT_SetTextColor(hText,GUI_WHITE);
+
+	hbut = BUTTON_CreateAsChild(400-200, 240-100, 400, 200, hframe,  GUI_ID_OK, WM_CF_SHOW);   
+	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
+	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
+	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);
+	BUTTON_SetText(hbut, "press!");
+	
+
 	hDesktopWindow = WM_GetDesktopWindow();//获取桌面的句柄
+	
+	
 	/**************************************************************/
 	 /* Create the button*/   
-  hButton_mainmenu[0] = BUTTON_Create(5, 25+220, 90, 90, GUI_ID_BUTTON0, WM_CF_SHOW);   
+/*  hButton_mainmenu[0] = BUTTON_Create(5, 25+220, 90, 90, GUI_ID_BUTTON0, WM_CF_SHOW);   
 	hButton_mainmenu[1] = BUTTON_Create(100, 25+220, 90, 90, GUI_ID_BUTTON1, WM_CF_SHOW);
 	hButton_mainmenu[2] = BUTTON_Create(5, 120+220, 90, 90, GUI_ID_BUTTON2, WM_CF_SHOW);   
 	hButton_mainmenu[3] = BUTTON_Create(100, 120+220, 90, 90, GUI_ID_BUTTON3, WM_CF_SHOW);
@@ -123,16 +164,9 @@ void MainMenu_Init(void)
 			WM_Move(MainMenu_pHead,0,-7);
 		}
   }
-	//hText = TEXT_Create(200, 2,39, 16, GUI_ID_TEXT0, WM_CF_SHOW, "",TEXT_CF_RIGHT);
-	hText = TEXT_CreateAsChild(390, 100,39, 16, hDesktopWindow, GUI_ID_TEXT0, WM_CF_SHOW, "text",TEXT_CF_HCENTER);
-	TEXT_SetFont(hText,&GUI_Font13_ASCII);
-	TEXT_SetTextColor(hText,GUI_WHITE);
+	*/
+	
 
-	hbut = BUTTON_CreateAsChild(400-200, 240-100, 400, 200, hDesktopWindow,  GUI_ID_OK, WM_CF_SHOW);   
-	BUTTON_SetTextColor(hbut, 0, GUI_WHITE);
-	BUTTON_SetBkColor(hbut, 0, GUI_LIGHTBLUE);
-	BUTTON_SetBkColor(hbut, 1, GUI_GRAY);
-	BUTTON_SetText(hbut, "press!");
 	GUI_Exec();//重绘
 	
 // 	TEXT_SetBkColor(hText,GUI_BLACK);

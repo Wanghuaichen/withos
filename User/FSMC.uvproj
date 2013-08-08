@@ -350,7 +350,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\Libraries\CMSIS\CM3;..\User;..\HARDWARE\SD_Card;..\HARDWARE\cTouch;..\HARDWARE\VS1003;..\HARDWARE;..\Initialize;..\uCGUI\AntiAlias;..\uCGUI\Config;..\uCGUI\ConvertColor;..\uCGUI\ConvertMono;..\uCGUI\Core;..\uCGUI\Font;..\uCGUI\GUI_X;..\uCGUI\LCDDriver;..\uCGUI\MultiLayer;..\uCGUI\Widget;..\uCGUI\WM;..\fatfs;..\uCGUI\MemDev;..\My_UI;..\UCOS-II\PORTS;..\UCOS-II\SOURCE;..\UCOS-II\CONFIG;..\APP;..\HARDWARE\LCD;..\system\sys;..\system;..\HARDWARE\usart;..\system\delay;..\HARDWARE\LED;..\libraries\stringutils</IncludePath>
+              <IncludePath>..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\Libraries\CMSIS\CM3;..\User;..\HARDWARE\SD_Card;..\HARDWARE\cTouch;..\HARDWARE\VS1003;..\HARDWARE;..\Initialize;..\uCGUI\AntiAlias;..\uCGUI\Config;..\uCGUI\ConvertColor;..\uCGUI\ConvertMono;..\uCGUI\Core;..\uCGUI\Font;..\uCGUI\GUI_X;..\uCGUI\LCDDriver;..\uCGUI\MultiLayer;..\uCGUI\Widget;..\uCGUI\WM;..\fatfs;..\uCGUI\MemDev;..\My_UI;..\UCOS-II\PORTS;..\UCOS-II\SOURCE;..\UCOS-II\CONFIG;..\APP;..\HARDWARE\LCD;..\system\sys;..\system;..\HARDWARE\usart;..\system\delay;..\HARDWARE\LED;..\libraries\stringutils;..\app\myapp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -405,6 +405,11 @@
               <FileName>int2str.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Libraries\stringutils\int2str.c</FilePath>
+            </File>
+            <File>
+              <FileName>frameWithButton.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\frameWithButton.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -181,16 +181,16 @@ hFrame = FRAMEWIN_Create("test",0,WM_CF_SHOW,0,0,150,150);
 	}
 	
 }
-
+#include "frameWithbutton.h"
 #define mySTART_STK_SIZE 64
 OS_STK  TASK_START_STK[START_STK_SIZE];
 OS_STK  myTASK_START_STK[mySTART_STK_SIZE];
 void startTask(void *data)
 {
-		OSTaskCreate(myTask,	   //task pointer
+		OSTaskCreate(frameWithButton,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&myTask_STK[bigger_stk_size-1],//task stack top pointer
-					17 ); //task priority
+					5 ); //task priority
 
 	OSTaskDel(OS_PRIO_SELF);
 	
@@ -215,7 +215,7 @@ int main(void)
 //LED0 = 0;LED1=0;
 //GUI_DispString("Hello World!");	
 
-	OSTaskCreate(TaskStart,	   //task pointer
+	OSTaskCreate(startTask,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&TASK_START_STK[START_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority

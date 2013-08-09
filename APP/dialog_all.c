@@ -117,10 +117,10 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
         case WM_NOTIFICATION_RELEASED:    /* React only if released */
 					//GUI_DispStringHCenterAt("child called:", 300, 300);
           if (Id == GUI_ID_OK) {          /* OK Button */
-            GUI_EndDialog(hWin, 0);GUI_DispStringHCenterAt("ok", 100, 350);//
+            GUI_DispStringHCenterAt("ok", 100, 350);//GUI_EndDialog(hWin, 0);
           }
           if (Id == GUI_ID_CANCEL) {      /* Cancel Button */
-           GUI_EndDialog(hWin, 1); GUI_DispStringHCenterAt("canceled", 100, 400);//
+						GUI_DispStringHCenterAt("canceled", 100, 400);//GUI_EndDialog(hWin, 1); 
           }
 					//WM_DeleteWindow(pMsg ->hWinSrc);
           break;
@@ -153,7 +153,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 #include "led.h"
 void delay_ms(unsigned short);
 
-void MainTask(void) {
+void MainTask(void *pdata) {
   GUI_Init();
 /*	GUI_SetBkColor(GUI_WHITE);
 	GUI_SetColor(GUI_BLACK);
@@ -163,10 +163,23 @@ void MainTask(void) {
 	GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbCallback, 0, 0, 0);
 	
 	
-  while (1) {
-    
-		GUI_Exec();
-    delay_ms(10);
-		
-  }
+  //while (1) {
+		//;
+  //}
 }
+
+void touchAndRedraw(void *pdata){
+		unsigned char ledcnt1 = 0;
+		LED1 = 0;
+		while(1){
+				
+				GUI_Exec();
+				delay_ms(10);
+			
+				if(++ledcnt1 == 100){
+						ledcnt1 = 0;
+						LED1 = ~LED1;
+				}
+		}
+}
+

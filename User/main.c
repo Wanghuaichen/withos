@@ -198,8 +198,28 @@ void startTask(void *data)
 	OSTaskDel(OS_PRIO_SELF);
 	
 }
+#define maintask_STK_SIZE 256
+#define touchAndRedraw_STK_SIZE 64
+void MainTask(void *pdata);
+void touchAndRedraw(void *pdata);
 
-void MainTask(void);
+OS_STK  maintask_STK[maintask_STK_SIZE];
+OS_STK  touchAndRedraw_STK[touchAndRedraw_STK_SIZE];
+
+void MainTaskDispatch(void *pdata)
+{
+		OSTaskCreate(MainTask,	   //task pointer
+					(void *)0,	       //parameter
+					(OS_STK *)&maintask_STK[maintask_STK_SIZE-1],//task stack top pointer
+					10 ); //task priority
+	
+		/*		OSTaskCreate(touchAndRedraw,	   //task pointer
+					(void *)0,	       //parameter
+					(OS_STK *)&touchAndRedraw_STK[touchAndRedraw_STK_SIZE-1],//task stack top pointer
+					6 ); //task priority*/
+		OSTaskDel(OS_PRIO_SELF);
+	
+}
 
 int main(void)
 {
@@ -219,7 +239,7 @@ int main(void)
 //LED0 = 0;LED1=0;
 //GUI_DispString("Hello World!");	
 
-	OSTaskCreate(MainTask,	   //task pointer
+	OSTaskCreate(MainTaskDispatch,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&TASK_START_STK[START_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority

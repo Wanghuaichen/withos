@@ -27,7 +27,8 @@ Purpose     : Configures abilities, fonts etc.
 
 #define GUI_DEFAULT_FONT          &GUI_Font6x8
 #define GUI_ALLOC_SIZE          10240 /* Size of dynamic memory ... For WM and memory devices*/
-
+#define GUI_MT 1
+#define GUI_MAX_TASK 5
 /*********************************************************************
 *
 *         Configuration of available packages

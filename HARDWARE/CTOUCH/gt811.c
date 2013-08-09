@@ -161,6 +161,12 @@ u8 GT811_Init(void)
 void GT811_Scan(void)
 {			   
 	u8 buf[34];//一次读取34字节
+	
+	
+	ctp_dev.y[0]=-1;	//触摸点0坐标
+	ctp_dev.x[0]=-1;	
+	
+	
 	if((ctp_dev.tpsta&0X80)==0)return;			//有有效触摸,则读取数据,否则直接退出
   	GT811_RD_Reg(CT_READ_XY_REG,buf,34);		//一次读取34个字节
 	ctp_dev.tpsta=buf[0]&0X1F;					//触摸点标记位,同时清除有效触摸标记

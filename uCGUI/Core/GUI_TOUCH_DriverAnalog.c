@@ -39,19 +39,19 @@ GUITouch.conf.h (Should be located in the Config\ directory).
 */
 
 #ifndef GUI_TOUCH_AD_LEFT         /* max value returned by AD-converter */
-  #define GUI_TOUCH_AD_LEFT 30   
+  #define GUI_TOUCH_AD_LEFT 0   
 #endif
 
 #ifndef GUI_TOUCH_AD_RIGHT        /* min value returned by AD-converter */
-  #define GUI_TOUCH_AD_RIGHT 220    
+  #define GUI_TOUCH_AD_RIGHT 800    
 #endif
 
 #ifndef GUI_TOUCH_AD_TOP          /* max value returned by AD-converter */
-  #define GUI_TOUCH_AD_TOP 30
+  #define GUI_TOUCH_AD_TOP 0
 #endif
 
 #ifndef GUI_TOUCH_AD_BOTTOM       /* min value returned by AD-converter */
-  #define GUI_TOUCH_AD_BOTTOM 220
+  #define GUI_TOUCH_AD_BOTTOM 480
 #endif
 
 #ifndef GUI_TOUCH_SWAP_XY         /* Is XY of touch swapped ? */

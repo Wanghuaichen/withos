@@ -19,9 +19,9 @@
 * It has been created manually, but could also be created by a GUI-builder.
 */
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { FRAMEWIN_CreateIndirect, "Dialog", 0,                 0,   0, 799, 300, WM_CF_SHOW, 0  },
-  { BUTTON_CreateIndirect,   "OK",     GUI_ID_OK,        300,   100,  200,  60 , WM_CF_SHOW},
-  { BUTTON_CreateIndirect,   "Cancel", GUI_ID_CANCEL,    300,  200,  200,  60 , WM_CF_SHOW},
+  { FRAMEWIN_CreateIndirect, "Dialog", 0,                 0,   0, 600, 300, WM_CF_SHOW, 0  },
+  { BUTTON_CreateIndirect,   "OK",     GUI_ID_OK,        30,   30,  250,  120 , WM_CF_SHOW},
+  { BUTTON_CreateIndirect,   "Cancel", GUI_ID_CANCEL,    330,  30,  250,  120 , WM_CF_SHOW},
 /*  { TEXT_CreateIndirect,     "LText",  0,                 10,  55,  48,  15, TEXT_CF_LEFT  },
   { TEXT_CreateIndirect,     "RText",  0,                 10,  80,  48,  15, TEXT_CF_RIGHT },
   { EDIT_CreateIndirect,     NULL,     GUI_ID_EDIT0,      60,  55, 100,  15, 0, 50 },
@@ -66,6 +66,11 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 	
   switch (pMsg->MsgId) {
     case WM_INIT_DIALOG:
+			
+
+			//GUI_DispString("\npaint	");
+			
+		
       /* Get window handles for all widgets */
    /*   hEdit0   = WM_GetDialogItem(hWin, GUI_ID_EDIT0);
       hEdit1   = WM_GetDialogItem(hWin, GUI_ID_EDIT1);
@@ -154,7 +159,13 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 void delay_ms(unsigned short);
 
 void MainTask(void *pdata) {
+			unsigned char ledcnt1 = 0;
+		LED1 = 0;
+	
   GUI_Init();
+	
+			BUTTON_SetDefaultBkColor(GUI_YELLOW, BUTTON_CI_UNPRESSED);
+			BUTTON_SetDefaultBkColor(GUI_BLUE, BUTTON_CI_PRESSED);
 /*	GUI_SetBkColor(GUI_WHITE);
 	GUI_SetColor(GUI_BLACK);
 	GUI_Clear();*/
@@ -163,9 +174,15 @@ void MainTask(void *pdata) {
 	GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbCallback, 0, 0, 0);
 	
 	
-  //while (1) {
-		//;
-  //}
+  while (1) {
+				GUI_Exec();
+				delay_ms(10);
+		
+						if(++ledcnt1 == 100){
+						ledcnt1 = 0;
+						LED1 = ~LED1;
+				}
+  }
 }
 
 void touchAndRedraw(void *pdata){

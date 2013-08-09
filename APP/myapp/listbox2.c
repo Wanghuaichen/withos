@@ -126,7 +126,7 @@ static const GUI_ConstString _ListBox[] = {
 * It has been created manually, but could also be created by a GUI-builder.
 */
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { FRAMEWIN_CreateIndirect,  "Owner drawn list box",    0,                  50,  50, 220, 140, FRAMEWIN_CF_MOVEABLE },
+  { FRAMEWIN_CreateIndirect,  "Main Control Panel",    0,                  0,  0, 799, 479, 0 },
   { LISTBOX_CreateIndirect,   0,                         GUI_ID_MULTIEDIT0,  10,  10, 100, 100, 0, 100 },
 /* Check box for multi select mode */
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     120,  10,   0,   0 },
@@ -380,11 +380,13 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 void MainTasklistbox2a(void) {
   GUI_Init();
   WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
-  WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */
+  WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
+	GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
+	
   while (1) {
     _MultiSel   = 0;
     _OwnerDrawn = 1;
-    GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
+    
     GUI_Exec();//GUI_Delay(1000);
 		delay_ms(15);
   }

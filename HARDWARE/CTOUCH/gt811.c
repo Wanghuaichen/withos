@@ -170,11 +170,13 @@ void GT811_Scan(void)
 	if((ctp_dev.tpsta&0X80)==0)return;			//有有效触摸,则读取数据,否则直接退出
   	GT811_RD_Reg(CT_READ_XY_REG,buf,34);		//一次读取34个字节
 	ctp_dev.tpsta=buf[0]&0X1F;					//触摸点标记位,同时清除有效触摸标记
+	
+	
 #if CT_EXCHG_XY==1								//调转XY
 	ctp_dev.y[0]=480-(((u16)buf[2]<<8)+buf[3]);	//触摸点0坐标
 	ctp_dev.x[0]=((u16)buf[4]<<8)+buf[5];	  
 	ctp_dev.ppr[0]=buf[6];	 
-	ctp_dev.y[1]=480-(((u16)buf[7]<<8)+buf[8]);	//触摸点1坐标
+/*	ctp_dev.y[1]=480-(((u16)buf[7]<<8)+buf[8]);	//触摸点1坐标
 	ctp_dev.x[1]=((u16)buf[9]<<8)+buf[10];	  
 	ctp_dev.ppr[1]=buf[11];
 	ctp_dev.y[2]=480-(((u16)buf[12]<<8)+buf[13]);//触摸点2坐标
@@ -185,12 +187,12 @@ void GT811_Scan(void)
 	ctp_dev.ppr[3]=buf[27];
 	ctp_dev.y[4]=480-(((u16)buf[28]<<8)+buf[29]);//触摸点4坐标
 	ctp_dev.x[4]=((u16)buf[30]<<8)+buf[31];	  
-	ctp_dev.ppr[4]=buf[32];
+	ctp_dev.ppr[4]=buf[32];*/
 #else 
 	ctp_dev.y[0]=((u16)buf[2]<<8)+buf[3];		//触摸点0坐标
 	ctp_dev.x[0]=800-(((u16)buf[4]<<8)+buf[5]);	  
 	ctp_dev.ppr[0]=buf[6];	 
-	ctp_dev.y[1]=((u16)buf[7]<<8)+buf[8];		//触摸点1坐标
+/*	ctp_dev.y[1]=((u16)buf[7]<<8)+buf[8];		//触摸点1坐标
 	ctp_dev.x[1]=800-(((u16)buf[9]<<8)+buf[10]);	  
 	ctp_dev.ppr[1]=buf[11];
 	ctp_dev.y[2]=((u16)buf[12]<<8)+buf[13];		//触摸点2坐标
@@ -201,7 +203,7 @@ void GT811_Scan(void)
 	ctp_dev.ppr[3]=buf[27];
 	ctp_dev.y[4]=((u16)buf[28]<<8)+buf[29];		//触摸点4坐标
 	ctp_dev.x[4]=800-(((u16)buf[30]<<8)+buf[31]);	  
-	ctp_dev.ppr[4]=buf[32];
+	ctp_dev.ppr[4]=buf[32];*/
 #endif	 		    
 }
 

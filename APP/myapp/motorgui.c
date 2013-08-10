@@ -166,8 +166,8 @@ static const GUI_ConstString _ListBox[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { FRAMEWIN_CreateIndirect,  "Main Panel",    GUI_ID_FRAMEWIN_(1),                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-	//{ PROGBAR_CreateIndirect,   "Progress",          0,       progBarX,  progBarY,  progBarWidth,  progBarHeight, WM_CF_SHOW },
-	//{ TEXT_CreateIndirect,      "Selected Mode: bla~ bla~",          0,       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
+	{ PROGBAR_CreateIndirect,   "Progress",          0,       progBarX,  progBarY,  progBarWidth,  progBarHeight, WM_CF_SHOW },
+	{ TEXT_CreateIndirect,      "Selected Mode: bla~ bla~",    GUI_ID_TEXT_(1),       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 /* Buttons */
   { BUTTON_CreateIndirect,    "Default MODE 1",      GUI_ID_BUTTON_(1),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "Default MODE 2",      GUI_ID_BUTTON_(2),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},

@@ -43,8 +43,7 @@ void GUI_Delay(int Period) {
 	int EndTime = GUI_GetTime()+Period;
   int tRem; /* remaining Time */
 	
-	delay_ms(Period);
-	return;
+
 
   GUI_ASSERT_NO_LOCK();
   while (tRem = EndTime- GUI_GetTime(), tRem>0) {

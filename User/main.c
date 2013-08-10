@@ -13,9 +13,10 @@
 #include "wm.h"
 #include "stringutils.h"
 void SysTick_Configuration(void);
-void MainTasklistbox2a(void);
+void motorMain(void) ;
 
-#define MainTask_STK_SIZE 512
+
+#define MainTask_STK_SIZE 4096
 OS_STK  MainTask_STK[MainTask_STK_SIZE];
 
 int main(void)
@@ -26,7 +27,7 @@ int main(void)
 	LED_Init();
 	delay_init();
 
-	OSTaskCreate(MainTasklistbox2a,	   //task pointer
+	OSTaskCreate(motorMain,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&MainTask_STK[MainTask_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority	

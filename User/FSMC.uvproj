@@ -407,19 +407,34 @@
               <FilePath>..\Libraries\stringutils\int2str.c</FilePath>
             </File>
             <File>
-              <FileName>listbox2.c</FileName>
+              <FileName>widget_simpleprogbar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\APP\myapp\listbox2.c</FilePath>
+              <FilePath>..\APP\myapp\widget_simpleprogbar.c</FilePath>
             </File>
             <File>
-              <FileName>frameWithButton.c</FileName>
+              <FileName>widget_listview.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\APP\myapp\frameWithButton.c</FilePath>
+              <FilePath>..\APP\myapp\widget_listview.c</FilePath>
             </File>
             <File>
-              <FileName>dialog_all.c</FileName>
+              <FileName>widget_framewin.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\APP\dialog_all.c</FilePath>
+              <FilePath>..\APP\myapp\widget_framewin.c</FilePath>
+            </File>
+            <File>
+              <FileName>memdev_memdev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\memdev_memdev.c</FilePath>
+            </File>
+            <File>
+              <FileName>motordrive.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\motordrive.c</FilePath>
+            </File>
+            <File>
+              <FileName>motorgui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\motorgui.c</FilePath>
             </File>
           </Files>
         </Group>

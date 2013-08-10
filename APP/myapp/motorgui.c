@@ -1,25 +1,3 @@
-/*********************************************************************
-*                SEGGER MICROCONTROLLER SYSTEME GmbH                 *
-*        Solutions for real time microcontroller applications        *
-**********************************************************************
-*                                                                    *
-*        (c) 1996 - 2004  SEGGER Microcontroller Systeme GmbH        *
-*                                                                    *
-*        Internet: www.segger.com    Support:  support@segger.com    *
-*                                                                    *
-**********************************************************************
-
-***** emWin - Graphical user interface for embedded applications *****
-emWin is protected by international copyright laws.   Knowledge of the
-source code may not be used to write a similar product.  This file may
-only be used in accordance with a license and should not be re-
-distributed in any way. We appreciate your understanding and fairness.
-----------------------------------------------------------------------
-File        : WIDGET_ListBoxOwnerDraw.c
-Purpose     : Demonstrates a owner drawn list box
-----------------------------------------------------------------------
-*/
-
 #include <stddef.h>
 #include "GUI.h"
 #include "DIALOG.h"
@@ -30,11 +8,40 @@ Purpose     : Demonstrates a owner drawn list box
 *
 **********************************************************************
 */
-
+WM_HWIN hConfigDlg;
+WM_HWIN hmainDlg;
 static int _MultiSel;
 static int _OwnerDrawn;
 static int _VarY = 1;
 static int _PrevTime;
+
+#define lcdWidth 800
+#define lcdHeight 480
+#define configButtonWidth 100
+#define configButtonHeight 60
+
+#define gapYLabelUp 30
+#define gapYLabelModeButton 100
+#define gapYModeButtonConfigButton 30
+#define gapYConfigButton 0
+
+#define labelHeight 60
+#define labelWidth 100
+
+#define numOfMode 3
+#define modeButtonWidth 100
+#define modeButtonHeight 60
+
+#define labelY gapYLabelUp
+#define modeButtonGapX ((lcdWidth - numOfMode * modeButtonWidth) / (1 + numOfMode))
+#define modeButtonX(i) (modeButtonGapX + (modeButtonGapX + modeButtonWidth) * (i - 1))
+#define modeButtonY (gapYLabelUp + labelHeight + gapYLabelModeButton)
+#define labelX(i) (modeButtonX(i) - (labelWidth / 2))
+
+
+#define GUI_ID_BUTTON_(x) (GUI_ID_USER + x)
+
+
 
 /*********************************************************************
 *
@@ -124,9 +131,10 @@ static const GUI_ConstString _ListBox[] = {
 *
 * This table conatins the info required to create the dialog.
 * It has been created manually, but could also be created by a GUI-builder.
-*/
+*///
+
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { FRAMEWIN_CreateIndirect,  "Main Control Panel",    0,                  0,  0, 799, 479, 0 },
+  { FRAMEWIN_CreateIndirect,  "Main Control Panel",    0,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   { LISTBOX_CreateIndirect,   0,                         GUI_ID_MULTIEDIT0,  10,  10, 100, 100, 0, 100 },
 /* Check box for multi select mode */
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     120,  10,   0,   0 },
@@ -135,16 +143,19 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK1,     120,  35,   0,   0 },
   { TEXT_CreateIndirect,      "Owner drawn",              0,                140,  35,  80,  15, TEXT_CF_LEFT },
 /* Buttons */
-  { BUTTON_CreateIndirect,    "OK",                      GUI_ID_OK,         120,  65,  80,  20 },
-  { BUTTON_CreateIndirect,    "Cancel",                  GUI_ID_CANCEL,     120,  90,  80,  20 },
+  { BUTTON_CreateIndirect,    "MODE 1",      GUI_ID_BUTTON_(1),     modeButtonX(1),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+  { BUTTON_CreateIndirect,    "MODE 2",      GUI_ID_BUTTON_(2),     modeButtonX(2),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+	{ BUTTON_CreateIndirect,    "MODE 3",      GUI_ID_BUTTON_(3),     modeButtonX(3),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+	{ BUTTON_CreateIndirect,    "CONFIG",      GUI_ID_BUTTON_(4),     0,  lcdHeight - 1 - configButtonHeight,  configButtonWidth,  configButtonHeight },
 };
 
-/*********************************************************************
-*
-*       Static code
-*
-**********************************************************************
-*/
+static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
+/* Buttons */
+	{FRAMEWIN_CreateIndirect,  "Config Control Panel",    WM_CF_FGND,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  { BUTTON_CreateIndirect,    "MODE 5",      GUI_ID_BUTTON_(5),     modeButtonX(1),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+  { BUTTON_CreateIndirect,    "MODE 6",      GUI_ID_BUTTON_(6),     modeButtonX(2),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+	{ BUTTON_CreateIndirect,    "MODE 7",      GUI_ID_BUTTON_(7),     modeButtonX(3),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+};
 /*********************************************************************
 *
 *       _cbBkWindow
@@ -152,11 +163,8 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 static void _cbBkWindow(WM_MESSAGE* pMsg) {
   switch (pMsg->MsgId) {
   case WM_PAINT:
-    GUI_SetBkColor(GUI_RED);
-    GUI_Clear();
     GUI_SetColor(GUI_WHITE);
     GUI_SetFont(&GUI_Font24_ASCII);
-    GUI_DispStringHCenterAt("WIDGET_ListBoxOwnerDraw", 160, 5);
     break;
   default:
     WM_DefaultProc(pMsg);
@@ -290,6 +298,7 @@ static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
 *
 *       _cbCallback
 */
+
 static void _cbCallback(WM_MESSAGE * pMsg) {
   int NCode, Id;
   WM_HWIN hDlg, hListBox, hItem;
@@ -313,7 +322,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
       hItem  = WM_GetDialogItem(hDlg, GUI_ID_CHECK1);
       CHECKBOX_Check(hItem);
       break;
-    case WM_KEY:
+/*    case WM_KEY:
       switch (((WM_KEY_INFO*)(pMsg->Data.p))->Key) {
         case GUI_KEY_ESCAPE:
           GUI_EndDialog(hDlg, 1);
@@ -322,26 +331,39 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
           GUI_EndDialog(hDlg, 0);
           break;
       }
-      break;
+      break;*/
     case WM_TOUCH_CHILD:
       WM_SetFocus(hListBox);
       break;
+		
     case WM_NOTIFY_PARENT:
       Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
       NCode = pMsg->Data.v;                 /* Notification code */
       hItem  = WM_GetDialogItem(hDlg, Id);
+		//GUI_MessageBox("This text is shown\nin a message box", "Caption/Title", GUI_MESSAGEBOX_CF_MOVEABLE);
       switch (NCode) {
         case WM_NOTIFICATION_SEL_CHANGED:
           LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
           break;
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
-            case GUI_ID_OK:
-              GUI_EndDialog(hDlg, 0);
+            case GUI_ID_BUTTON_(4):
+              //GUI_EndDialog(hDlg, 0);
+						 
+							//hConfigDlg = GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+              WM_BringToTop(hConfigDlg);
+							WM_InvalidateWindow(WM_HBKWIN);
+							break;
+            case GUI_ID_BUTTON_(1):
+              //GUI_EndDialog(hDlg, 1);
               break;
-            case GUI_ID_CANCEL:
-              GUI_EndDialog(hDlg, 1);
-              break;
+            case GUI_ID_BUTTON_(2):
+              //GUI_EndDialog(hDlg, 1);
+              break;	
+            case GUI_ID_BUTTON_(3):
+              //GUI_EndDialog(hDlg, 1);
+              break;		
+						
             case GUI_ID_CHECK0:
               _MultiSel ^= 1;
               LISTBOX_SetMulti(hListBox, _MultiSel);
@@ -365,7 +387,34 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
       WM_DefaultProc(pMsg);
   }
 }
+static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
+  int NCode, Id;
+	WM_HWIN hDlg;
+  hDlg = pMsg->hWin;
 
+  switch (pMsg->MsgId) {
+    case WM_NOTIFY_PARENT:
+      Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
+      NCode = pMsg->Data.v;                 /* Notification code */
+
+      switch (NCode) {
+        case WM_NOTIFICATION_RELEASED:      /* React only if released */
+          switch (Id) {
+            case GUI_ID_BUTTON_(5):
+              GUI_EndDialog(hDlg, 0);
+              break;
+            case GUI_ID_BUTTON_(6):
+              WM_BringToTop(hmainDlg);//GUI_EndDialog(hDlg, 1);
+							WM_Invalidate(WM_HBKWIN);
+              break;
+          }
+      }
+      break;
+			
+    default:
+      WM_DefaultProc(pMsg);
+  }
+}
 /*********************************************************************
 *
 *       Public code
@@ -376,19 +425,29 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 *
 *       MainTask
 */
+#include "led.h"
 #include "delay.h"
-void MainTasklistbox2a(void) {
+void motorMain(void) {
+	unsigned char ledcnt = 0;
+	LED_Init();
   GUI_Init();
   WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
   WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
-	GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
+	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
+	WM_BringToTop(hmainDlg);
 	
+	LED0 = 0;
   while (1) {
     _MultiSel   = 0;
     _OwnerDrawn = 1;
     
     GUI_Exec();//GUI_Delay(1000);
 		delay_ms(15);
+		if(++ledcnt == 60){
+				ledcnt = 0;
+				LED0 = ~LED0;
+		}
   }
 }
 

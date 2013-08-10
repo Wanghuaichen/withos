@@ -56,7 +56,7 @@ void RCC_Configuration(void)
     /* PCLK2 = HCLK */
     RCC_PCLK2Config(RCC_HCLK_Div1); 
     /* PCLK1 = HCLK/2 */
-    RCC_PCLK1Config(RCC_HCLK_Div2);
+    RCC_PCLK1Config(RCC_HCLK_Div1);
     /* Flash 2 wait state */
     FLASH_SetLatency(FLASH_Latency_1);
     /* Enable Prefetch Buffer */

@@ -32,13 +32,13 @@ int LCD_L0_Init(void)
 
 void LCD_L0_SetPixelIndex(int x, int y, int PixelIndex)
 {
-		u16 tmp = POINT_COLOR;
+	//	u16 tmp = POINT_COLOR;
 	
 	
-		POINT_COLOR = PixelIndex;//LCD_Index2Color_M565(PixelIndex);
-	LCD_DrawPoint(x, y);
-	POINT_COLOR = tmp;
-	//LCD_Fast_DrawPoint(x, y, PixelIndex);
+		//POINT_COLOR = PixelIndex;//LCD_Index2Color_M565(PixelIndex);
+//	LCD_DrawPoint(x, y);
+	//POINT_COLOR = tmp;
+	LCD_Fast_DrawPoint(x, y, PixelIndex);
 	/**(__IO uint16_t *) (Bank1_LCD_C)= 32;	
   *(__IO uint16_t *) (Bank1_LCD_D)= x;
   *(__IO uint16_t *) (Bank1_LCD_C)= 33;	

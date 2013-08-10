@@ -181,13 +181,14 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    GUI_ID_FRAMEWIN_(2),                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-  { LISTBOX_CreateIndirect,   0,                         GUI_ID_MULTIEDIT0,  10,  10, 100, 100, 0, 100 },
+  { LISTBOX_CreateIndirect,   0,                GUI_ID_MULTIEDIT0,  10,  30, 200, 300, 0, 100 },
 /* Check box for multi select mode */
-  { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     120,  10,   0,   0 },
-  { TEXT_CreateIndirect,      "Multi select",            GUI_ID_TEXT_(4),                 140,  10,  80,  15, TEXT_CF_LEFT },
+  { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     320,  30,   30,   30 },
+  { TEXT_CreateIndirect,      "Multi select",            GUI_ID_TEXT_(4),                 380,  30,  80,  30, TEXT_CF_LEFT },
 /* Check box for owner drawn list box */
-  { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK1,     120,  35,   0,   0 },
-  { TEXT_CreateIndirect,      "Owner drawn",              GUI_ID_TEXT_(2),                140,  35,  80,  15, TEXT_CF_LEFT },
+  { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK1,     320,  100,   30,   30 },
+  { TEXT_CreateIndirect,      "Owner drawn",              GUI_ID_TEXT_(2),                380,  100,  80,  30, TEXT_CF_LEFT },
+	{ TEXT_CreateIndirect,      "output",              GUI_ID_TEXT_(5),                350,  150,  80,  30, TEXT_CF_LEFT },
   { BUTTON_CreateIndirect,    "Input New Mode",      GUI_ID_BUTTON_(7),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "OK",      GUI_ID_BUTTON_(8),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "CANCEL",      GUI_ID_BUTTON_(9),     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -200,7 +201,8 @@ static void _cbBkWindow(WM_MESSAGE* pMsg) {
   switch (pMsg->MsgId) {
   case WM_PAINT:
     GUI_SetColor(GUI_WHITE);
-    GUI_SetFont(&GUI_Font24_ASCII);
+    GUI_SetFont(&GUI_Font32_ASCII);
+		
     break;
   default:
     WM_DefaultProc(pMsg);
@@ -375,6 +377,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
   }
 }
 static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
+	static char buf[20];
   int NCode, Id;
   WM_HWIN hDlg, hListBox, hItem;
   hDlg = pMsg->hWin;
@@ -395,9 +398,11 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
       LISTBOX_SetAutoScrollH(hListBox, 1);
       LISTBOX_SetAutoScrollV(hListBox, 1);
       LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
+			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
+			LISTBOX_SetScrollbarWidth(hListBox, 20);
       hItem  = WM_GetDialogItem(hDlg, GUI_ID_CHECK1);
       CHECKBOX_Check(hItem);
-			//WM_InvalidateWindow(WM_HBKWIN);
+			WM_InvalidateWindow(WM_HBKWIN);
       break;
 /*    case WM_KEY:
       switch (((WM_KEY_INFO*)(pMsg->Data.p))->Key) {
@@ -417,9 +422,16 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
       NCode = pMsg->Data.v;                 /* Notification code */
 
       switch (NCode) {
+
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
-
+						case GUI_ID_MULTIEDIT0:
+								
+								LISTBOX_GetItemText(hListBox,LISTBOX_GetSel(hListBox),buf,20);
+								TEXT_SetText(WM_GetDialogItem(hDlg, GUI_ID_TEXT_(5)), buf);
+								break;
+						case WM_NOTIFICATION_SEL_CHANGED:
+								break;
             case GUI_ID_BUTTON_(7):
 							//do sth and go back
               break;
@@ -479,6 +491,8 @@ void motorMain(void) {
 	
 	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
 	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+	FRAMEWIN_SetTitleVis(hmainDlg, 0);
+	FRAMEWIN_SetTitleVis(hConfigDlg, 0);
 	WM_BringToTop(hmainDlg);
 	//WM_SetFocus(hmainDlg);
 	WM_InvalidateWindow(WM_HBKWIN);

@@ -489,7 +489,7 @@ void motorMain(void) {
   while (1) {
     _MultiSel   = 0;
     _OwnerDrawn = 1;
-    
+    GUI_TOUCH_Exec();
     GUI_Exec();//GUI_Delay(1000);
 		delay_ms(15);
 		if(++ledcnt == 60){

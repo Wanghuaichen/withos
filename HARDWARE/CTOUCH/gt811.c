@@ -50,7 +50,7 @@ void EXTI15_10_IRQHandler(void)
 		ctp_dev.tpsta|=0X80;//标记有有效触摸
 	}		 
 	EXTI->PR=1<<10;  //清除LINE10上的中断标志位  	
-	GUI_TOUCH_Exec();
+	
 } 
 //向GT811写入一次数据
 //reg:起始寄存器地址

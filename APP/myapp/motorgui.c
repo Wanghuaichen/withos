@@ -134,7 +134,7 @@ static const GUI_ConstString _ListBox[] = {
 *///
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { FRAMEWIN_CreateIndirect,  "Main Control Panel",    0,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  { FRAMEWIN_CreateIndirect,  "Main Panel",    0,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   { LISTBOX_CreateIndirect,   0,                         GUI_ID_MULTIEDIT0,  10,  10, 100, 100, 0, 100 },
 /* Check box for multi select mode */
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     120,  10,   0,   0 },
@@ -143,18 +143,17 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK1,     120,  35,   0,   0 },
   { TEXT_CreateIndirect,      "Owner drawn",              0,                140,  35,  80,  15, TEXT_CF_LEFT },
 /* Buttons */
-  { BUTTON_CreateIndirect,    "MODE 1",      GUI_ID_BUTTON_(1),     modeButtonX(1),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
-  { BUTTON_CreateIndirect,    "MODE 2",      GUI_ID_BUTTON_(2),     modeButtonX(2),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
-	{ BUTTON_CreateIndirect,    "MODE 3",      GUI_ID_BUTTON_(3),     modeButtonX(3),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
-	{ BUTTON_CreateIndirect,    "CONFIG",      GUI_ID_BUTTON_(4),     0,  lcdHeight - 1 - configButtonHeight,  configButtonWidth,  configButtonHeight },
+  { BUTTON_CreateIndirect,    "Default MODE 1",      GUI_ID_BUTTON_(1),     modeButtonX(1),  modeButtonY,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "Default MODE 2",      GUI_ID_BUTTON_(2),     modeButtonX(2),  modeButtonY,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "Default MODE 3",      GUI_ID_BUTTON_(3),     modeButtonX(3),  modeButtonY,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "More Modes",      GUI_ID_BUTTON_(4),     0,  lcdHeight - 1 - configButtonHeight,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
 };
 
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
-/* Buttons */
-	{FRAMEWIN_CreateIndirect,  "Config Control Panel",    WM_CF_FGND,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-  { BUTTON_CreateIndirect,    "MODE 5",      GUI_ID_BUTTON_(5),     modeButtonX(1),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
-  { BUTTON_CreateIndirect,    "MODE 6",      GUI_ID_BUTTON_(6),     modeButtonX(2),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
-	{ BUTTON_CreateIndirect,    "MODE 7",      GUI_ID_BUTTON_(7),     modeButtonX(3),  modeButtonY,  modeButtonWidth,  modeButtonHeight },
+	{FRAMEWIN_CreateIndirect,  "Config Panel",    0,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  { BUTTON_CreateIndirect,    "MODE 5",      GUI_ID_BUTTON_(5),     modeButtonX(1),  modeButtonY,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "MODE 6",      GUI_ID_BUTTON_(6),     modeButtonX(2),  modeButtonY,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "MODE 7",      GUI_ID_BUTTON_(7),     modeButtonX(3),  modeButtonY,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 };
 /*********************************************************************
 *
@@ -431,12 +430,13 @@ void motorMain(void) {
 	unsigned char ledcnt = 0;
 	LED_Init();
   GUI_Init();
-  WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
+//  WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
   WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
-	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
-	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
-	WM_BringToTop(hmainDlg);
 	
+	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
+	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+	WM_BringToTop(hmainDlg);
+	WM_InvalidateWindow(WM_HBKWIN);
 	LED0 = 0;
   while (1) {
     _MultiSel   = 0;

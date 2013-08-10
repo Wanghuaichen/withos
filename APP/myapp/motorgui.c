@@ -167,7 +167,8 @@ static const GUI_ConstString _ListBox[] = {
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { FRAMEWIN_CreateIndirect,  "Main Panel",    GUI_ID_FRAMEWIN_(1),                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
 	{ PROGBAR_CreateIndirect,   "Progress",          0,       progBarX,  progBarY,  progBarWidth,  progBarHeight, WM_CF_SHOW },
-	{ TEXT_CreateIndirect,      "Selected Mode: bla~ bla~",    GUI_ID_TEXT_(1),       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
+	{ TEXT_CreateIndirect,      "Time: ",    GUI_ID_TEXT_(1),       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
+	{	TEXT_CreateIndirect,      "Speed: ",    GUI_ID_TEXT_(2),       labelX,  labelY+labelHeight,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 /* Buttons */
   { BUTTON_CreateIndirect,    "Default MODE 1",      GUI_ID_BUTTON_(1),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "Default MODE 2",      GUI_ID_BUTTON_(2),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -183,13 +184,13 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
   { LISTBOX_CreateIndirect,   0,                         GUI_ID_MULTIEDIT0,  10,  10, 100, 100, 0, 100 },
 /* Check box for multi select mode */
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     120,  10,   0,   0 },
-  { TEXT_CreateIndirect,      "Multi select",            GUI_ID_TEXT_(2),                 140,  10,  80,  15, TEXT_CF_LEFT },
+  { TEXT_CreateIndirect,      "Multi select",            GUI_ID_TEXT_(4),                 140,  10,  80,  15, TEXT_CF_LEFT },
 /* Check box for owner drawn list box */
   { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK1,     120,  35,   0,   0 },
-  { TEXT_CreateIndirect,      "Owner drawn",              GUI_ID_TEXT_(3),                140,  35,  80,  15, TEXT_CF_LEFT },
-  { BUTTON_CreateIndirect,    "MODE 5",      GUI_ID_BUTTON_(7),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-  { BUTTON_CreateIndirect,    "MODE 6",      GUI_ID_BUTTON_(8),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "MODE 7",      GUI_ID_BUTTON_(9),     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { TEXT_CreateIndirect,      "Owner drawn",              GUI_ID_TEXT_(2),                140,  35,  80,  15, TEXT_CF_LEFT },
+  { BUTTON_CreateIndirect,    "Input New Mode",      GUI_ID_BUTTON_(7),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "OK",      GUI_ID_BUTTON_(8),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "CANCEL",      GUI_ID_BUTTON_(9),     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 };
 /*********************************************************************
 *
@@ -352,9 +353,6 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
             case GUI_ID_BUTTON_(4):
-              //GUI_EndDialog(hDlg, 0);
-						 
-							//hConfigDlg = GUI_ExecDialogBox(_aDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
               WM_BringToTop(hConfigDlg);
 							//WM_SetFocus(hConfigDlg);
 							WM_InvalidateWindow(WM_HBKWIN);
@@ -421,11 +419,19 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
       switch (NCode) {
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
+
             case GUI_ID_BUTTON_(7):
-              GUI_EndDialog(hDlg, 0);
+							//do sth and go back
               break;
             case GUI_ID_BUTTON_(8):
-              WM_BringToTop(hmainDlg);//GUI_EndDialog(hDlg, 1);
+							//do sth and go back
+              WM_BringToTop(hmainDlg);
+							//WM_SetFocus(hmainDlg);
+							WM_Invalidate(WM_HBKWIN);
+              break;		
+						case GUI_ID_BUTTON_(9):
+							//do sth and go back
+              WM_BringToTop(hmainDlg);
 							//WM_SetFocus(hmainDlg);
 							WM_Invalidate(WM_HBKWIN);
               break;

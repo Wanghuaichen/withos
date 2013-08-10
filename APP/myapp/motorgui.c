@@ -2,7 +2,8 @@
 #include "GUI.h"
 #include "DIALOG.h"
 #include "progbar.h"
-
+#include "keyboard.h"
+#include "editgroup.h"
 /*********************************************************************
 *
 *       Static data
@@ -11,6 +12,9 @@
 */
 WM_HWIN hConfigDlg;
 WM_HWIN hmainDlg;
+WM_HWIN hkeyboard;
+
+
 static int _MultiSel;
 static int _OwnerDrawn;
 static int _VarY = 1;
@@ -69,11 +73,26 @@ static int _PrevTime;
 #define labelX(i) (modeButtonX(i) - (labelWidth / 2))*/
 
 
-#define GUI_ID_BUTTON_(x) (GUI_ID_USER + x)
-#define GUI_ID_TEXT_(x) (GUI_ID_USER + 10 + x)
-#define GUI_ID_FRAMEWIN_(x) (GUI_ID_USER + 20 + x)
+#define BUTTON_Id_MoreModes (GUI_ID_USER+1)
+#define BUTTON_Id_Go (GUI_ID_USER+2)
+#define BUTTON_Id_Stop (GUI_ID_USER+3)
+#define BUTTON_Id_DefaultMode1 (GUI_ID_USER+4)
+#define BUTTON_Id_DefaultMode2 (GUI_ID_USER+5)
+#define BUTTON_Id_DefaultMode3 (GUI_ID_USER+6)
+
+#define BUTTON_Id_DeleteMode (GUI_ID_USER+7)
+#define BUTTON_Id_Ok (GUI_ID_USER+8)
+#define BUTTON_Id_Cancel (GUI_ID_USER+9)
+#define BUTTON_Id_EditMode (GUI_ID_USER+10)
+#define BUTTON_Id_SubmitEdit (GUI_ID_USER+11)
 
 
+#define FRAME_ID_mainPanel (GUI_ID_USER+12)
+#define FRAME_ID_confPanel (GUI_ID_USER+13)
+
+#define TEXT_ID_mainPanelTime (GUI_ID_USER+14)
+#define TEXT_ID_mainPanelSpeed (GUI_ID_USER+15)
+#define LISTBOX_Id (GUI_ID_USER+16)
 /*********************************************************************
 *
 *       Bitmap data for user drawn list box
@@ -153,7 +172,7 @@ const GUI_BITMAP bmSmilie1 = {
 *       Default contents of list box
 */
 static const GUI_ConstString _ListBox[] = {
-  "English", "Deutsch", NULL
+  "Default Mode 1", "Default Mode 2", "Default Mode 3", 0
 };
 
 /*********************************************************************
@@ -165,33 +184,31 @@ static const GUI_ConstString _ListBox[] = {
 *///
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { FRAMEWIN_CreateIndirect,  "Main Panel",    GUI_ID_FRAMEWIN_(1),                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  { FRAMEWIN_CreateIndirect,  "Main Panel",    FRAME_ID_mainPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
 	{ PROGBAR_CreateIndirect,   "Progress",          0,       progBarX,  progBarY,  progBarWidth,  progBarHeight, WM_CF_SHOW },
-	{ TEXT_CreateIndirect,      "Time: ",    GUI_ID_TEXT_(1),       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
-	{	TEXT_CreateIndirect,      "Speed: ",    GUI_ID_TEXT_(2),       labelX,  labelY+labelHeight,  labelWidth,  labelHeight, TEXT_CF_LEFT },
+	{ TEXT_CreateIndirect,      "Time: ",    TEXT_ID_mainPanelTime,       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
+	{	TEXT_CreateIndirect,      "Speed: ",    TEXT_ID_mainPanelSpeed,       labelX,  labelY+labelHeight,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 /* Buttons */
-  { BUTTON_CreateIndirect,    "Default MODE 1",      GUI_ID_BUTTON_(1),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-  { BUTTON_CreateIndirect,    "Default MODE 2",      GUI_ID_BUTTON_(2),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "Default MODE 3",      GUI_ID_BUTTON_(3),     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "More Modes",      GUI_ID_BUTTON_(4),     0,  lcdHeight - 1 - configButtonHeight - gapYConfigButtonDown,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Go!",      GUI_ID_BUTTON_(5),     switchButtonX,  switchButtonY(1),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Stop!",      GUI_ID_BUTTON_(6),     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "Default MODE 1",      BUTTON_Id_DefaultMode1,     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  lcdHeight - 1 - configButtonHeight - gapYConfigButtonDown,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Go!",      BUTTON_Id_Go,     switchButtonX,  switchButtonY(1),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 
 };
 
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
-	{FRAMEWIN_CreateIndirect,  "Config Panel",    GUI_ID_FRAMEWIN_(2),                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-  { LISTBOX_CreateIndirect,   0,                GUI_ID_MULTIEDIT0,  10,  30, 200, 300, 0, 100 },
-/* Check box for multi select mode */
-  { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK0,     320,  30,   30,   30 },
-  { TEXT_CreateIndirect,      "Multi select",            GUI_ID_TEXT_(4),                 380,  30,  80,  30, TEXT_CF_LEFT },
-/* Check box for owner drawn list box */
-  { CHECKBOX_CreateIndirect,  0,                         GUI_ID_CHECK1,     320,  100,   30,   30 },
-  { TEXT_CreateIndirect,      "Owner drawn",              GUI_ID_TEXT_(2),                380,  100,  80,  30, TEXT_CF_LEFT },
-	{ TEXT_CreateIndirect,      "output",              GUI_ID_TEXT_(5),                350,  150,  80,  30, TEXT_CF_LEFT },
-  { BUTTON_CreateIndirect,    "Input New Mode",      GUI_ID_BUTTON_(7),     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-  { BUTTON_CreateIndirect,    "OK",      GUI_ID_BUTTON_(8),     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "CANCEL",      GUI_ID_BUTTON_(9),     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  { LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  10,  30, 200, 300, 0, 100 },
+  
+	//{ TEXT_CreateIndirect,      "output",              GUI_ID_TEXT_(5),                350,  150,  80,  30, TEXT_CF_LEFT },
+  { BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     10+modeButtonWidth+5,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     10+2*modeButtonWidth+5*2,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     60+60+3*modeButtonWidth+5*3,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     40+120+4*modeButtonWidth+5*4,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+
 };
 /*********************************************************************
 *
@@ -354,19 +371,23 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
          // break;
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
-            case GUI_ID_BUTTON_(4):
+            case BUTTON_Id_MoreModes:
               WM_BringToTop(hConfigDlg);
 							//WM_SetFocus(hConfigDlg);
 							WM_InvalidateWindow(WM_HBKWIN);
 							break;
 						
-            case GUI_ID_BUTTON_(1):
+            case BUTTON_Id_DefaultMode1:
               //GUI_EndDialog(hDlg, 1);
               break;
-            case GUI_ID_BUTTON_(2):
+            case BUTTON_Id_DefaultMode2:
               break;	
-            case GUI_ID_BUTTON_(3):
+            case BUTTON_Id_DefaultMode3:
               break;	
+            case BUTTON_Id_Go:
+              break;			
+            case BUTTON_Id_Stop:
+              break;							
           }
           break;
       }
@@ -381,23 +402,16 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
   int NCode, Id;
   WM_HWIN hDlg, hListBox, hItem;
   hDlg = pMsg->hWin;
-  hListBox = WM_GetDialogItem(hDlg, GUI_ID_MULTIEDIT0);
+  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
 
   switch (pMsg->MsgId) {
     case WM_INIT_DIALOG:
       LISTBOX_SetText(hListBox, _ListBox);
-      LISTBOX_AddString(hListBox, "Français");
-      LISTBOX_AddString(hListBox, "Japanese");
-      LISTBOX_AddString(hListBox, "Italiano");
-      LISTBOX_AddString(hListBox, "Español");
-      LISTBOX_AddString(hListBox, "Greek");
-      LISTBOX_AddString(hListBox, "Hebrew");
-      LISTBOX_AddString(hListBox, "Dutch");
-      LISTBOX_AddString(hListBox, "Other language ...");
+      LISTBOX_AddString(hListBox, "Add New Mode ..");
       LISTBOX_SetScrollStepH(hListBox, 6);
       LISTBOX_SetAutoScrollH(hListBox, 1);
       LISTBOX_SetAutoScrollV(hListBox, 1);
-      LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
+      //LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
 			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
 			LISTBOX_SetScrollbarWidth(hListBox, 20);
       hItem  = WM_GetDialogItem(hDlg, GUI_ID_CHECK1);
@@ -428,25 +442,33 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 						case GUI_ID_MULTIEDIT0:
 								
 								LISTBOX_GetItemText(hListBox,LISTBOX_GetSel(hListBox),buf,20);
-								TEXT_SetText(WM_GetDialogItem(hDlg, GUI_ID_TEXT_(5)), buf);
+								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
 								break;
 						case WM_NOTIFICATION_SEL_CHANGED:
 								break;
-            case GUI_ID_BUTTON_(7):
+            case BUTTON_Id_DeleteMode:
 							//do sth and go back
               break;
-            case GUI_ID_BUTTON_(8):
+            case BUTTON_Id_Ok:
 							//do sth and go back
               WM_BringToTop(hmainDlg);
 							//WM_SetFocus(hmainDlg);
 							WM_Invalidate(WM_HBKWIN);
               break;		
-						case GUI_ID_BUTTON_(9):
+						case BUTTON_Id_Cancel:
 							//do sth and go back
               WM_BringToTop(hmainDlg);
 							//WM_SetFocus(hmainDlg);
 							WM_Invalidate(WM_HBKWIN);
               break;
+						case EDIT_Group2_ID(1):
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+							break;
+            case BUTTON_Id_EditMode:
+              break;		
+            case BUTTON_Id_SubmitEdit:
+              break;						
             case GUI_ID_CHECK0:
               _MultiSel ^= 1;
               LISTBOX_SetMulti(hListBox, _MultiSel);
@@ -482,29 +504,37 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 */
 #include "led.h"
 #include "delay.h"
+#include "editgroup.h"
 void motorMain(void) {
 	unsigned char ledcnt = 0;
 	LED_Init();
   GUI_Init();
-//  WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
+  WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
   WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
-	
+
 	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
 	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+	
+	
 	FRAMEWIN_SetTitleVis(hmainDlg, 0);
 	FRAMEWIN_SetTitleVis(hConfigDlg, 0);
+	drawEditGroup(250, 10, 799, 479, hConfigDlg);
+	
+	
+	
+	//_setHook(hConfigDlg);
 	WM_BringToTop(hmainDlg);
-	//WM_SetFocus(hmainDlg);
-	WM_InvalidateWindow(WM_HBKWIN);
-	
-	
+	//WM_BringToTop(hkeyboard);
+	//hkeyboard = CreateKeyBaord();
+	WM_InvalidateWindow(WM_HBKWIN);	
 	
 	LED0 = 0;
   while (1) {
     _MultiSel   = 0;
     _OwnerDrawn = 1;
-    GUI_TOUCH_Exec();
+    
     GUI_Exec();//GUI_Delay(1000);
+		GUI_TOUCH_Exec();
 		delay_ms(15);
 		if(++ledcnt == 60){
 				ledcnt = 0;

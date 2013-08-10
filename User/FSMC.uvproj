@@ -436,6 +436,16 @@
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\motorgui.c</FilePath>
             </File>
+            <File>
+              <FileName>editgroup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\editgroup.c</FilePath>
+            </File>
+            <File>
+              <FileName>keyboard.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\keyboard.C</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

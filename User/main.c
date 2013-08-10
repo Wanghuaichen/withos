@@ -12,11 +12,12 @@
 #include "BUTTON.H"
 #include "wm.h"
 #include "stringutils.h"
+
 void SysTick_Configuration(void);
 void motorMain(void) ;
+void MainTask3(void);
 
-
-#define MainTask_STK_SIZE 4096
+#define MainTask_STK_SIZE 8192
 OS_STK  MainTask_STK[MainTask_STK_SIZE];
 
 int main(void)

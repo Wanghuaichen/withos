@@ -405,6 +405,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
   hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
 
   switch (pMsg->MsgId) {
+		
     case WM_INIT_DIALOG:
       LISTBOX_SetText(hListBox, _ListBox);
       LISTBOX_AddString(hListBox, "Add New Mode ..");
@@ -428,16 +429,34 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
           break;
       }
       break;*/
+			
+			
     case WM_TOUCH_CHILD:
-      WM_SetFocus(hListBox);
+											WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+      //WM_SetFocus(hListBox);
       break;		
+		
+		
     case WM_NOTIFY_PARENT:
       Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
       NCode = pMsg->Data.v;                 /* Notification code */
-
       switch (NCode) {
-
+				case WM_NOTIFICATION_CLICKED:
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+						break;
+				case WM_NOTIFICATION_MOVED_OUT:
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+						break;
+				case WM_NOTIFICATION_VALUE_CHANGED:
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+						break;
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);				
           switch (Id) {
 						case GUI_ID_MULTIEDIT0:
 								
@@ -447,6 +466,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 						case WM_NOTIFICATION_SEL_CHANGED:
 								break;
             case BUTTON_Id_DeleteMode:
+
 							//do sth and go back
               break;
             case BUTTON_Id_Ok:
@@ -502,6 +522,11 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 *
 *       MainTask
 */
+void createFrame(void)
+{
+		hkeyboard = FRAMEWIN_Create("", 0, WM_CF_SHOW, 50, 50, 350, 350);
+}
+
 #include "led.h"
 #include "delay.h"
 #include "editgroup.h"
@@ -517,15 +542,16 @@ void motorMain(void) {
 	
 	
 	FRAMEWIN_SetTitleVis(hmainDlg, 0);
-	FRAMEWIN_SetTitleVis(hConfigDlg, 0);
-	drawEditGroup(250, 10, 799, 479, hConfigDlg);
+	//FRAMEWIN_SetTitleVis(hConfigDlg, 0);
+	drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
 	
-	
+	createFrame();
 	
 	//_setHook(hConfigDlg);
-	WM_BringToTop(hmainDlg);
+	//WM_BringToTop(hmainDlg);
 	//WM_BringToTop(hkeyboard);
 	//hkeyboard = CreateKeyBaord();
+	WM_BringToBottom(hkeyboard);
 	WM_InvalidateWindow(WM_HBKWIN);	
 	
 	LED0 = 0;

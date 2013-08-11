@@ -676,10 +676,6 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
   }
 }
 
-
-
-
-
 #include "stringutils.h"
 static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 	static char buf[20];
@@ -718,12 +714,16 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 			
 			
     case WM_TOUCH_CHILD:
-		/*		if(!WM_IsWindow(hkeyboard)){
+				Id    = WM_GetId(pMsg->hWinSrc);
+				if((Id == BUTTON_Id_DeleteMode) || (BUTTON_Id_Ok == Id) || (BUTTON_Id_Cancel == Id) || (BUTTON_Id_EditMode == Id) || (Id == BUTTON_Id_SubmitEdit)){
+						break;
+				}
+				if(!WM_IsWindow(hkeyboard)){
 						hkeyboard = CreateKeyBaord();
 						hkeyboardFlag = 1;
 				}
 				WM_BringToTop(hkeyboard);
-				WM_Invalidate(WM_HBKWIN);*/
+				WM_Invalidate(WM_HBKWIN);
      // WM_SetFocus(hListBox);
       break;		
 		

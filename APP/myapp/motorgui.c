@@ -1,3 +1,273 @@
+#include "GUI.h"
+#include "WM.h"
+#include "BUTTON.h"
+#include "DIALOG.h"
+#include "LISTBOX.h"
+#include "EDIT.h"
+#include "SLIDER.h"
+#include "FRAMEWIN.h"
+#include "RADIO.h"
+#include "SCROLLBAR.h"
+#include "TEXT.h"
+#include "MULTIEDIT.h"
+#include "LISTVIEW.h"
+#include "MULTIPAGE.h"
+#include "GUI_HOOK.h"
+#include "FRAMEWIN_Private.h"
+
+#include <string.h>
+#include <ctype.h>
+
+#define NULL 0
+#include "keyboard.h"
+
+
+/*******************************************************************
+*
+* function declare
+*/
+
+void clearKeyBaord(WM_HWIN hWin);
+void createKeys(KEYBAORDCFG* kbcfg);
+
+/*******************************************************************
+*
+* 键盘的按键配置和键盘布局全局变量
+*/
+
+EDIT_Handle hEdtDebug,hEdtMsgC;
+
+static WM_HWIN ghTarget;
+static char* gCurrentKeyMap;
+static U8 gShift;
+static WM_HWIN gKeyBaord;
+static GUI_HOOK gHook;
+#define keyMapShift 3000
+static char keys[]=
+{
+    '1','2','3','4','5','6','7','8','9','0','-','=',
+    'q','w','e','r','t','y','u','i','o','p','[',']',
+    'a','s','d','f','g','h','j','k','l',';','\'','\\',
+    'z','x','c','v','b','n','m',',','.','/','`'
+};
+static char keys2[]=
+{
+    '!','@','#','$','%','^','&','*','(',')','_','+',
+    'Q','W','E','R','T','Y','U','I','O','P','{','}',
+    'A','S','D','F','G','H','J','K','L',':','\"','|',
+    'Z','X','C','V','B','N','M','<','>','?','~'
+};
+
+/*******************************************************************
+*
+* callbacks
+*/
+
+ int _hookFW(WM_MESSAGE * pMsg)
+/*目标窗口的挂钩函数*/
+{
+    if (pMsg->MsgId==WM_TOUCH_CHILD)//pMsg->MsgId==WM_NOTIFY_PARENT|| 
+    {
+        GUI_PID_STATE * pState;
+      pState = ( GUI_PID_STATE * )( ( WM_MESSAGE * )pMsg->Data.p )->Data.p;
+        if (( pState!=0 )&&(pState->Pressed))
+        {
+            I32 NCode=pMsg->Data.v;
+            if ((pMsg->hWinSrc)&&(NCode!=WM_NOTIFICATION_LOST_FOCUS )&&(NCode!=WM_NOTIFICATION_CHILD_DELETED))
+            {
+                ghTarget=pMsg->hWinSrc;
+            }
+        }
+    }
+    return 0;
+}
+ void _setHook(WM_HWIN hWin)
+/*将处理按键的挂钩函数关联到指定窗口*/
+{
+	
+
+    FRAMEWIN_Obj* pObj;
+	GUI_Lock();//asion 20091016 add
+	pObj= FRAMEWIN_H2P(hWin);//asion 20091016 edit
+    GUI_HOOK_Add(&pObj->pFirstHook,&gHook,&_hookFW);
+	GUI_Unlock();//asion 20091016 add
+}
+ void _cbKeyBaord(WM_MESSAGE * pMsg)
+/*键盘的回调函数*/
+{
+		I32 Id;
+		WM_KEY_INFO key ={0};
+		WM_MESSAGE msg={0};
+
+  switch (pMsg->MsgId){
+		
+    case WM_PAINT:
+        GUI_SetBkColor(0xc3c3c3);
+        GUI_Clear();
+        GUI_SetBkColor(0xFFFFFF);
+        break;
+		
+    case WM_NOTIFY_PARENT:{  			
+				if (pMsg->Data.v!=WM_NOTIFICATION_RELEASED){
+					break;
+				}        //Id=GUI_GetKey();
+				Id=WM_GetId(pMsg->hWinSrc);//asion 20091016 edit add
+
+        if (Id!=NULL)//&&(pMsg->hWin!=pMsg->hWinSrc))
+        {
+           switch (Id)
+           {
+            case 20+keyMapShift:
+            {
+                KEYBAORDCFG kbcfg={0};
+                clearKeyBaord(WM_GetClientWindow( pMsg->hWin));
+                gCurrentKeyMap=(gCurrentKeyMap==keys)?keys2:keys;
+                kbcfg.hWin= pMsg->hWin;
+                kbcfg.keymap=gCurrentKeyMap;
+                kbcfg.x0=kbcfg.y0=5;
+                kbcfg.xSize=15;
+                kbcfg.ySize=18;
+                kbcfg.xSpan=2;
+                kbcfg.ySpan=3;
+                kbcfg.num=sizeof(keys)/sizeof(char);
+                createKeys(&kbcfg);
+            }
+            break;
+						
+            case 25+keyMapShift:
+                gShift=~gShift;
+                break;
+						
+            default:
+                if (WM_IsWindow(ghTarget)&&(iscntrl(Id-keyMapShift)||isprint(Id-keyMapShift))&&(Id-keyMapShift<0x7f))
+                {                    
+                    key.Key=Id;
+                    key.PressedCnt=1;
+                    msg.MsgId=WM_KEY;
+                    msg.Data.p=&key;
+                    WM_SendMessage(ghTarget,&msg);
+                    //GUI_SendKeyMsg (Id, 1);
+                    //WM_BroadcastMessage(&gMsg);
+                    WM_SetFocus(ghTarget);
+                }
+            }
+
+        }
+    }
+    break;
+		
+		
+    default:
+        WM_DefaultProc(pMsg);
+
+    }
+}
+
+void createKeys(KEYBAORDCFG* kbcfg)
+/*创建按键*/
+{
+    int x0,y0,xSize,ySize,xSpan,ySpan;
+    int i,starX,startY,num;
+    WM_HWIN hWin;
+    BUTTON_Handle hbtn;
+    char tmp[20],*keyMap;
+
+    x0=kbcfg->x0;
+    y0=kbcfg->y0;
+    xSize=kbcfg->xSize;
+    ySize=kbcfg->ySize;
+
+    xSpan=kbcfg->xSpan;
+    ySpan=kbcfg->ySpan;
+    num=kbcfg->num;
+
+    hWin=kbcfg->hWin;
+    keyMap=kbcfg->keymap;
+
+    starX=x0;
+    startY=y0;
+    for (i=0; i<num; i++)
+    {
+        hbtn=BUTTON_CreateAsChild(x0,y0,xSize,ySize,hWin,keyMap[i]+keyMapShift,BUTTON_CF_SHOW);
+
+        tmp[0]=keyMap[i];
+				tmp[1] = 0;
+        BUTTON_SetText(hbtn,tmp);
+
+        x0=x0+xSize+xSpan;
+        if ((i+1)%12==0)
+        {
+            y0=y0+ySize+ySpan;
+            x0=starX;
+        }
+    }
+    //hbtn=BUTTON_CreateAsChild(x0,y0,xSize*2+xSpan,ySize,hWin,25,BUTTON_CF_SHOW);
+    //BUTTON_SetText(hbtn,"Shift");
+
+    hbtn=BUTTON_CreateAsChild(x0,y0,xSize,ySize,hWin,GUI_KEY_UP,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"up");
+
+    hbtn=BUTTON_CreateAsChild(x0=starX,y0=y0+ySpan+ySize,(xSize*3+2*xSpan),ySize,hWin,20+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"Shift");
+    hbtn=BUTTON_CreateAsChild(x0=x0+3*xSpan+3*xSize,y0,(xSize*6+5*xSpan),ySize,hWin,' '+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"");
+
+    hbtn=BUTTON_CreateAsChild(x0=x0+7*xSpan+7*xSize,y0,xSize,ySize,hWin,GUI_KEY_LEFT,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"lf");
+    hbtn=BUTTON_CreateAsChild(x0=x0+xSpan+xSize,y0,xSize,ySize,hWin,GUI_KEY_DOWN,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"dn");
+    hbtn=BUTTON_CreateAsChild(x0=x0+xSpan+xSize,y0,xSize,ySize,hWin,GUI_KEY_RIGHT,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"ri");
+
+    hbtn=BUTTON_CreateAsChild(x0=starX+12*xSize+12*xSpan,y0=startY,xSize,ySize,hWin,8+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"bs");
+    hbtn=BUTTON_CreateAsChild(x0,y0+ySpan+ySize,xSize,2*ySize+ySpan,hWin,13+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"En");
+
+}
+
+void clearKeyBaord(WM_HWIN hWin)
+{
+
+    WM_HWIN hCWin;
+
+    for (hCWin=WM_GetFirstChild(hWin); hCWin!=0; hCWin=WM_GetFirstChild(hWin))
+    {
+        //hCWin=WM_GetNextSibling(hCWin)
+        WM_DeleteWindow(hCWin);
+    }
+}
+
+WM_HWIN CreateKeyBaord()
+{
+    WM_HWIN hFW,hWin;
+    KEYBAORDCFG kbcfg;
+
+    hFW=FRAMEWIN_Create("KeyBaord", NULL, WM_CF_SHOW,3, 142,240,130);
+    FRAMEWIN_SetMoveable(hFW,FRAMEWIN_SF_MOVEABLE);
+    FRAMEWIN_AddCloseButton(hFW,FRAMEWIN_BUTTON_RIGHT,1);
+    hWin=WM_GetClientWindow(hFW);
+    gKeyBaord=hFW;
+
+    //WM_SetStayOnTop(hFW,0);
+
+    gCurrentKeyMap=keys;
+    kbcfg.hWin=hFW;
+    kbcfg.keymap=gCurrentKeyMap;
+    kbcfg.x0=kbcfg.y0=5;
+    kbcfg.xSize=15;
+    kbcfg.ySize=18;
+    kbcfg.xSpan=2;
+    kbcfg.ySpan=3;
+    kbcfg.num=sizeof(keys)/sizeof(char);
+    createKeys(&kbcfg);
+
+    WM_SetCallback(hWin,_cbKeyBaord);
+		return hFW;
+}
+
+
+
 #include <stddef.h>
 #include "GUI.h"
 #include "DIALOG.h"
@@ -353,7 +623,7 @@ static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
 *
 *       _cbCallback
 */
-
+static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg);
 static void _cbCallback(WM_MESSAGE * pMsg) {
   int NCode, Id;
   WM_HWIN hDlg;
@@ -372,8 +642,11 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
             case BUTTON_Id_MoreModes:
-              WM_BringToTop(hConfigDlg);
+							hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+							drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
+							WM_BringToTop(hConfigDlg);
 							//WM_SetFocus(hConfigDlg);
+							GUI_EndDialog(hmainDlg, 0);
 							WM_InvalidateWindow(WM_HBKWIN);
 							break;
 						
@@ -432,7 +705,9 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 			
 			
     case WM_TOUCH_CHILD:
-      WM_SetFocus(hListBox);
+											WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+     // WM_SetFocus(hListBox);
       break;		
 		
 		
@@ -469,6 +744,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
               break;
             case BUTTON_Id_Ok:
 							//do sth and go back
+							GUI_EndDialog(hConfigDlg, 0);//WM_DeleteWindow(hConfigDlg);
+							hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
               WM_BringToTop(hmainDlg);
 							//WM_SetFocus(hmainDlg);
 							WM_Invalidate(WM_HBKWIN);
@@ -511,93 +788,6 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
   }
 }
 
-static void _cbCallbackConfigPanel2(WM_MESSAGE * pMsg) {
-	static char buf[20];
-  int NCode, Id;
-  WM_HWIN hDlg, hListBox, hItem;
-  hDlg = pMsg->hWin;
-  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
-
-  switch (pMsg->MsgId) {
-		
-    case WM_NOTIFY_PARENT:
-      Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
-      NCode = pMsg->Data.v;                 /* Notification code */
-		
-										WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-		
-      switch (NCode) {
-				case WM_NOTIFICATION_CLICKED:
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-						break;
-				/*case WM_NOTIFICATION_MOVED_OUT:
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-						break;
-				case WM_NOTIFICATION_VALUE_CHANGED:
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-						break;*/
-        case WM_NOTIFICATION_RELEASED:      /* React only if released */
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);				
-          switch (Id) {
-						case GUI_ID_MULTIEDIT0:
-								
-								LISTBOX_GetItemText(hListBox,LISTBOX_GetSel(hListBox),buf,20);
-								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
-								break;
-						case WM_NOTIFICATION_SEL_CHANGED:
-								break;
-            case BUTTON_Id_DeleteMode:
-
-							//do sth and go back
-              break;
-            case BUTTON_Id_Ok:
-							//do sth and go back
-              WM_BringToTop(hmainDlg);
-							//WM_SetFocus(hmainDlg);
-							WM_Invalidate(WM_HBKWIN);
-              break;		
-						case BUTTON_Id_Cancel:
-							//do sth and go back
-              WM_BringToTop(hmainDlg);
-							//WM_SetFocus(hmainDlg);
-							WM_Invalidate(WM_HBKWIN);
-              break;
-						case EDIT_Group2_ID(1):
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-							break;
-            case BUTTON_Id_EditMode:
-              break;		
-            case BUTTON_Id_SubmitEdit:
-              break;						
-            case GUI_ID_CHECK0:
-              _MultiSel ^= 1;
-              LISTBOX_SetMulti(hListBox, _MultiSel);
-              WM_SetFocus(hListBox);
-              LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
-              break;
-            case GUI_ID_CHECK1:
-              _OwnerDrawn ^= 1;
-              if (_OwnerDrawn) {
-                LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
-              } else {
-                LISTBOX_SetOwnerDraw(hListBox, NULL);
-              }
-              LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
-              break;
-          }
-      }
-      break;
-			
-    default:
-      WM_DefaultProc(pMsg);
-  }
-}
 /*********************************************************************
 *
 *       Public code
@@ -622,24 +812,23 @@ void motorMain(void) {
   GUI_Init();
   WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
   WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
-
+	//hkeyboard = CreateKeyBaord();
+	
+	//hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+	
 	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
-	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
-	
-	
-	//WM_SetCallback(WM_GetClientWindow(hConfigDlg), &_cbCallbackConfigPanel2);
-	
+
 	FRAMEWIN_SetTitleVis(hmainDlg, 0);
 	//FRAMEWIN_SetTitleVis(hConfigDlg, 0);
-	drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
+	//drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
 	
-	createFrame();
+	//createFrame();
 	
 	//_setHook(hConfigDlg);
-	//WM_BringToTop(hmainDlg);
+	WM_BringToTop(hmainDlg);
 	//WM_BringToTop(hkeyboard);
-	//hkeyboard = CreateKeyBaord();
-	WM_BringToBottom(hkeyboard);
+	
+	//WM_BringToBottom(hkeyboard);
 	WM_InvalidateWindow(WM_HBKWIN);	
 	
 	LED0 = 0;

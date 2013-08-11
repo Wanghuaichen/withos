@@ -299,17 +299,13 @@ WM_HWIN CreateKeyBaord()
     WM_HWIN hFW,hWin;
     KEYBAORDCFG kbcfg;
 
-    //if (WM_IsWindow(gKeyBaord))
-    //{
-        //return 0;
-    //}
-    hFW=FRAMEWIN_CreateAsChild (3, 142,240,130,WM_HBKWIN, "KeyBaord", NULL, WM_CF_SHOW);
+    hFW=FRAMEWIN_Create("KeyBaord", NULL, WM_CF_SHOW,3, 142,240,130);
     FRAMEWIN_SetMoveable(hFW,FRAMEWIN_SF_MOVEABLE);
     FRAMEWIN_AddCloseButton(hFW,FRAMEWIN_BUTTON_RIGHT,1);
     hWin=WM_GetClientWindow(hFW);
     gKeyBaord=hFW;
 
-    //WM_SetStayOnTop(hFW,1);
+    WM_SetStayOnTop(hFW,0);
 
     gCurrentKeyMap=keys;
     kbcfg.hWin=hWin;
@@ -323,7 +319,7 @@ WM_HWIN CreateKeyBaord()
     createKeys(&kbcfg);
 
     WM_SetCallback(hWin,_cbKeyBaord);
-		return hWin;
+		return hFW;
 }
 #include "delay.h"
 void MainTask3(void)

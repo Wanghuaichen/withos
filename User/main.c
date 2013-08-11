@@ -16,7 +16,7 @@
 void SysTick_Configuration(void);
 void motorMain(void) ;
 void MainTask3(void);
-
+void testnotify(void);
 #define MainTask_STK_SIZE 2048
 OS_STK  MainTask_STK[MainTask_STK_SIZE];
 
@@ -35,8 +35,61 @@ int main(void)
 	OSStart();                 //开始多任务执行		
 	return 0;	   
 }
+/*
+#include "led.h"
+#include "delay.h"
+FRAMEWIN_Handle hframe1, hframe2;
+static void _cbframe(WM_MESSAGE * pMsg) 
+{
+	  int NCode, Id;
+  WM_HWIN hDlg;
+  hDlg = pMsg->hWin;
 
+  switch (pMsg->MsgId) {		
+		
+		case WM_INIT_DIALOG:
+			break;
+    case WM_NOTIFY_PARENT:
+      Id    = WM_GetId(pMsg->hWinSrc);    
+      NCode = pMsg->Data.v;              
 
+      switch (NCode) {
+        //case WM_NOTIFICATION_SEL_CHANGED:
+         // LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
+         // break;
+        case WM_NOTIFICATION_RELEASED: 
+					WM_BringToTop(hframe2);
+					WM_InvalidateWindow(WM_HBKWIN);	
+					break;
+        case WM_NOTIFICATION_CLICKED: 
+					break;	
+			}
+}
+}
+void testnotify(void)
+{
+
+	EDIT_Handle hedit;
+	BUTTON_Handle hbutton;
+	unsigned char ledcnt = 0;
+	LED_Init();
+  GUI_Init();	
+	LED0 = 0;
+	
+	hframe1 = FRAMEWIN_Create("1", _cbframe, WM_CF_SHOW, 0, 0, 700, 400);
+	hframe2 = FRAMEWIN_Create("2", _cbframe, WM_CF_SHOW, 0, 0, 70, 40);
+	hedit = EDIT_CreateAsChild(0, 0,  100, 100, WM_GetClientWindow(hframe1), 5000, WM_CF_SHOW, 100);
+	hbutton = BUTTON_CreateAsChild(105, 105, 100, 100, WM_GetClientWindow(hframe1), 5001, WM_CF_SHOW);
+  while (1) {
+    GUI_Exec();//GUI_Delay(1000);
+		GUI_TOUCH_Exec();
+		delay_ms(15);
+		if(++ledcnt == 60){
+				ledcnt = 0;
+				LED0 = ~LED0;
+		}
+  }	
+}*/
 
 //系统时钟配置
 void SysTick_Configuration(void)

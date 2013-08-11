@@ -46,7 +46,9 @@ void drawEditGroup(unsigned int x1, unsigned int y1, unsigned int x2, unsigned i
 				int2str(buf, nn+1);
 				stepHandles[nn] = TEXT_CreateAsChild(editX(jj, x1, x2), editY(ii, 1, y1),  editWidth(x1, x2), textHeight, hfather, EDIT_Group1_ID(nn), WM_CF_SHOW, buf, TEXT_CF_HCENTER);
 				speedHandles[nn] = EDIT_CreateAsChild(editX(jj, x1, x2), editY(ii, 2, y1),  editWidth(x1, x2), editHeight, hfather, EDIT_Group2_ID(nn), WM_CF_SHOW, editMaxLen);
+				WM_ShowWindow(speedHandles[nn]);
 				durationHandles[nn] = EDIT_CreateAsChild(editX(jj, x1, x2), editY(ii, 3, y1),  editWidth(x1, x2), editHeight, hfather, EDIT_Group3_ID(nn), WM_CF_SHOW, editMaxLen);
+				WM_ShowWindow(speedHandles[nn]);
 				if(!(nn % numOfEditsInARow)){
 						TEXT_CreateAsChild(x1, editY(ii, 1, y1), titleWidth - 1, 12, hfather, GUI_ID_USER + 200, WM_CF_SHOW, "Steps:", TEXT_CF_HCENTER);
 						TEXT_CreateAsChild(x1, editY(ii, 2, y1) + editHeight / 2 - 6, titleWidth - 1, 12, hfather, GUI_ID_USER + 201, WM_CF_SHOW, "Speed:", TEXT_CF_HCENTER);

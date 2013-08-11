@@ -118,6 +118,25 @@ WM_HWIN GUI_CreateDialogBox(const GUI_WIDGET_CREATE_INFO* paWidget, int NumWidge
   return hDialog;
 }
 
+WM_HWIN GUI_CreateDialogBox2(const GUI_WIDGET_CREATE_INFO* paWidget, int NumWidgets, WM_CALLBACK* cb, WM_HWIN hParent,
+                            int x0, int y0)
+{
+	WM_HWIN hChild;
+  WM_HWIN hDialog = paWidget->pfCreateIndirect(paWidget, hParent, x0, y0, cb);     /* Create parent window */
+  WM_HWIN hDialogClient = WM_GetClientWindow(hDialog);
+  WIDGET_OrState(hDialog, paWidget->Flags);
+  WM_ShowWindow(hDialog);
+  WM_ShowWindow(hDialogClient);
+  while (--NumWidgets > 0) {    
+    paWidget++;
+    hChild = paWidget->pfCreateIndirect(paWidget, hDialogClient, 0, 0, 0);     /* Create child window */
+    WM_ShowWindow(hChild);
+  }
+  WM_SetFocusOnNextChild(hDialog);     /* Set the focus to the first child */
+  WM_SendMessageNoPara(hDialogClient, WM_INIT_DIALOG);
+  return hDialog;
+}
+
 /*********************************************************************
 *
 *       GUI_EndDialog

@@ -432,9 +432,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 			
 			
     case WM_TOUCH_CHILD:
-											WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-      //WM_SetFocus(hListBox);
+      WM_SetFocus(hListBox);
       break;		
 		
 		
@@ -446,14 +444,102 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 								WM_BringToTop(hkeyboard);
 								WM_Invalidate(WM_HBKWIN);
 						break;
-				case WM_NOTIFICATION_MOVED_OUT:
+				/*case WM_NOTIFICATION_MOVED_OUT:
 								WM_BringToTop(hkeyboard);
 								WM_Invalidate(WM_HBKWIN);
 						break;
 				case WM_NOTIFICATION_VALUE_CHANGED:
 								WM_BringToTop(hkeyboard);
 								WM_Invalidate(WM_HBKWIN);
+						break;*/
+        case WM_NOTIFICATION_RELEASED:      /* React only if released */
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);				
+          switch (Id) {
+						case GUI_ID_MULTIEDIT0:
+								
+								LISTBOX_GetItemText(hListBox,LISTBOX_GetSel(hListBox),buf,20);
+								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
+								break;
+						case WM_NOTIFICATION_SEL_CHANGED:
+								break;
+            case BUTTON_Id_DeleteMode:
+
+							//do sth and go back
+              break;
+            case BUTTON_Id_Ok:
+							//do sth and go back
+              WM_BringToTop(hmainDlg);
+							//WM_SetFocus(hmainDlg);
+							WM_Invalidate(WM_HBKWIN);
+              break;		
+						case BUTTON_Id_Cancel:
+							//do sth and go back
+              WM_BringToTop(hmainDlg);
+							//WM_SetFocus(hmainDlg);
+							WM_Invalidate(WM_HBKWIN);
+              break;
+						case EDIT_Group2_ID(1):
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+							break;
+            case BUTTON_Id_EditMode:
+              break;		
+            case BUTTON_Id_SubmitEdit:
+              break;						
+            case GUI_ID_CHECK0:
+              _MultiSel ^= 1;
+              LISTBOX_SetMulti(hListBox, _MultiSel);
+              WM_SetFocus(hListBox);
+              LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
+              break;
+            case GUI_ID_CHECK1:
+              _OwnerDrawn ^= 1;
+              if (_OwnerDrawn) {
+                LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
+              } else {
+                LISTBOX_SetOwnerDraw(hListBox, NULL);
+              }
+              LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
+              break;
+          }
+      }
+      break;
+			
+    default:
+      WM_DefaultProc(pMsg);
+  }
+}
+
+static void _cbCallbackConfigPanel2(WM_MESSAGE * pMsg) {
+	static char buf[20];
+  int NCode, Id;
+  WM_HWIN hDlg, hListBox, hItem;
+  hDlg = pMsg->hWin;
+  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
+
+  switch (pMsg->MsgId) {
+		
+    case WM_NOTIFY_PARENT:
+      Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
+      NCode = pMsg->Data.v;                 /* Notification code */
+		
+										WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+		
+      switch (NCode) {
+				case WM_NOTIFICATION_CLICKED:
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
 						break;
+				/*case WM_NOTIFICATION_MOVED_OUT:
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+						break;
+				case WM_NOTIFICATION_VALUE_CHANGED:
+								WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);
+						break;*/
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
 								WM_BringToTop(hkeyboard);
 								WM_Invalidate(WM_HBKWIN);				
@@ -540,6 +626,8 @@ void motorMain(void) {
 	hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
 	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
 	
+	
+	//WM_SetCallback(WM_GetClientWindow(hConfigDlg), &_cbCallbackConfigPanel2);
 	
 	FRAMEWIN_SetTitleVis(hmainDlg, 0);
 	//FRAMEWIN_SetTitleVis(hConfigDlg, 0);

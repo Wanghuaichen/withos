@@ -208,7 +208,7 @@ static WM_HWIN _GetTopLevelWindow(WM_HWIN hWin) {
 
   When drawing, we have to start at the bottom window !
 */
-static void ResetNextDrawWin(void) {
+void ResetNextDrawWin(void) {
   NextDrawWin = WM_HWIN_NULL;
 }
 

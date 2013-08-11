@@ -1,5 +1,6 @@
 #include "GUI.h"
 #include "WM.h"
+void ResetNextDrawWin(void);
 #include "BUTTON.h"
 #include "DIALOG.h"
 #include "LISTBOX.h"
@@ -281,8 +282,8 @@ WM_HWIN CreateKeyBaord()
 **********************************************************************
 */
 WM_HWIN hConfigDlg;
-unsigned char hConfigDlgFlag = 1;
-unsigned char hmainDlgFlag = 0;
+unsigned char hConfigDlgFlag = 0;
+unsigned char hmainDlgFlag = 1;
 unsigned char hkeyboardFlag = 0;
 WM_HWIN hmainDlg;
 WM_HWIN hkeyboard;
@@ -648,13 +649,10 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
             case BUTTON_Id_MoreModes:
-							hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
-							drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
-							WM_BringToTop(hConfigDlg);
 							//WM_SetFocus(hConfigDlg);
 							hConfigDlgFlag = 1;//WM_SetFocus(hmainDlg);
 							hmainDlgFlag = 0;
-							WM_InvalidateWindow(WM_HBKWIN);
+							WM_DisableWindow(hmainDlg);
 							break;
 						
             case BUTTON_Id_DefaultMode1:
@@ -702,7 +700,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
       //LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
 			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
 			LISTBOX_SetScrollbarWidth(hListBox, 20);
-      hItem  = WM_GetDialogItem(hDlg, GUI_ID_CHECK1);
+
       //CHECKBOX_Check(hItem);
 			WM_InvalidateWindow(WM_HBKWIN);
 			
@@ -720,21 +718,24 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 			
 			
     case WM_TOUCH_CHILD:
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
+		/*		if(!WM_IsWindow(hkeyboard)){
+						hkeyboard = CreateKeyBaord();
+						hkeyboardFlag = 1;
+				}
+				WM_BringToTop(hkeyboard);
+				WM_Invalidate(WM_HBKWIN);*/
      // WM_SetFocus(hListBox);
       break;		
 		
 		
     case WM_NOTIFY_PARENT:
-											WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
+
       Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
       NCode = pMsg->Data.v;                 /* Notification code */
       switch (NCode) {
 				case WM_NOTIFICATION_CLICKED:
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
+								/*WM_BringToTop(hkeyboard);
+								WM_Invalidate(WM_HBKWIN);*/
 						break;
 				/*case WM_NOTIFICATION_MOVED_OUT:
 								WM_BringToTop(hkeyboard);
@@ -758,6 +759,11 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 								TEXT_SetText(WM_GetDialogItem(hDlg, EDIT_Group1_ID(2)), buf);
 								WM_Invalidate(WM_HBKWIN);	*/
 								if(curitem == itemtot - 1){
+										if(!WM_IsWindow(hkeyboard)){
+												hkeyboardFlag = 1;
+												hkeyboard = CreateKeyBaord();												
+										}
+										
 									//µ¯³ö¼üÅÌ£¬±à¼­ÐÂµÄÅäÖÃ
 										WM_BringToTop(hkeyboard);
 										WM_Invalidate(WM_HBKWIN);	
@@ -770,35 +776,43 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 						case WM_NOTIFICATION_SEL_CHANGED:
 								break;
             case BUTTON_Id_DeleteMode:
-										WM_BringToTop(hkeyboard);
-										WM_Invalidate(WM_HBKWIN);	
+
 							//do sth and go back
               break;
             case BUTTON_Id_Ok:
 							//do sth and go back
 							//GUI_EndDialog(hConfigDlg, 0);//WM_DeleteWindow(hConfigDlg);
-							hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
-              WM_BringToTop(hmainDlg);
+							WM_DisableWindow(hConfigDlg);
+							if(WM_IsWindow(hkeyboard)){									
+									WM_DisableWindow(hkeyboard);								
+									WM_DeleteWindow(hkeyboard);
+									clearKeyBaord(hkeyboard);
+									hkeyboard = 0;
+							}
 							hConfigDlgFlag = 0;//WM_SetFocus(hmainDlg);
+							hkeyboardFlag = 0;
 							hmainDlgFlag = 1;
 							WM_Invalidate(WM_HBKWIN);
 							//WM_DeleteWindow(hmainDlg);
               break;		
 						case BUTTON_Id_Cancel:
 							//do sth and go back
-              WM_BringToTop(hmainDlg);
-							//WM_SetFocus(hmainDlg);
+							if(WM_IsWindow(hkeyboard)){									
+									WM_DisableWindow(hkeyboard);								
+									WM_DeleteWindow(hkeyboard);
+									clearKeyBaord(hkeyboard);
+									hkeyboard = 0;
+							}							
+							hkeyboardFlag = 0;
 							WM_Invalidate(WM_HBKWIN);
               break;
-						case EDIT_Group2_ID(1):
-								WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);
-							break;
             case BUTTON_Id_EditMode:
+								hkeyboardFlag = 0;
               break;		
             case BUTTON_Id_SubmitEdit:
+							
               break;						
-            case GUI_ID_CHECK0:
+ /*           case GUI_ID_CHECK0:
               _MultiSel ^= 1;
               LISTBOX_SetMulti(hListBox, _MultiSel);
               WM_SetFocus(hListBox);
@@ -812,7 +826,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
                 LISTBOX_SetOwnerDraw(hListBox, NULL);
               }
               LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
-              break;
+              break;*/
           }
       }
       break;
@@ -844,43 +858,46 @@ void motorMain(void) {
 	unsigned char ledcnt = 0;
 	LED_Init();
   GUI_Init();
-  WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
+  //WM_SetCallback(WM_HBKWIN, &_cbBkWindow);
   WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
-	hkeyboard = CreateKeyBaord();
-	
-	hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
-	drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
-	
+	//hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);	
 	//hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
-
-	FRAMEWIN_SetTitleVis(hmainDlg, 0);
-	//FRAMEWIN_SetTitleVis(hConfigDlg, 0);
-
-	//createFrame();
-	
-	//_setHook(hConfigDlg);
-	WM_BringToTop(hmainDlg);
-	//WM_BringToTop(hkeyboard);
-	
-	//WM_BringToBottom(hkeyboard);
-	WM_InvalidateWindow(WM_HBKWIN);	
 	
 	LED0 = 0;
   while (1) {
     _MultiSel   = 0;
     _OwnerDrawn = 1;
     if(!hmainDlgFlag && WM_IsWindow(hmainDlg)){
+				GUI_EndDialog(hmainDlg, 0);
 				WM_DeleteWindow(hmainDlg);
+				hmainDlg = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}
     if(!hConfigDlgFlag && WM_IsWindow(hConfigDlg)){
+				GUI_EndDialog(hConfigDlg, 0);
 				WM_DeleteWindow(hConfigDlg);
+				hConfigDlg = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}	
-    if(!hkeyboardFlag && WM_IsWindow(hkeyboardFlag)){
-				WM_DeleteWindow(hkeyboardFlag);
+    if(!hkeyboardFlag && WM_IsWindow(hkeyboard)){
+				WM_DeleteWindow(hkeyboard);
+				hkeyboard = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}			
+    if(hmainDlgFlag && !WM_IsWindow(hmainDlg)){
+				hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
+				FRAMEWIN_SetTitleVis(hmainDlg, 0);
+				WM_BringToTop(hmainDlg);
+				ResetNextDrawWin();
+				WM_InvalidateWindow(WM_HBKWIN);	
+		}
+    if(hConfigDlgFlag && !WM_IsWindow(hConfigDlg)){
+				hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
+				WM_BringToTop(hConfigDlg);
+				drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
+				ResetNextDrawWin();
+				WM_InvalidateWindow(WM_HBKWIN);	
+		}		
     GUI_Exec();//GUI_Delay(1000);
 		GUI_TOUCH_Exec();
 		delay_ms(15);

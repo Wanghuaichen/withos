@@ -475,7 +475,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   { LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  10,  30, 200, 300, 0, 100 },
- // { EDIT_CreateIndirect, 			0, 9000, 10+2*modeButtonWidth+5*2 + 5, 350, modeButtonHeight, modeButtonHeight, WM_CF_SHOW},
+  { EDIT_CreateIndirect, 			0, 9082, 600, 410, 100, 50, WM_CF_SHOW},
 	//{ TEXT_CreateIndirect,      "output",              GUI_ID_TEXT_(5),                350,  150,  80,  30, TEXT_CF_LEFT },
   //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     10+modeButtonWidth+5,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -637,7 +637,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 							//WM_SetFocus(hConfigDlg);
 							hConfigDlgFlag = 1;//WM_SetFocus(hmainDlg);
 							hmainDlgFlag = 0;
-							WM_DisableWindow(hmainDlg);
+							//WM_DisableWindow(hmainDlg);
 							break;
 						
             case BUTTON_Id_DefaultMode1:
@@ -700,23 +700,27 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 			
 			
     case WM_TOUCH_CHILD:
-				break;
+				//break;
 				Id    = WM_GetId(pMsg->hWinSrc);
 				if((Id == BUTTON_Id_DeleteMode) || (BUTTON_Id_Ok == Id) || (BUTTON_Id_Cancel == Id) || (BUTTON_Id_EditMode == Id)
 							|| (Id == BUTTON_Id_SubmitEdit || (Id == LISTBOX_Id))){
 						break;
 				}
 				if(!WM_IsWindow(hkeyboard)){
-						hkeyboard = CreateKeyBaord();
+						//hkeyboard = CreateKeyBaord();
 						hkeyboardFlag = 1;
+				}
+				else{
+						WM_BringToTop(hkeyboard);
+						WM_InvalidateWindow(WM_HBKWIN);
 				}
 				/*++touchchildSwitch;
 				if(touchchildSwitch == 2){
 						touchchildSwitch=0;
 						break;
 				}*/
-				WM_BringToTop(hkeyboard);
-				WM_Invalidate(hkeyboard);
+				//WM_BringToTop(hkeyboard);
+				//WM_Invalidate(hkeyboard);
      // WM_SetFocus(hListBox);
       break;		
 		
@@ -727,8 +731,14 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
       NCode = pMsg->Data.v;                 /* Notification code */
       switch (NCode) {
 				case WM_NOTIFICATION_CLICKED:
-								/*WM_BringToTop(hkeyboard);
-								WM_Invalidate(WM_HBKWIN);*/
+						if(Id == 9082){
+										if(!WM_IsWindow(hkeyboard)){
+												;//hkeyboardFlag = 1;
+												//hkeyboard = CreateKeyBaord();												
+										}
+										//WM_BringToTop(hkeyboard);
+										//WM_Invalidate(WM_HBKWIN);	
+									}
 						break;
 				/*case WM_NOTIFICATION_MOVED_OUT:
 								WM_BringToTop(hkeyboard);
@@ -756,20 +766,35 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 								if(curitem == itemtot - 1){
 										if(!WM_IsWindow(hkeyboard)){
 												hkeyboardFlag = 1;
-												hkeyboard = CreateKeyBaord();												
+												//hkeyboard = CreateKeyBaord();												
+										}
+										else{
+												WM_BringToTop(hkeyboard);
+												WM_InvalidateWindow(WM_HBKWIN);
 										}
 										
 									//弹出键盘，编辑新的配置
 										//focus到第一个edit进行输入
-										WM_BringToTop(hkeyboard);
-										WM_Invalidate(WM_HBKWIN);	
+										//WM_BringToTop(hkeyboard);
+										//WM_Invalidate(WM_HBKWIN);	
 								}
 								else{
 									;//显示当前配置;
 								}
 								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
 								break;
-
+						case 9082:
+										if(!WM_IsWindow(hkeyboard)){
+												hkeyboardFlag = 1;
+												//hkeyboard = CreateKeyBaord();												
+										}
+																				else{
+												WM_BringToTop(hkeyboard);
+												WM_InvalidateWindow(WM_HBKWIN);
+										}
+										
+										//WM_BringToTop(hkeyboard);
+										//WM_Invalidate(WM_HBKWIN);	
             case BUTTON_Id_DeleteMode:
 
 							//do sth and go back
@@ -778,29 +803,28 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 							//do sth and go back
 							//GUI_EndDialog(hConfigDlg, 0);//WM_DeleteWindow(hConfigDlg);
 							if(WM_IsWindow(hkeyboard)){									
-									WM_DisableWindow(hkeyboard);								
-									WM_DeleteWindow(hkeyboard);
-									clearKeyBaord(hkeyboard);
-									hkeyboard = 0;
+									//WM_DisableWindow(hkeyboard);								
+									//WM_DeleteWindow(hkeyboard);
+									//clearKeyBaord(hkeyboard);
+									;//hkeyboard = 0;
 							}
-							hConfigDlgFlag = 0;//WM_SetFocus(hmainDlg);
+							//hConfigDlgFlag = 0;//WM_SetFocus(hmainDlg);
 							hkeyboardFlag = 0;
 							hmainDlgFlag = 1;
-							WM_Invalidate(WM_HBKWIN);
+							//WM_Invalidate(WM_HBKWIN);
 							//WM_DeleteWindow(hmainDlg);
               break;		
 						case BUTTON_Id_Cancel:
 							//do sth and go back
 							if(WM_IsWindow(hkeyboard)){									
-									WM_DisableWindow(hkeyboard);								
-									WM_DeleteWindow(hkeyboard);
-									clearKeyBaord(hkeyboard);
-									hkeyboard = 0;
+									//WM_DisableWindow(hkeyboard);								
+									//WM_DeleteWindow(hkeyboard);
+									//clearKeyBaord(hkeyboard);
+									;//hkeyboard = 0;
 							}			
 							hkeyboardFlag = 0;
 							hmainDlgFlag = 1;							
-							hkeyboardFlag = 0;
-							WM_Invalidate(WM_HBKWIN);
+							//WM_Invalidate(WM_HBKWIN);
               break;
             case BUTTON_Id_EditMode:
 								hkeyboardFlag = 0;
@@ -874,6 +898,7 @@ void motorMain(void) {
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}	
     if(!hkeyboardFlag && WM_IsWindow(hkeyboard)){
+				clearKeyBaord(hkeyboard);
 				WM_DeleteWindow(hkeyboard);
 				hkeyboard = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
@@ -887,12 +912,16 @@ void motorMain(void) {
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}
     if(hConfigDlgFlag && !WM_IsWindow(hConfigDlg)){
-				hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
-				WM_BringToTop(hConfigDlg);
+				hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);				
 				drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
+				WM_BringToTop(hConfigDlg);
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}		
-
+    if(hkeyboardFlag && !WM_IsWindow(hkeyboard)){
+				hkeyboard = CreateKeyBaord();
+				WM_BringToTop(hkeyboard);
+				WM_InvalidateWindow(WM_HBKWIN);	
+		}	
 		delay_ms(15);
 		if(++ledcnt == 60){
 				ledcnt = 0;

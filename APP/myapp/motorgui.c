@@ -84,7 +84,7 @@ WM_HWIN hCurrentObj;
 #define configButtonY 
 
 //EDIT group
-#define editGroupX0 280
+#define editGroupX0 50
 #define editGroupY0 50
 /*#define modeButtonGapX ((lcdWidth - numOfMode * modeButtonWidth) / (1 + numOfMode))
 //#define modeButtonX(i) (modeButtonGapX + (modeButtonGapX + modeButtonWidth) * (i - 1))
@@ -136,18 +136,18 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 	{ TEXT_CreateIndirect,      "Time: ",    TEXT_ID_mainPanelTime,       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 	{	TEXT_CreateIndirect,      "Speed: ",    TEXT_ID_mainPanelSpeed,       labelX,  labelY+labelHeight,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 /* Buttons */
-  { BUTTON_CreateIndirect,    "Default MODE 1",      BUTTON_Id_DefaultMode1,     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-  { BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Go!",      BUTTON_Id_Go,     switchButtonX,  switchButtonY(1),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+  //{ BUTTON_CreateIndirect,    "Default MODE 1",      BUTTON_Id_DefaultMode1,     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  //{ BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	//{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	//{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Go!",      BUTTON_Id_Go,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	//{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
-
+	{ LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  5,  labelY+labelHeight*2, 200, 260, 0, 100 },
 };
 
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-  { LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  10,  30, 200, 300, 0, 100 },
+  
   { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0, 200, 32, WM_CF_SHOW},
 	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
   //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -166,44 +166,60 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 */
 static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg);
 static void _cbCallback(WM_MESSAGE * pMsg) {
-  int NCode, Id;
-  WM_HWIN hDlg;
+  int NCode, Id, itemtot, curitem;
+  WM_HWIN hDlg, hListBox;//, hItem;
   hDlg = pMsg->hWin;
-
+  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
   switch (pMsg->MsgId) {		
 		
-		case WM_INIT_DIALOG:
-			break;
+    case WM_INIT_DIALOG:
+			
+      LISTBOX_SetText(hListBox, _ListBox);
+      LISTBOX_AddString(hListBox, "Add New Mode ..");
+      LISTBOX_SetScrollStepH(hListBox, 6);
+      LISTBOX_SetAutoScrollH(hListBox, 1);
+      LISTBOX_SetAutoScrollV(hListBox, 1);
+      //LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
+			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
+			LISTBOX_SetScrollbarWidth(hListBox, 20);
+      //CHECKBOX_Check(hItem);
+			WM_InvalidateWindow(WM_HBKWIN);			
+      break;		
+		
     case WM_NOTIFY_PARENT:
       Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
       NCode = pMsg->Data.v;                 /* Notification code */
 
 		//GUI_MessageBox("This text is shown\nin a message box", "Caption/Title", GUI_MESSAGEBOX_CF_MOVEABLE);
-      switch (NCode) {
-        //case WM_NOTIFICATION_SEL_CHANGED:
-         // LISTBOX_InvalidateItem(hListBox, LISTBOX_ALL_ITEMS);
-         // break;
+      switch (NCode) {			
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
+						case LISTBOX_Id:
+								itemtot = LISTBOX_GetNumItems(hListBox);
+								curitem = LISTBOX_GetSel(hListBox);								
+
+								if(curitem == itemtot - 1){
+										hmainDlgFlag = 0;
+										hConfigDlgFlag = 1;
+								}
+								else{
+										LISTBOX_GetItemText(hListBox, curitem, fnamebuf, 30);//显示当前配置;
+										operationCode |= OP_SHOW_MODE_MAIN;
+								}
+								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
+								break;
+								
             case BUTTON_Id_MoreModes:
 							//WM_SetFocus(hConfigDlg);
 							hConfigDlgFlag = 1;//WM_SetFocus(hmainDlg);
 							hmainDlgFlag = 0;
 							//WM_DisableWindow(hmainDlg);
 							break;
+					
 						
-            case BUTTON_Id_DefaultMode1:
-              //GUI_EndDialog(hDlg, 1);
-              break;
-            case BUTTON_Id_DefaultMode2:
-              break;	
-            case BUTTON_Id_DefaultMode3:
-              break;	
             case BUTTON_Id_Go:
-								operateCode |= OP_GO;
+								operationCode |= OP_GO;
               break;			
-            case BUTTON_Id_Stop:
-              break;							
           }
           break;
       }
@@ -215,8 +231,8 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 }
 //自动改变键盘位置相关变量
 #include "stringutils.h"
-#define _keyboardXLeft 50
-#define _keyboardXRight 460
+#define _keyboardXLeft 10
+#define _keyboardXRight 400
 #define _keyboardYTop 50
 #define _keyboardYBot 50
 unsigned char moveFlag = 0;
@@ -229,36 +245,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
   WM_HWIN hDlg, hListBox, hItem;
 	static unsigned char touchchildSwitch = 0;
   hDlg = pMsg->hWin;
-  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
 
-  switch (pMsg->MsgId) {
-		
-    case WM_INIT_DIALOG:
-			
-      LISTBOX_SetText(hListBox, _ListBox);
-      LISTBOX_AddString(hListBox, "Add New Mode ..");
-      LISTBOX_SetScrollStepH(hListBox, 6);
-      LISTBOX_SetAutoScrollH(hListBox, 1);
-      LISTBOX_SetAutoScrollV(hListBox, 1);
-      //LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
-			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
-			LISTBOX_SetScrollbarWidth(hListBox, 20);
-
-      //CHECKBOX_Check(hItem);
-			WM_InvalidateWindow(WM_HBKWIN);
-			
-      break;
-/*    case WM_KEY:
-      switch (((WM_KEY_INFO*)(pMsg->Data.p))->Key) {
-        case GUI_KEY_ESCAPE:
-          GUI_EndDialog(hDlg, 1);
-          break;
-        case GUI_KEY_ENTER:
-          GUI_EndDialog(hDlg, 0);
-          break;
-      }
-      break;*/
-			
+  switch (pMsg->MsgId) {			
 			
     case WM_TOUCH_CHILD:
 				//break;
@@ -318,59 +306,23 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
 
           switch (Id) {
-						case LISTBOX_Id:
-								itemtot = LISTBOX_GetNumItems(hListBox);
-								curitem = LISTBOX_GetSel(hListBox);								
-								/*int2str(buf, itemtot);
-								TEXT_SetText(WM_GetDialogItem(hDlg, EDIT_Group1_ID(1)), buf);
-								int2str(buf, curitem);
-								TEXT_SetText(WM_GetDialogItem(hDlg, EDIT_Group1_ID(2)), buf);
-								WM_Invalidate(WM_HBKWIN);	*/
-								if(curitem == itemtot - 1){
-										operationCode |= OP_ADD_NEW_MODE;
-										hkeyboardFlag = 1;
-										if(!WM_IsWindow(hkeyboard)){
-												keyboardX = _keyboardXRight;
-												keyboardY = _keyboardYTop;											
-										}
-										else{
-												hkeyboardFlag = 0;
-												moveFlag = 2;//WM_MoveWindow(hkeyboard, _keyboardXRight-keyboardX, _keyboardYTop-keyboardY);
-												//WM_BringToTop(hkeyboard);
-												//WM_InvalidateWindow(WM_HBKWIN);												
-										}										
-									//弹出键盘，编辑新的配置
-										//focus到第一个edit进行输入
-										//WM_BringToTop(hkeyboard);
-										//WM_Invalidate(WM_HBKWIN);	
-								}
-								else{
-										LISTBOX_GetItemText(hListBox, curitem, fnamebuf, 30);//显示当前配置;
-										operationCode |= OP_SHOW_MODE_CONF;
-								}
-								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
-								break;
+
 
             case BUTTON_Id_DeleteMode:
-
 							//do sth and go back
               break;
             case BUTTON_Id_Ok:
 							//do sth and go back
 							//GUI_EndDialog(hConfigDlg, 0);//WM_DeleteWindow(hConfigDlg);
 							if(WM_IsWindow(hkeyboard)){									
-									//WM_DisableWindow(hkeyboard);								
-									//WM_DeleteWindow(hkeyboard);
-									//clearKeyBaord(hkeyboard);
 									;//hkeyboard = 0;
 							}
 							//hConfigDlgFlag = 0;//WM_SetFocus(hmainDlg);
 							hkeyboardFlag = 0;
 							hmainDlgFlag = 1;
 							operationCode |= OP_SUBMIT_ADD;
-							//WM_Invalidate(WM_HBKWIN);
-							//WM_DeleteWindow(hmainDlg);
               break;		
+							
 						case BUTTON_Id_Cancel:
 							//do sth and go back
 							if(WM_IsWindow(hkeyboard)){									
@@ -458,9 +410,10 @@ void motorMain(void) {
 			}
 		}		
 		if(operationCode & 	OP_ADD_NEW_MODE){
+				hmainDlgFlag = 0;
+				hConfigDlg = 1;
 			
-			
-			showModeCounter=0;
+/*			showModeCounter=0;
 			for(i = 0; i < 10; i++){
 					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
 					EDIT_SetText(hedit, "");
@@ -470,9 +423,7 @@ void motorMain(void) {
 					EDIT_SetText(hedit, "");			
 			}
 			hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(0));
-			WM_SetFocus(hedit);
-			
-			
+			WM_SetFocus(hedit);*/			
 		}		
 		if(operationCode & 	OP_SUBMIT_ADD){
 			

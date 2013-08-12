@@ -102,7 +102,7 @@ static char keys2[]=
 		I32 Id;
 		WM_KEY_INFO key ={0};
 		WM_MESSAGE msg={0};
-
+	showModeCounter = 0;
   switch (pMsg->MsgId){
 		
     case WM_PAINT:

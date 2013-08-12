@@ -17,5 +17,5 @@ void _setHook(WM_HWIN hWin);
 void _cbKeyBaord(WM_MESSAGE * pMsg);
 void clearKeyBaord(WM_HWIN hWin);
 WM_HWIN CreateKeyBaord(unsigned, unsigned);
-
+extern unsigned char showModeCounter;
 #endif

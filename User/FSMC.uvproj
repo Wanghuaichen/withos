@@ -446,6 +446,21 @@
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\ikeyboard.c</FilePath>
             </File>
+            <File>
+              <FileName>str2num.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\str2num.c</FilePath>
+            </File>
+            <File>
+              <FileName>storeMode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\storeMode.c</FilePath>
+            </File>
+            <File>
+              <FileName>retrieveMode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\retrieveMode.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

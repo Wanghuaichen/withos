@@ -226,9 +226,9 @@ I (..\uCGUI\Config\GUIConf.h)(0x5205411E)
 I (..\uCGUI\Core\GUIType.h)(0x5204D116)
 I (..\uCGUI\Core\LCD.h)(0x5204D116)
 I (..\uCGUI\Core\GUIVersion.h)(0x5204D116)
-F (..\APP\myapp\motordrive.c)(0x52064BF0)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\motordrive.o" --omf_browse "..\Obj\motordrive.crf" --depend "..\Obj\motordrive.d")
-I (..\APP\myapp\motordrive.h)(0x5205DED3)
-F (..\APP\myapp\motorgui.c)(0x5208E0F2)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\motorgui.o" --omf_browse "..\Obj\motorgui.crf" --depend "..\Obj\motorgui.d")
+F (..\APP\myapp\motordrive.c)(0x520901F3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\motordrive.o" --omf_browse "..\Obj\motordrive.crf" --depend "..\Obj\motordrive.d")
+I (..\APP\myapp\motordrive.h)(0x52090BE1)
+F (..\APP\myapp\motorgui.c)(0x52091503)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\motorgui.o" --omf_browse "..\Obj\motorgui.crf" --depend "..\Obj\motorgui.d")
 I (C:\KeilMDK470\ARM\ARMCC\bin\..\include\stddef.h)(0x50F96150)
 I (..\uCGUI\Core\GUI.h)(0x5204D116)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x5204D116)
@@ -258,9 +258,8 @@ I (..\uCGUI\Widget\RADIO.h)(0x4123EF62)
 I (..\uCGUI\Widget\SLIDER.h)(0x4123EF62)
 I (..\uCGUI\Widget\TEXT.h)(0x4123EF62)
 I (..\uCGUI\Widget\progbar.h)(0x4123EF62)
-I (..\APP\myapp\keyboard.h)(0x5208D63E)
-I (..\APP\myapp\editgroup.h)(0x52068042)
-I (..\libraries\stringutils\stringutils.h)(0x52020386)
+I (..\APP\myapp\keyboard.h)(0x5208FFBA)
+I (C:\KeilMDK470\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (..\HARDWARE\LED\led.h)(0x51F9E3CC)
 I (..\system\sys\sys.h)(0x51FF216E)
 I (C:\KeilMDK470\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x508759B8)
@@ -295,7 +294,14 @@ I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4D783BB4)
 I (..\system\mynvic.h)(0x51FF1630)
 I (..\system\delay\delay.h)(0x5201BD12)
-F (..\APP\myapp\editgroup.c)(0x5208B011)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\editgroup.o" --omf_browse "..\Obj\editgroup.crf" --depend "..\Obj\editgroup.d")
+I (..\APP\myapp\editgroup.h)(0x5208F785)
+I (..\APP\myapp\motordrive.h)(0x52090BE1)
+I (..\APP\myapp\filerw.h)(0x52090663)
+I (..\fatfs\ff.h)(0x505F30CE)
+I (..\fatfs\integer.h)(0x4BD31212)
+I (..\fatfs\ffconf.h)(0x50929C76)
+I (..\libraries\stringutils\stringutils.h)(0x52020386)
+F (..\APP\myapp\editgroup.c)(0x52090BEB)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\editgroup.o" --omf_browse "..\Obj\editgroup.crf" --depend "..\Obj\editgroup.d")
 I (..\uCGUI\Widget\framewin.h)(0x4123EF62)
 I (..\uCGUI\WM\WM.h)(0x5204D116)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x5204D116)
@@ -315,9 +321,9 @@ I (..\uCGUI\Core\GUIDebug.h)(0x5204D116)
 I (..\uCGUI\Core\GUI_X.h)(0x5204D116)
 I (..\uCGUI\Widget\SCROLLBAR.h)(0x4123EF62)
 I (..\uCGUI\Widget\edit.h)(0x4123EF62)
-I (..\APP\myapp\editgroup.h)(0x52068042)
+I (..\APP\myapp\editgroup.h)(0x5208F785)
 I (..\libraries\stringutils\stringutils.h)(0x52020386)
-F (..\APP\myapp\ikeyboard.c)(0x5208D62F)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\ikeyboard.o" --omf_browse "..\Obj\ikeyboard.crf" --depend "..\Obj\ikeyboard.d")
+F (..\APP\myapp\ikeyboard.c)(0x5208FFD9)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\ikeyboard.o" --omf_browse "..\Obj\ikeyboard.crf" --depend "..\Obj\ikeyboard.d")
 I (..\uCGUI\Core\GUI.h)(0x5204D116)
 I (..\uCGUI\Core\GUI_ConfDefaults.h)(0x5204D116)
 I (..\uCGUI\Config\GUIConf.h)(0x5205411E)
@@ -352,7 +358,20 @@ I (..\uCGUI\Widget\GUI_HOOK.h)(0x4123EF62)
 I (..\uCGUI\Widget\FRAMEWIN_Private.h)(0x4123EF62)
 I (C:\KeilMDK470\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 I (C:\KeilMDK470\ARM\ARMCC\bin\..\include\ctype.h)(0x50F96150)
-I (..\APP\myapp\keyboard.h)(0x5208D63E)
+I (..\APP\myapp\keyboard.h)(0x5208FFBA)
+F (..\APP\myapp\str2num.c)(0x5208E611)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\str2num.o" --omf_browse "..\Obj\str2num.crf" --depend "..\Obj\str2num.d")
+I (C:\KeilMDK470\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
+F (..\APP\myapp\storeMode.c)(0x5209058F)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\storemode.o" --omf_browse "..\Obj\storemode.crf" --depend "..\Obj\storemode.d")
+I (..\APP\myapp\filerw.h)(0x52090663)
+I (..\fatfs\ff.h)(0x505F30CE)
+I (..\fatfs\integer.h)(0x4BD31212)
+I (..\fatfs\ffconf.h)(0x50929C76)
+F (..\APP\myapp\retrieveMode.c)(0x52090653)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\retrievemode.o" --omf_browse "..\Obj\retrievemode.crf" --depend "..\Obj\retrievemode.d")
+I (..\fatfs\ff.h)(0x505F30CE)
+I (..\fatfs\integer.h)(0x4BD31212)
+I (..\fatfs\ffconf.h)(0x50929C76)
+I (..\APP\myapp\motordrive.h)(0x52090BE1)
+I (..\APP\myapp\filerw.h)(0x52090663)
 F (..\APP\APP.c)(0x520331DE)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\Libraries\STM32F10x_StdPeriph_Driver\inc -I..\Libraries\CMSIS\CM3 -I..\User -I..\HARDWARE\SD_Card -I..\HARDWARE\cTouch -I..\HARDWARE\VS1003 -I..\HARDWARE -I..\Initialize -I..\uCGUI\AntiAlias -I..\uCGUI\Config -I..\uCGUI\ConvertColor -I..\uCGUI\ConvertMono -I..\uCGUI\Core -I..\uCGUI\Font -I..\uCGUI\GUI_X -I..\uCGUI\LCDDriver -I..\uCGUI\MultiLayer -I..\uCGUI\Widget -I..\uCGUI\WM -I..\fatfs -I..\uCGUI\MemDev -I..\My_UI -I..\UCOS-II\PORTS -I..\UCOS-II\SOURCE -I..\UCOS-II\CONFIG -I..\APP -I..\HARDWARE\LCD -I..\system\sys -I..\system -I..\HARDWARE\usart -I..\system\delay -I..\HARDWARE\LED -I..\libraries\stringutils -I..\app\myapp -I C:\KeilMDK470\ARM\RV31\INC -I C:\KeilMDK470\ARM\CMSIS\Include -I C:\KeilMDK470\ARM\Inc\ST\STM32F10x -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Obj\app.o" --omf_browse "..\Obj\app.crf" --depend "..\Obj\app.d")
 I (..\APP\APP.h)(0x51FF2404)
 I (C:\KeilMDK470\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x508759B8)

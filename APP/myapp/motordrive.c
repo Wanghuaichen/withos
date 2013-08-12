@@ -1,8 +1,8 @@
 #include "motordrive.h"
 
-unsigned step[maxstep];
-unsigned speedVal[maxstep];
-
+unsigned duration[maxstep];
+unsigned speed[maxstep];
+char lastfname[30] = "\0";
 
 void runMode(unsigned char modeindex)
 {

@@ -6,6 +6,8 @@ u8 FileList[MaxFileCount][30];//最多支持100个文件
 char FilePath[96]={"0:"};
 u16 filecount = 0;
 
+//char *source 为当前目录，addstring为相对路径
+//该函数计算出绝对路径，存放于source
 void FilePath_process(char * source,char *addstring)
 {	
 	u8 count = 0;
@@ -31,6 +33,7 @@ void FilePath_process(char * source,char *addstring)
 	  }
   }
 }
+//只保留"0:"
 void ClearPath(char *path)
 {
 	path += 2;
@@ -39,7 +42,7 @@ void ClearPath(char *path)
 		path++;
 	}
 }
-
+//利用f_readdir函数 bianli 路径filename 
 void FatFs_Open(char *filename)
 {
   OS_CPU_SR  cpu_sr;

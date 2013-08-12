@@ -441,6 +441,11 @@
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\editgroup.c</FilePath>
             </File>
+            <File>
+              <FileName>ikeyboard.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\ikeyboard.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

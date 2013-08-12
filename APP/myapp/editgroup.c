@@ -26,7 +26,7 @@ EDIT_Handle durationHandles[numOfSteps];
 #define innerGapY 5
 #define interGapY 20
 #define editHeight 50
-#define editMaxLen 5
+#define editMaxLen 10
 #define textHeight 12
 
 #define innerGapX(x1, x2) ((x2 - x1 - titleWidth - leftMargin - rightMargin) / ((editGapRatioX+1)*numOfEditsInARow-1))

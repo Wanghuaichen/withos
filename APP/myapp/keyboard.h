@@ -16,6 +16,6 @@ int _hookFW(WM_MESSAGE * pMsg);
 void _setHook(WM_HWIN hWin);
 void _cbKeyBaord(WM_MESSAGE * pMsg);
 void clearKeyBaord(WM_HWIN hWin);
-WM_HWIN CreateKeyBaord(void);
+WM_HWIN CreateKeyBaord(unsigned, unsigned);
 
 #endif

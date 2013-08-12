@@ -17,7 +17,7 @@ void SysTick_Configuration(void);
 void motorMain(void) ;
 void MainTask3(void);
 void testnotify(void);
-#define MainTask_STK_SIZE 2048
+#define MainTask_STK_SIZE 3072
 OS_STK  MainTask_STK[MainTask_STK_SIZE];
 
 int main(void)

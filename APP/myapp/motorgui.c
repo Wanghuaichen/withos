@@ -290,7 +290,7 @@ WM_HWIN hkeyboard;
 
 
 static int _MultiSel;
-static int _OwnerDrawn;
+//static int _OwnerDrawn;
 static int _VarY = 1;
 static int _PrevTime;
 
@@ -378,16 +378,16 @@ const GUI_COLOR ColorsSmilie0[] = {
 const GUI_COLOR ColorsSmilie1[] = {
      0xFFFFFF,0x000000,0x00FFFF
 };
-
+/*
 const GUI_LOGPALETTE PalSmilie0 = {
-  3,	/* number of entries */
-  1, 	/* Has transparency */
+  3,	// number of entries 
+  1, 	// Has transparency 
   &ColorsSmilie0[0]
 };
 
 const GUI_LOGPALETTE PalSmilie1 = {
-  3,	/* number of entries */
-  1, 	/* Has transparency */
+  3,	// number of entries 
+  1, 	// Has transparency 
   &ColorsSmilie1[0]
 };
 
@@ -421,26 +421,26 @@ const unsigned char acSmilie1[] = {
   0x06, 0x95, 0xA4, 0x00,
   0x01, 0xAA, 0x90, 0x00,
   0x00, 0x55, 0x40, 0x00
-};
-
+};*/
+/*
 const GUI_BITMAP bmSmilie0 = {
- 13, /* XSize */
- 13, /* YSize */
- 4,  /* BytesPerLine */
- 2,  /* BitsPerPixel */
- acSmilie0,   /* Pointer to picture data (indices) */
- &PalSmilie0  /* Pointer to palette */
+ 13, // XSize 
+ 13, // YSize 
+ 4,  // BytesPerLine 
+ 2,  // BitsPerPixel 
+ acSmilie0,   // Pointer to picture data (indices) 
+ &PalSmilie0  // Pointer to palette 
 };
 
 const GUI_BITMAP bmSmilie1 = {
- 13, /* XSize */
- 13, /* YSize */
- 4,  /* BytesPerLine */
- 2,  /* BitsPerPixel */
- acSmilie1,   /* Pointer to picture data (indices) */
- &PalSmilie1  /* Pointer to palette */
+ 13, // XSize 
+ 13, // YSize 
+ 4,  // BytesPerLine 
+ 2,  // BitsPerPixel 
+ acSmilie1,   // Pointer to picture data (indices) 
+ &PalSmilie1  // Pointer to palette 
 };
-
+*/
 /*********************************************************************
 *
 *       Default contents of list box
@@ -468,7 +468,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 	{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  lcdHeight - 1 - configButtonHeight - gapYConfigButtonDown,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
 	{BUTTON_CreateIndirect,    "Go!",      BUTTON_Id_Go,     switchButtonX,  switchButtonY(1),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	//{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 
 };
 
@@ -477,46 +477,31 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
   { LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  10,  30, 200, 300, 0, 100 },
  // { EDIT_CreateIndirect, 			0, 9000, 10+2*modeButtonWidth+5*2 + 5, 350, modeButtonHeight, modeButtonHeight, WM_CF_SHOW},
 	//{ TEXT_CreateIndirect,      "output",              GUI_ID_TEXT_(5),                350,  150,  80,  30, TEXT_CF_LEFT },
-  { BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     10+modeButtonWidth+5,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     10+2*modeButtonWidth+5*2,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     60+60+3*modeButtonWidth+5*3,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     40+120+4*modeButtonWidth+5*4,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	//{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     60+60+3*modeButtonWidth+5*3,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	//{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     40+120+4*modeButtonWidth+5*4,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 
 };
-/*********************************************************************
-*
-*       _cbBkWindow
-*/
-static void _cbBkWindow(WM_MESSAGE* pMsg) {
-  switch (pMsg->MsgId) {
-  case WM_PAINT:
-    GUI_SetColor(GUI_WHITE);
-    GUI_SetFont(&GUI_Font32_ASCII);
-		
-    break;
-  default:
-    WM_DefaultProc(pMsg);
-  }
-}
 
 /*********************************************************************
 *
 *       _GetItemSizeX
 */
-static int _GetItemSizeX(WM_HWIN hWin, int ItemIndex) {
+/*static int _GetItemSizeX(WM_HWIN hWin, int ItemIndex) {
   char acBuffer[100];
   int  DistX;
   LISTBOX_GetItemText(hWin, ItemIndex, acBuffer, sizeof(acBuffer));
   DistX = GUI_GetStringDistX(acBuffer);
   return DistX + bmSmilie0.XSize + 16;
-}
+}*/
 
 /*********************************************************************
 *
 *       _GetItemSizeY
 */
-static int _GetItemSizeY(WM_HWIN hWin, int ItemIndex) {
+/*static int _GetItemSizeY(WM_HWIN hWin, int ItemIndex) {
   int DistY;
   DistY = GUI_GetFontDistY() + 1;
   if (LISTBOX_GetMulti(hWin)) {
@@ -527,7 +512,7 @@ static int _GetItemSizeY(WM_HWIN hWin, int ItemIndex) {
     DistY += 8;
   }
   return DistY;
-}
+}*/
 
 /*********************************************************************
 *
@@ -543,7 +528,7 @@ static int _GetItemSizeY(WM_HWIN hWin, int ItemIndex) {
 *   To insure compatibility with future version, all unhandled commands
 *   must call the default routine LISTBOX_OwnerDraw.
 */
-static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
+/*static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
   WM_HWIN hWin;
   int Index;
   hWin     = pDrawItemInfo->hWin;
@@ -568,7 +553,7 @@ static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
       MultiSel   = LISTBOX_GetMulti(hWin);
       Sel        = LISTBOX_GetSel(hWin);
       YSize      = _GetItemSizeY(hWin, Index);
-      /* Calculate color index */
+      // Calculate color index 
       if (MultiSel) {
         if (IsDisabled) {
           ColorIndex = 3;
@@ -586,7 +571,7 @@ static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
           }
         }
       }
-      /* Draw item */
+      // Draw item 
       GUI_SetBkColor(aBkColor[ColorIndex]);
       GUI_SetColor  (aColor[ColorIndex]);
       LISTBOX_GetItemText(pDrawItemInfo->hWin, pDrawItemInfo->ItemIndex, acBuffer, sizeof(acBuffer));
@@ -600,10 +585,10 @@ static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
         GUI_SetFont(pOldFont);
       }
       GUI_DispCEOL();
-      /* Draw bitmap */
+      // Draw bitmap 
       pBm = MultiSel ? IsSelected ? &bmSmilie1 : &bmSmilie0 : (pDrawItemInfo->ItemIndex == Sel) ? &bmSmilie1 : &bmSmilie0;
       GUI_DrawBitmap(pBm, pDrawItemInfo->x0 + 7, pDrawItemInfo->y0 + (YSize - pBm->YSize) / 2);
-      /* Draw focus rectangle */
+      // Draw focus rectangle 
       if (MultiSel && (pDrawItemInfo->ItemIndex == Sel)) {
         GUI_RECT rFocus;
         GUI_RECT rInside;
@@ -621,7 +606,7 @@ static int _OwnerDraw(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo) {
     return LISTBOX_OwnerDraw(pDrawItemInfo);
   }
   return 0;
-}
+}*/
 
 /*********************************************************************
 *
@@ -678,9 +663,10 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 
 #include "stringutils.h"
 static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
-	static char buf[20];
+	//static char buf[20];
   int NCode, Id, itemtot, curitem;
   WM_HWIN hDlg, hListBox, hItem;
+	static unsigned char touchchildSwitch = 0;
   hDlg = pMsg->hWin;
   hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
 
@@ -714,16 +700,23 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 			
 			
     case WM_TOUCH_CHILD:
+				break;
 				Id    = WM_GetId(pMsg->hWinSrc);
-				if((Id == BUTTON_Id_DeleteMode) || (BUTTON_Id_Ok == Id) || (BUTTON_Id_Cancel == Id) || (BUTTON_Id_EditMode == Id) || (Id == BUTTON_Id_SubmitEdit)){
+				if((Id == BUTTON_Id_DeleteMode) || (BUTTON_Id_Ok == Id) || (BUTTON_Id_Cancel == Id) || (BUTTON_Id_EditMode == Id)
+							|| (Id == BUTTON_Id_SubmitEdit || (Id == LISTBOX_Id))){
 						break;
 				}
 				if(!WM_IsWindow(hkeyboard)){
 						hkeyboard = CreateKeyBaord();
 						hkeyboardFlag = 1;
 				}
+				/*++touchchildSwitch;
+				if(touchchildSwitch == 2){
+						touchchildSwitch=0;
+						break;
+				}*/
 				WM_BringToTop(hkeyboard);
-				WM_Invalidate(WM_HBKWIN);
+				WM_Invalidate(hkeyboard);
      // WM_SetFocus(hListBox);
       break;		
 		
@@ -745,6 +738,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 								WM_BringToTop(hkeyboard);
 								WM_Invalidate(WM_HBKWIN);
 						break;*/
+				case WM_NOTIFICATION_SEL_CHANGED:
+						break;				
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
 
           switch (Id) {
@@ -765,16 +760,16 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 										}
 										
 									//弹出键盘，编辑新的配置
+										//focus到第一个edit进行输入
 										WM_BringToTop(hkeyboard);
 										WM_Invalidate(WM_HBKWIN);	
 								}
 								else{
-									//显示当前配置;
+									;//显示当前配置;
 								}
 								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
 								break;
-						case WM_NOTIFICATION_SEL_CHANGED:
-								break;
+
             case BUTTON_Id_DeleteMode:
 
 							//do sth and go back
@@ -782,7 +777,6 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
             case BUTTON_Id_Ok:
 							//do sth and go back
 							//GUI_EndDialog(hConfigDlg, 0);//WM_DeleteWindow(hConfigDlg);
-							WM_DisableWindow(hConfigDlg);
 							if(WM_IsWindow(hkeyboard)){									
 									WM_DisableWindow(hkeyboard);								
 									WM_DeleteWindow(hkeyboard);
@@ -802,7 +796,9 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 									WM_DeleteWindow(hkeyboard);
 									clearKeyBaord(hkeyboard);
 									hkeyboard = 0;
-							}							
+							}			
+							hkeyboardFlag = 0;
+							hmainDlgFlag = 1;							
 							hkeyboardFlag = 0;
 							WM_Invalidate(WM_HBKWIN);
               break;
@@ -865,8 +861,6 @@ void motorMain(void) {
 	
 	LED0 = 0;
   while (1) {
-    _MultiSel   = 0;
-    _OwnerDrawn = 1;
     if(!hmainDlgFlag && WM_IsWindow(hmainDlg)){
 				GUI_EndDialog(hmainDlg, 0);
 				WM_DeleteWindow(hmainDlg);
@@ -884,22 +878,21 @@ void motorMain(void) {
 				hkeyboard = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}			
+    GUI_Exec();//GUI_Delay(1000);
+		GUI_TOUCH_Exec();		
     if(hmainDlgFlag && !WM_IsWindow(hmainDlg)){
 				hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
 				FRAMEWIN_SetTitleVis(hmainDlg, 0);
 				WM_BringToTop(hmainDlg);
-				ResetNextDrawWin();
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}
     if(hConfigDlgFlag && !WM_IsWindow(hConfigDlg)){
 				hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);
 				WM_BringToTop(hConfigDlg);
 				drawEditGroup(250, 10, 799, 479, WM_GetClientWindow(hConfigDlg));
-				ResetNextDrawWin();
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}		
-    GUI_Exec();//GUI_Delay(1000);
-		GUI_TOUCH_Exec();
+
 		delay_ms(15);
 		if(++ledcnt == 60){
 				ledcnt = 0;

@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include "GUI.h"
 #include "DIALOG.h"
+#include "listview.h"
 #include "progbar.h"
 #include "keyboard.h"
 #include <string.h>
@@ -10,12 +11,15 @@
 #include "motordrive.h"
 #include "filerw.h"
 //主要窗体的句柄
-WM_HWIN hConfigDlg;
+
 unsigned char hConfigDlgFlag = 0;
 unsigned char hmainDlgFlag = 1;
 unsigned char hkeyboardFlag = 0;
+unsigned char hListViewDlgFlag = 0;
+WM_HWIN hConfigDlg;
 WM_HWIN hmainDlg;
 WM_HWIN hkeyboard;
+WM_HWIN hListViewDlg;
 unsigned char showModeCounter = 0;
 //gui从用户获取的操作指令
 #define OP_NO_OPERATION 0
@@ -113,7 +117,10 @@ WM_HWIN hCurrentObj;
 #define TEXT_ID_mainPanelSpeed (GUI_ID_USER+15)
 #define LISTBOX_Id (GUI_ID_USER+16)
 #define GUI_ID_TEXT_ModeName (GUI_ID_USER+17)
+#define GUI_ID_LISTVIEW (GUI_ID_USER+18)
 
+
+#define BUTTON_Id_Ok_listview (GUI_ID_USER+18)
 /*********************************************************************
 *
 *       Default contents of list box
@@ -139,10 +146,10 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   //{ BUTTON_CreateIndirect,    "Default MODE 1",      BUTTON_Id_DefaultMode1,     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   //{ BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	//{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
 	{BUTTON_CreateIndirect,    "Go!",      BUTTON_Id_Go,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	//{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
-	{ LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  5,  labelY+labelHeight*2, 200, 260, 0, 100 },
+	//{ LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  5,  labelY+labelHeight*2, 200, 260, 0, 100 },
 };
 
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
@@ -158,7 +165,18 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 
 };
 
+static const GUI_WIDGET_CREATE_INFO _listViewCreate[] = {
+	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  {LISTVIEW_CreateIndirect,  "list view",    GUI_ID_LISTVIEW,                  30,  30, lcdWidth/2, lcdHeight/2, WM_CF_SHOW },
+  { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
+	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
+  //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok_listview,     10+modeButtonWidth+5-100,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     10+2*modeButtonWidth+5*2-100,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     50+60+60+3*modeButtonWidth+5*3,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     50+40+120+4*modeButtonWidth+5*4,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 
+};
 
 /*********************************************************************
 *
@@ -211,7 +229,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 								
             case BUTTON_Id_MoreModes:
 							//WM_SetFocus(hConfigDlg);
-							hConfigDlgFlag = 1;//WM_SetFocus(hmainDlg);
+							hListViewDlgFlag = 1;//WM_SetFocus(hmainDlg);
 							hmainDlgFlag = 0;
 							//WM_DisableWindow(hmainDlg);
 							break;
@@ -229,6 +247,48 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
       WM_DefaultProc(pMsg);
   }
 }
+
+
+static void _cbListView(WM_MESSAGE * pMsg) {
+  int NCode, Id, itemtot, curitem;
+  WM_HWIN hDlg, hListBox, hListView;//, hItem;
+  hDlg = pMsg->hWin;
+  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
+	hListView = WM_GetDialogItem(hDlg, GUI_ID_LISTVIEW);
+  switch (pMsg->MsgId) {		
+		
+    case WM_INIT_DIALOG:{
+			LISTVIEW_AddColumn(hListView, 100, "Field1", GUI_TA_CENTER);
+			LISTVIEW_AddColumn(hListView, 100, "Field2", GUI_TA_CENTER);
+			LISTVIEW_AddColumn(hListView, 100, "Field3", GUI_TA_CENTER);
+      break;		
+		}
+		
+    case WM_NOTIFY_PARENT:{
+      Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
+      NCode = pMsg->Data.v;                 /* Notification code */
+
+		//GUI_MessageBox("This text is shown\nin a message box", "Caption/Title", GUI_MESSAGEBOX_CF_MOVEABLE);
+      switch (NCode) {			
+        case WM_NOTIFICATION_RELEASED:      /* React only if released */
+          switch (Id) {
+								
+            case BUTTON_Id_Ok_listview:
+							hListViewDlgFlag = 0;
+							hmainDlgFlag = 1;
+							break;		
+          }
+          break;
+      }
+      break;
+			
+		}
+			
+    default:
+      WM_DefaultProc(pMsg);
+  }
+}
+
 //自动改变键盘位置相关变量
 #include "stringutils.h"
 #define _keyboardXLeft 0
@@ -507,8 +567,6 @@ void motorMain(void) {
 		}		
 		operationCode = 0;		
 		
-		
-		
     if(!hmainDlgFlag && WM_IsWindow(hmainDlg)){
 				GUI_EndDialog(hmainDlg, 0);
 				WM_DeleteWindow(hmainDlg);
@@ -521,6 +579,12 @@ void motorMain(void) {
 				hConfigDlg = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}	
+    if(!hListViewDlgFlag && WM_IsWindow(hListViewDlg)){
+				GUI_EndDialog(hListViewDlg, 0);
+				WM_DeleteWindow(hListViewDlg);
+				hListViewDlg = 0;
+				WM_InvalidateWindow(WM_HBKWIN);	
+		}		
     if(!hkeyboardFlag && WM_IsWindow(hkeyboard)){
 				clearKeyBaord(hkeyboard);
 				WM_DeleteWindow(hkeyboard);
@@ -535,6 +599,12 @@ void motorMain(void) {
 				WM_BringToTop(hmainDlg);
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}
+    if(hListViewDlgFlag && !WM_IsWindow(hListViewDlg)){
+				hListViewDlg = GUI_CreateDialogBox(_listViewCreate, GUI_COUNTOF(_listViewCreate), &_cbListView, 0, 0, 0);
+				FRAMEWIN_SetTitleVis(hListViewDlg, 0);
+				WM_BringToTop(hListViewDlg);
+				WM_InvalidateWindow(WM_HBKWIN);	
+		}		
     if(hConfigDlgFlag && !WM_IsWindow(hConfigDlg)){
 				hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);				
 				drawEditGroup(editGroupX0, editGroupY0, 799, 479, WM_GetClientWindow(hConfigDlg));

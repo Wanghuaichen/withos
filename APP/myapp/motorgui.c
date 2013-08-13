@@ -11,7 +11,6 @@
 #include "motordrive.h"
 #include "filerw.h"
 
-
 //主要窗体的句柄以及有效标记
 unsigned char hConfigDlgFlag = 0;
 unsigned char hmainDlgFlag = 1;
@@ -452,20 +451,20 @@ void motorMain(void) {
 			showModeCounter=0;
 			for(i = 0; i < 10; i++){//获取所有edit数值，然后存入speed，duration作为暂存
 					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
-					speed[i] = (unsigned)EDIT_GetFloatValue(hedit);				
+					curSpeed[i] = (unsigned)EDIT_GetFloatValue(hedit);				
 			}
 			for(i = 0; i < 10; i++){//获取所有edit数值，然后存入speed，duration作为暂存
 					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
-					duration[i] = (unsigned)EDIT_GetFloatValue(hedit);				
+					curDuration[i] = (unsigned)EDIT_GetFloatValue(hedit);				
 			}
-			strcpy(fnamebuf, "speed");
+/*			strcpy(cstrbuf, "speed");
 			hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_TEXT_ModeName);
 			EDIT_GetText(hedit, fnamebuf+5, 30-5-1);
 			writeToFile(speed, fileReadBufMax, fnamebuf);//再把数据存入文件
 			
-			strcpy(fnamebuf, "duration");
+			strcpy(cstrbuf, "duration");
 			EDIT_GetText(hedit, fnamebuf+8, 30-8-1);
-			writeToFile(speed, fileReadBufMax, fnamebuf);		
+			writeToFile(speed, fileReadBufMax, fnamebuf);		*/
 
 			
 		}			

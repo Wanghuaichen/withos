@@ -4,23 +4,28 @@
 #include"gui.h"
 #include"wm.h"
 #include <string.h>
-#include "motordrive.h"
 #include "filerw.h"
 
-#define StartByte (sizeof(unsigned int))
+#define FLASH_SIZE ((8*1024*1024) / 1024)
+#define  BytesPerGroup (ModeNameLenMax + 2 * sizeof(unsigned) * maxstep + 1)
+#define  MaxNumOfGroups  ((FLASH_SIZE - 1) / BytesPerGroup)
 
-#define FLASH_SIZE (8*1024*1024)
+//#define AddrStart (sizeof(unsigned int))
+#define AddrGroupIndex (sizeof(unsigned int))
+#define AddrData (MaxNumOfGroups + AddrGroupIndex)
 
 //char fnamebuf[30];
 //char fileReadBuf[fileReadBufMax];//可以每当touch_child发生之后就把数据读到filereadbuf，当ok之后把数据写入flash，前三组放入下面数组
+unsigned groupIndex[MaxNumOfGroups];
+unsigned groupIndexCounter = 0;
 
-char curModeName[ModeNameLenMax];
-char curSpeed
+char curModeNameBuf[ModeNameLenMax];
+unsigned curDuration[maxstep];
+unsigned curSpeed[maxstep];
 //三组mode
 char modeName1[ModeNameLenMax];
 char modeName2[ModeNameLenMax];
 char modeName3[ModeNameLenMax];
-
 unsigned speed1[maxstep];
 unsigned speed2[maxstep];
 unsigned speed3[maxstep];
@@ -28,44 +33,94 @@ unsigned duration1[maxstep];
 unsigned duration2[maxstep];
 unsigned duration3[maxstep];
 
-#define ByteInAGroup (ModeNameLenMax + fileReadBufMax)
-unsigned int getCount()
+unsigned getInt(unsigned int addr)
 {
-		//大端小端？？？
-		unsigned int cnt;
-		SPI_Flash_Read((char*)&cnt, 0, sizeof(unsigned int));
-		return cnt;
-	
-}
-void setCount(unsigned int cnt)
-{
-		SPI_Flash_Write((char*)&cnt, 0, sizeof(unsigned int));
+		unsigned res;
+		SPI_Flash_Read((char*)&res, addr, sizeof(unsigned int));
+		return res;
 }
 
-unsigned char readData(unsigned int *speedarr, unsigned int *durationarr, unsigned index)
+void setInt(unsigned int addr, unsigned dat)
 {
-		unsigned addr = StartByte + index * ( fileReadBufMax );
+		SPI_Flash_Write((char*)&dat, addr, sizeof(unsigned int));
+}
+
+unsigned int getCount(void)
+{
+		return getInt(0);	
+}
+
+void setCount(unsigned int cnt)
+{
+		setInt(0, cnt);
+}
+
+unsigned char readData(char *modename, unsigned int *speedArr, unsigned int *durationArr, unsigned index)
+{
+		unsigned addr;
 		if(index >= getCount()){
 				return 0;
 		}	
-		SPI_Flash_Read((char*)speedarr, addr, fileReadBufMax / 2);
-		SPI_Flash_Read((char*)durationarr, addr+fileReadBufMax / 2, fileReadBufMax / 2);
+		addr = getInt(AddrGroupIndex + index);//get the absolute address
+		SPI_Flash_Read((char*)modename, addr, ModeNameLenMax);
+		SPI_Flash_Read((char*)speedArr, addr+ModeNameLenMax, maxstep * (sizeof(unsigned)));
+		SPI_Flash_Read((char*)durationArr, addr+ModeNameLenMax+maxstep * (sizeof(unsigned)), maxstep * (sizeof(unsigned)));
 		return 1;
 }
 
-unsigned char writeData(unsigned int *speedarr, unsigned int *durationarr)
+unsigned char writeData(char *modename, unsigned int *speedArr, unsigned int *durationArr)
 {		
 		unsigned cnt = getCount();
-		unsigned addr = StartByte + cnt++ * fileReadBufMax;
-	
-		SPI_Flash_Write((char*)speedarr, addr, fileReadBufMax / 2);
-		SPI_Flash_Write((char*)durationarr, addr+fileReadBufMax / 2, fileReadBufMax / 2);
-	
-		SPI_Flash_Write((char*)&cnt, 0, (sizeof(unsigned)));
+		unsigned addr = AddrData + cnt * BytesPerGroup;
+		if(cnt >= MaxNumOfGroups){
+				return 0;
+		}
+		SPI_Flash_Write((char*)modename, addr, ModeNameLenMax);
+		SPI_Flash_Write((char*)speedArr, addr+ModeNameLenMax, maxstep * (sizeof(unsigned)));
+		SPI_Flash_Write((char*)durationArr, addr+ModeNameLenMax+maxstep * (sizeof(unsigned)), maxstep * (sizeof(unsigned)));
+		
+		groupIndex[groupIndexCounter++] = addr;
+
 		return 1;
 }
+void editData(char *modename, unsigned int *speedArr, unsigned int *durationArr, unsigned index)
+{		
+		unsigned addr = groupIndex[index];
+		SPI_Flash_Write((char*)modename, addr, ModeNameLenMax);
+		SPI_Flash_Write((char*)speedArr, addr+ModeNameLenMax, maxstep * (sizeof(unsigned)));
+		SPI_Flash_Write((char*)durationArr, addr+ModeNameLenMax+maxstep * (sizeof(unsigned)), maxstep * (sizeof(unsigned)));
+}
 
-void swapData(unsigned index1, unsigned index2)
+void deleteData(unsigned index)
+{
+		unsigned int i;
+		for(i = index; i < groupIndexCounter - 1; ++i){
+				groupIndex[i] = groupIndex[i+1];
+		}
+		--groupIndexCounter;
+}
+
+void swapGroupIndexBuf(unsigned index1, unsigned index2)
+{
+		groupIndex[index1] ^= groupIndex[index2];
+		groupIndex[index2] ^= groupIndex[index1];
+		groupIndex[index1] ^= groupIndex[index2];
+}
+
+void refreshGroupIndex(void)
+{
+		SPI_Flash_Write((char*)groupIndex, AddrGroupIndex, groupIndexCounter);
+		setCount(groupIndexCounter);
+}
+/*void swapData(unsigned index1, unsigned index2)
+{
+		unsigned tmp1, tmp2;
+		tmp1 = getInt(AddrGroupIndex + index1);
+		tmp2 = getInt(AddrGroupIndex + index2);
+		setInt(AddrGroupIndex + index1, tmp2);
+		setInt(AddrGroupIndex + index2, tmp1);
+}*/
+/*void swapData(unsigned index1, unsigned index2)
 {
 		unsigned char buf[fileReadBufMax];
 		readData((unsigned*)buf, (unsigned*)(buf+fileReadBufMax/2), index1);
@@ -76,23 +131,24 @@ void swapData(unsigned index1, unsigned index2)
 	
 		SPI_Flash_Write((char*)buf, StartByte + index2 * fileReadBufMax, fileReadBufMax / 2);
 		SPI_Flash_Write((char*)(buf+fileReadBufMax / 2), StartByte + index2 * fileReadBufMax + fileReadBufMax / 2, fileReadBufMax / 2);	
-}
+}*/
 
 unsigned initData(void)
 {
 		unsigned cnt = getCount(), i = 0;
+		groupIndexCounter = cnt;
 		if(cnt == 0){
 				return 0;
 		}
-		readData(speed1, duration1, 0);
+		readData(modeName1, speed1, duration1, 0);
 		if(1 == cnt){
 				return 1;
 		}
-		readData(speed2, duration2, 1);
+		readData(modeName2, speed2, duration2, 1);
 		if(2 == cnt){
 				return 2;
 		}	
-		readData(speed3, duration3, 1);
+		readData(modeName3, speed3, duration3, 1);
 		return 3;
 }
 /*

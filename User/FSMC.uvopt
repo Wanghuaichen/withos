@@ -343,10 +343,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>43</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>121</TopLine>
-      <CurrentLine>133</CurrentLine>
+      <TopLine>226</TopLine>
+      <CurrentLine>240</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\APP\myapp\motorgui.c</PathWithFileName>
       <FilenameWithoutPath>motorgui.c</FilenameWithoutPath>
@@ -359,9 +359,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>106</ColumnNumber>
+      <ColumnNumber>112</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>19</TopLine>
+      <TopLine>20</TopLine>
       <CurrentLine>34</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\APP\myapp\editgroup.c</PathWithFileName>
@@ -377,7 +377,7 @@
       <Focus>0</Focus>
       <ColumnNumber>22</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>40</TopLine>
+      <TopLine>41</TopLine>
       <CurrentLine>48</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\APP\myapp\ikeyboard.c</PathWithFileName>
@@ -881,7 +881,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>2363</TopLine>
+      <TopLine>2364</TopLine>
       <CurrentLine>2373</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\fatfs\ff.c</PathWithFileName>

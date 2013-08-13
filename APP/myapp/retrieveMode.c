@@ -1,6 +1,6 @@
-/*#include "edit.h"
+#include "edit.h"
 #include"gui.h"
-#include"wm.h"*/
+#include"wm.h"
 #include <string.h>
 #include "ff.h"
 #include "motordrive.h"
@@ -21,7 +21,7 @@ void retrieveMode(char *fname)
 {
 		
 }
-/*
+
 unsigned retrueveName(unsigned char index)
 {
 		unsigned int i;
@@ -40,4 +40,3 @@ void test(EDIT_Handle hwin)
 		fileReadBuf[i] = '\0';
 		EDIT_SetText(hwin, fileReadBuf);
 }
-*/

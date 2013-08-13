@@ -452,14 +452,9 @@
               <FilePath>..\APP\myapp\str2num.c</FilePath>
             </File>
             <File>
-              <FileName>storeMode.c</FileName>
+              <FileName>filerw.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\APP\myapp\storeMode.c</FilePath>
-            </File>
-            <File>
-              <FileName>retrieveMode.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\myapp\retrieveMode.c</FilePath>
+              <FilePath>..\APP\myapp\filerw.c</FilePath>
             </File>
           </Files>
         </Group>

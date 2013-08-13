@@ -11,6 +11,7 @@
 #include "motordrive.h"
 #include "filerw.h"
 
+
 //主要窗体的句柄以及有效标记
 unsigned char hConfigDlgFlag = 0;
 unsigned char hmainDlgFlag = 1;
@@ -33,7 +34,7 @@ unsigned char showModeCounter = 0;
 #define OP_CONF_OK 16
 #define OP_CONF_CANCEL 32
 #define OP_EDIT_MODE 2048
-
+#define OP_REFRESH_INPUT 4096
 #define OP_DEFAULT_MODE(i) (OP_GO << i)
 
 unsigned operationCode  = OP_NO_OPERATION;

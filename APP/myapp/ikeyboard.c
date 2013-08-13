@@ -96,6 +96,8 @@ static char keys2[]=
     GUI_HOOK_Add(&pObj->pFirstHook,&gHook,&_hookFW);
 	GUI_Unlock();//asion 20091016 add
 }
+
+//#include "filerw.h"
  void _cbKeyBaord(WM_MESSAGE * pMsg)
 /*键盘的回调函数*/
 {

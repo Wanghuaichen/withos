@@ -117,7 +117,7 @@ WM_HWIN hCurrentObj;
 #define BUTTON_Id_EditMode (GUI_ID_USER+21)
 #define BUTTON_Id_SubmitEdit (GUI_ID_USER+22)
 #define GUI_ID_TEXT_ModeName (GUI_ID_USER+23)
-
+#define GUI_ID_EDIT_ModeName (GUI_ID_USER + 24)
 #define LISTBOX_Id (GUI_ID_USER+24)
 /*********************************************************************
 *
@@ -155,7 +155,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   
-  { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
+  { EDIT_CreateIndirect, 			0, GUI_ID_EDIT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
 	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
   { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     0/*10+modeButtonWidth+5-100*/,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     800-modeButtonWidth/*10+2*modeButtonWidth+5*2-100*/,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -294,6 +294,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
   }
 }
 
+void test(EDIT_Handle);
 //自动改变键盘位置相关变量
 #include "stringutils.h"
 #define _keyboardXLeft 0
@@ -306,14 +307,14 @@ unsigned keyboardX = _keyboardXLeft, keyboardY = _keyboardYTop;
 static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 	//static char buf[20];
   int NCode, Id, itemtot, curitem;
-  WM_HWIN hDlg, hListBox, hItem;
+  WM_HWIN hDlg, hListBox, hItem, hedit = WM_GetDialogItem(pMsg ->hWin, GUI_ID_EDIT_ModeName);
 	static unsigned char touchchildSwitch = 0;
   hDlg = pMsg->hWin;
 
   switch (pMsg->MsgId) {			
 		case WM_INIT_DIALOG:
 				EDIT_SetDefaultTextAlign(EDIT_CF_LEFT);
-				EDIT_SetMaxLen(WM_GetDialogItem(hDlg, GUI_ID_TEXT_ModeName), 50);
+				EDIT_SetMaxLen(WM_GetDialogItem(hDlg, GUI_ID_EDIT_ModeName), 50);
 				break;
 		
     case WM_TOUCH_CHILD:
@@ -377,7 +378,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 							//do sth and go back
               break;
             case BUTTON_Id_Ok:
-							operationCode |= OP_SUBMIT_ADD;						
+							//test(hedit);//operationCode |= OP_SUBMIT_ADD;	
+							break;
 						case BUTTON_Id_Cancel:
 							hkeyboardFlag = 0;
 							hListViewDlgFlag = 1;

@@ -2,6 +2,8 @@
 #include "ff.h"
 #include "diskio.h"
 #include "Hardwear.h"
+#include "flash.h"
+#include "spi.h"
 int fputc(int ch, FILE *f);
 TIM_TimeBaseInitTypeDef  TIM4_TimeBaseStructure;
 TIM_OCInitTypeDef        TIM4_OCInitStructure;
@@ -433,6 +435,7 @@ u8 MCU_Init(void)//单片机初始化
 // 	ADC1_Configuration(1);
 	VS1003_GPIO_Init();
   Mp3Reset();
+	SPI_Flash_Init();
 	TXDCS_0;
 	printf("STM32 FSMC uC/GUI Demo...\r\n");
  	printf("SD card init...\r\n");

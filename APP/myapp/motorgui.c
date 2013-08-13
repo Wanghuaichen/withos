@@ -96,31 +96,36 @@ WM_HWIN hCurrentObj;
 #define labelX(i) (modeButtonX(i) - (labelWidth / 2))*/
 
 
-#define BUTTON_Id_MoreModes (GUI_ID_USER+1)
-#define BUTTON_Id_Go (GUI_ID_USER+2)
-#define BUTTON_Id_Stop (GUI_ID_USER+3)
-#define BUTTON_Id_DefaultMode1 (GUI_ID_USER+4)
-#define BUTTON_Id_DefaultMode2 (GUI_ID_USER+5)
-#define BUTTON_Id_DefaultMode3 (GUI_ID_USER+6)
-
-#define BUTTON_Id_DeleteMode (GUI_ID_USER+7)
 #define BUTTON_Id_Ok (GUI_ID_USER+8)
 #define BUTTON_Id_Cancel (GUI_ID_USER+9)
-#define BUTTON_Id_EditMode (GUI_ID_USER+10)
 #define BUTTON_Id_SubmitEdit (GUI_ID_USER+11)
 
 
-#define FRAME_ID_mainPanel (GUI_ID_USER+12)
 #define FRAME_ID_confPanel (GUI_ID_USER+13)
 
+#define FRAME_ID_ListViewPanel (GUI_ID_USER+7)
+//#define LISTBOX_Id (GUI_ID_USER+16)
+#define GUI_ID_TEXT_ModeName (GUI_ID_USER+17)
+#define GUI_ID_EDIT_ModeName (GUI_ID_USER+27)
+
+
+#define BUTTON_Id_Ok_listview (GUI_ID_USER+20)
+#define BUTTON_Id_EditMode (GUI_ID_USER+21)
+#define BUTTON_Id_Up (GUI_ID_USER+22)
+#define BUTTON_Id_Down (GUI_ID_USER+23)
+#define BUTTON_Id_AddNewMode (GUI_ID_USER+24)
+#define BUTTON_Id_DeleteMode (GUI_ID_USER+7)
+#define GUI_ID_LISTVIEW (GUI_ID_USER+18)
+#define BUTTON_Id_Back (GUI_ID_USER + 19)
+
+#define FRAME_ID_mainPanel (GUI_ID_USER+12)
 #define TEXT_ID_mainPanelTime (GUI_ID_USER+14)
 #define TEXT_ID_mainPanelSpeed (GUI_ID_USER+15)
-#define LISTBOX_Id (GUI_ID_USER+16)
-#define GUI_ID_TEXT_ModeName (GUI_ID_USER+17)
-#define GUI_ID_LISTVIEW (GUI_ID_USER+18)
-
-
-#define BUTTON_Id_Ok_listview (GUI_ID_USER+18)
+#define BUTTON_Id_Progbar (GUI_ID_USER + 2)
+#define BUTTON_Id_Mode1 (GUI_ID_USER + 25)
+#define BUTTON_Id_Mode2 (GUI_ID_USER + 26)
+#define BUTTON_Id_Mode3 (GUI_ID_USER + 28)
+#define BUTTON_Id_MoreModes (GUI_ID_USER+1)
 /*********************************************************************
 *
 *       Default contents of list box
@@ -136,10 +141,10 @@ static const GUI_ConstString _ListBox[] = {
 * This table conatins the info required to create the dialog.
 * It has been created manually, but could also be created by a GUI-builder.
 *///
-
+#define mainPanelButtonGapX 40
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { FRAMEWIN_CreateIndirect,  "Main Panel",    FRAME_ID_mainPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-	{ PROGBAR_CreateIndirect,   "Progress",          0,       progBarX,  progBarY,  progBarWidth,  progBarHeight, WM_CF_SHOW },
+	{ PROGBAR_CreateIndirect,   "Progress",          BUTTON_Id_Progbar,       progBarX,  progBarY,  progBarWidth,  progBarHeight, WM_CF_SHOW },
 	{ TEXT_CreateIndirect,      "Time: ",    TEXT_ID_mainPanelTime,       labelX,  labelY,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 	{	TEXT_CreateIndirect,      "Speed: ",    TEXT_ID_mainPanelSpeed,       labelX,  labelY+labelHeight,  labelWidth,  labelHeight, TEXT_CF_LEFT },
 /* Buttons */
@@ -147,15 +152,17 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   //{ BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Go!",      BUTTON_Id_Go,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
-	//{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Run Mode1",      BUTTON_Id_Mode1,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Run Mode2",      BUTTON_Id_Mode2,     400 - mainPanelButtonGapX - switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Run Mode3",      BUTTON_Id_Mode3,     400 + mainPanelButtonGapX + switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+//{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	//{ LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  5,  labelY+labelHeight*2, 200, 260, 0, 100 },
 };
 
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   
-  { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
+  { EDIT_CreateIndirect, 			0, GUI_ID_EDIT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
 	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
   //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     10+modeButtonWidth+5-100,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -165,16 +172,41 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 
 };
 
+
+#define ListViewButtonBackX0 10
+#define ListViewButtonBackY0 10
+#define ListViewButtonBackWidth 60
+#define ListViewButtonBackHeight 40
+
+#define ListViewButtonWidth 70
+#define ListViewButtonHeight 40
+#define ListViewX0 (ListViewButtonBackX0  + ListViewButtonBackWidth + 10)
+#define ListViewY0 (ListViewButtonBackY0 + ListViewButtonBackHeight)
+#define ListViewWidth lcdWidth - 180
+#define ListViewHeight lcdHeight - 80
+#define ListViewButtonGapX 12
+#define ListViewButtonGapY 15
+
+#define ListViewButtonX0 (ListViewX0 + ListViewWidth + ListViewButtonGapX)
+
+#define ListViewButtonUpY0 (ListViewY0+ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonDownY0 (ListViewButtonUpY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonAddNewModeY0 (ListViewButtonDownY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonEditModeY0 (ListViewButtonAddNewModeY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonDeleteModeY0 (ListViewButtonEditModeY0 + ListViewButtonGapY+ListViewButtonHeight)
+
 static const GUI_WIDGET_CREATE_INFO _listViewCreate[] = {
-	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
-  {LISTVIEW_CreateIndirect,  "list view",    GUI_ID_LISTVIEW,                  30,  30, lcdWidth/2, lcdHeight/2, WM_CF_SHOW },
-  { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
-	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
-  //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-  { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok_listview,     10+modeButtonWidth+5-100,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     10+2*modeButtonWidth+5*2-100,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     50+60+60+3*modeButtonWidth+5*3,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     50+40+120+4*modeButtonWidth+5*4,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_ListViewPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
+  {LISTVIEW_CreateIndirect,  "list view",    GUI_ID_LISTVIEW,       ListViewX0,  ListViewY0, ListViewWidth, ListViewHeight, WM_CF_SHOW },
+  //{ EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
+	//{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
+  { BUTTON_CreateIndirect,    "Delete Mode",    BUTTON_Id_DeleteMode,      ListViewButtonX0,  ListViewButtonDeleteModeY0,  ListViewButtonWidth,  ListViewButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "Add New Mode",   BUTTON_Id_AddNewMode,     ListViewButtonX0,  ListViewButtonAddNewModeY0,  ListViewButtonWidth,  ListViewButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "Up",      				BUTTON_Id_Up,          ListViewButtonX0,  ListViewButtonUpY0,  ListViewButtonWidth,  ListViewButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "Down",      			BUTTON_Id_Down,        ListViewButtonX0,  ListViewButtonDownY0,  ListViewButtonWidth,  ListViewButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "Edit Mode",      BUTTON_Id_EditMode,      ListViewButtonX0,  ListViewButtonEditModeY0,  ListViewButtonWidth,  ListViewButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "Back",      			BUTTON_Id_Back,        ListViewButtonBackX0,  ListViewButtonBackY0,  ListViewButtonBackWidth,  ListViewButtonBackHeight, WM_CF_SHOW},
+	//{ BUTTON_CreateIndirect,    "Back",      			BUTTON_Id_Back,        ListViewButtonBackX0,  ListViewButtonBackY0,  ListViewButtonBackWidth,  ListViewButtonBackHeight, WM_CF_SHOW},
 
 };
 
@@ -187,21 +219,21 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
   int NCode, Id, itemtot, curitem;
   WM_HWIN hDlg, hListBox;//, hItem;
   hDlg = pMsg->hWin;
-  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
+ // hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
   switch (pMsg->MsgId) {		
 		
     case WM_INIT_DIALOG:
 			
-      LISTBOX_SetText(hListBox, _ListBox);
-      LISTBOX_AddString(hListBox, "Add New Mode ..");
-      LISTBOX_SetScrollStepH(hListBox, 6);
-      LISTBOX_SetAutoScrollH(hListBox, 1);
-      LISTBOX_SetAutoScrollV(hListBox, 1);
+    //  LISTBOX_SetText(hListBox, _ListBox);
+    //  LISTBOX_AddString(hListBox, "Add New Mode ..");
+    //  LISTBOX_SetScrollStepH(hListBox, 6);
+    //  LISTBOX_SetAutoScrollH(hListBox, 1);
+    //  LISTBOX_SetAutoScrollV(hListBox, 1);
       //LISTBOX_SetOwnerDraw(hListBox, _OwnerDraw);
-			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
-			LISTBOX_SetScrollbarWidth(hListBox, 20);
+		//	LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
+		//	LISTBOX_SetScrollbarWidth(hListBox, 20);
       //CHECKBOX_Check(hItem);
-			WM_InvalidateWindow(WM_HBKWIN);			
+		//	WM_InvalidateWindow(WM_HBKWIN);			
       break;		
 		
     case WM_NOTIFY_PARENT:
@@ -212,7 +244,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
       switch (NCode) {			
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
-						case LISTBOX_Id:
+/*						case LISTBOX_Id:
 								itemtot = LISTBOX_GetNumItems(hListBox);
 								curitem = LISTBOX_GetSel(hListBox);								
 
@@ -225,7 +257,7 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 										operationCode |= OP_SHOW_MODE_MAIN;
 								}
 								//TEXT_SetText(WM_GetDialogItem(hDlg, TEXT_ID_mainPanelTime), buf);
-								break;
+								break;*/
 								
             case BUTTON_Id_MoreModes:
 							//WM_SetFocus(hConfigDlg);
@@ -233,9 +265,11 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 							hmainDlgFlag = 0;
 							//WM_DisableWindow(hmainDlg);
 							break;
-					
 						
-            case BUTTON_Id_Go:
+						
+						case BUTTON_Id_Mode1:
+						case BUTTON_Id_Mode2:
+            case BUTTON_Id_Mode3:
 								operationCode |= OP_GO;
               break;			
           }
@@ -249,18 +283,23 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 }
 
 
+char * _aTable_1[][2] = {
+  { "1", "Default Mode 1" },
+};
 static void _cbListView(WM_MESSAGE * pMsg) {
   int NCode, Id, itemtot, curitem;
   WM_HWIN hDlg, hListBox, hListView;//, hItem;
   hDlg = pMsg->hWin;
-  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
+//  hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
 	hListView = WM_GetDialogItem(hDlg, GUI_ID_LISTVIEW);
   switch (pMsg->MsgId) {		
 		
     case WM_INIT_DIALOG:{
-			LISTVIEW_AddColumn(hListView, 100, "Field1", GUI_TA_CENTER);
-			LISTVIEW_AddColumn(hListView, 100, "Field2", GUI_TA_CENTER);
-			LISTVIEW_AddColumn(hListView, 100, "Field3", GUI_TA_CENTER);
+			LISTVIEW_AddColumn(hListView, 100, "Mode Index", GUI_TA_CENTER);
+			LISTVIEW_AddColumn(hListView, 100, "Mode Name", GUI_TA_CENTER);
+			LISTVIEW_SetColumnWidth(hListView, 1, ListViewWidth/2);
+			LISTVIEW_AddRow(hListView, _aTable_1[0]);
+			//scan sd card and get mode files if there is any
       break;		
 		}
 		
@@ -273,10 +312,24 @@ static void _cbListView(WM_MESSAGE * pMsg) {
         case WM_NOTIFICATION_RELEASED:      /* React only if released */
           switch (Id) {
 								
-            case BUTTON_Id_Ok_listview:
+            case BUTTON_Id_Back:
 							hListViewDlgFlag = 0;
 							hmainDlgFlag = 1;
-							break;		
+							break;	
+
+						case BUTTON_Id_EditMode:
+            case BUTTON_Id_AddNewMode:
+									hListViewDlgFlag = 0;
+									hConfigDlgFlag = 1;	
+							break;							
+						case GUI_ID_LISTVIEW:
+								curitem = LISTVIEW_GetSel(hListBox);
+								if(curitem >= 0){
+										;//get the file content and put it in the buffer:speed and duration
+										//hListViewDlgFlag = 0;
+										//hConfigDlgFlag = 1;									
+								}
+								break;
           }
           break;
       }
@@ -288,7 +341,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
       WM_DefaultProc(pMsg);
   }
 }
-
+void test(EDIT_Handle hwin);
 //自动改变键盘位置相关变量
 #include "stringutils.h"
 #define _keyboardXLeft 0
@@ -303,6 +356,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 	//static char buf[20];
   int NCode, Id, itemtot, curitem;
   WM_HWIN hDlg, hListBox, hItem;
+	EDIT_Handle hedit;
 	static unsigned char touchchildSwitch = 0;
   hDlg = pMsg->hWin;
 
@@ -315,36 +369,11 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 				//break;
 				Id    = WM_GetId(pMsg->hWinSrc);
 				if((Id == BUTTON_Id_DeleteMode) || (BUTTON_Id_Ok == Id) || (BUTTON_Id_Cancel == Id) || (BUTTON_Id_EditMode == Id)
-							|| (Id == BUTTON_Id_SubmitEdit || (Id == LISTBOX_Id))){
+							|| (Id == BUTTON_Id_SubmitEdit)){
 						break;
 				}
 
 						hkeyboardFlag = 1;
-						/*if(Id == EDIT_Group2_ID(0) || Id == EDIT_Group2_ID(1) || Id == EDIT_Group3_ID(0) || Id == EDIT_Group3_ID(1)
-								|| Id == EDIT_Group2_ID(5) || Id == EDIT_Group2_ID(6) || Id == EDIT_Group3_ID(5) || Id == EDIT_Group3_ID(6))
-						{
-										if(!WM_IsWindow(hkeyboard)){							
-												keyboardX = _keyboardXRight;
-												keyboardY = _keyboardYTop;												
-										}
-										else{
-												hkeyboardFlag = 0;//WM_BringToTop(hkeyboard);
-												moveFlag = 2;											
-												//WM_InvalidateWindow(WM_HBKWIN);											
-										}
-						}
-						else{							
-										if(!WM_IsWindow(hkeyboard)){	
-													
-													keyboardX = _keyboardXLeft;
-													keyboardY = _keyboardYTop;												
-										}
-										else{
-												hkeyboardFlag = 0;//WM_BringToTop(hkeyboard);
-												moveFlag = 1;//WM_MoveWindow(hkeyboard, _keyboardXLeft-keyboardX, _keyboardYTop-keyboardY);												
-												//WM_InvalidateWindow(WM_HBKWIN);											
-										}						
-						}		*/
 						if(Id == EDIT_Group2_ID(0) || Id == EDIT_Group2_ID(1) || Id == EDIT_Group2_ID(2) || Id == EDIT_Group2_ID(3) || Id == EDIT_Group2_ID(4)
 								|| Id == EDIT_Group3_ID(0) || Id == EDIT_Group3_ID(1) || Id == EDIT_Group3_ID(2) || Id == EDIT_Group3_ID(3) || Id == EDIT_Group3_ID(4)
 						
@@ -429,7 +458,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 								hkeyboardFlag = 0;
               break;		
             case BUTTON_Id_SubmitEdit:
-								
+									hedit = WM_GetDialogItem(pMsg ->hWin, GUI_ID_EDIT_ModeName);
+									//test(hedit);
               break;						
  /*           case GUI_ID_CHECK0:
               _MultiSel ^= 1;
@@ -541,6 +571,9 @@ void motorMain(void) {
 		if(operationCode & 	OP_CONF_OK){
 			showModeCounter=0;
 			//write speed and duration into sdcard
+			
+			//temporary test of sdcard codes
+			
 		}	
 		if(operationCode & 	OP_EDIT_MODE){
 			showModeCounter=0;

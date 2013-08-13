@@ -47,7 +47,7 @@ WM_HWIN hCurrentObj;
 //#define gapXSwitchButtonModeButton 100
 
 //窗体描述
-#define labelHeight 60
+#define labelHeight 50
 #define labelWidth 800
 
 #define progBarHeight 60
@@ -68,7 +68,7 @@ WM_HWIN hCurrentObj;
 #define progBarY gapYProgbarUp
 
 #define labelX 0
-#define labelY (progBarY + progBarHeight)
+#define labelY (progBarY + progBarHeight + 20)
 
 #define buttonBaseY (labelY + labelHeight + gapYModeButtonLabel)
 #define buttonYSpace (lcdHeight - buttonBaseY - gapYConfigButtonModeButton - configButtonHeight - gapYConfigButtonDown)
@@ -148,7 +148,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   
-  { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0, 200, 32, WM_CF_SHOW},
+  { EDIT_CreateIndirect, 			0, GUI_ID_TEXT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
 	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
   //{ BUTTON_CreateIndirect,    "Delete Mode",      BUTTON_Id_DeleteMode,     10,  350,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     10+modeButtonWidth+5-100,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -231,10 +231,10 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 }
 //自动改变键盘位置相关变量
 #include "stringutils.h"
-#define _keyboardXLeft 10
-#define _keyboardXRight 400
-#define _keyboardYTop 50
-#define _keyboardYBot 50
+#define _keyboardXLeft 0
+#define _keyboardXRight 360
+#define _keyboardYTop 0
+#define _keyboardYBot 240
 unsigned char moveFlag = 0;
 unsigned keyboardX = _keyboardXLeft, keyboardY = _keyboardYTop;
 
@@ -247,7 +247,10 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
   hDlg = pMsg->hWin;
 
   switch (pMsg->MsgId) {			
-			
+		case WM_INIT_DIALOG:
+				EDIT_SetDefaultTextAlign(EDIT_CF_LEFT);
+				EDIT_SetMaxLen(WM_GetDialogItem(hDlg, GUI_ID_TEXT_ModeName), 50);
+				break;
     case WM_TOUCH_CHILD:
 				//break;
 				Id    = WM_GetId(pMsg->hWinSrc);
@@ -257,7 +260,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 				}
 
 						hkeyboardFlag = 1;
-						if(Id == EDIT_Group2_ID(0) || Id == EDIT_Group2_ID(1) || Id == EDIT_Group3_ID(0) || Id == EDIT_Group3_ID(1)
+						/*if(Id == EDIT_Group2_ID(0) || Id == EDIT_Group2_ID(1) || Id == EDIT_Group3_ID(0) || Id == EDIT_Group3_ID(1)
 								|| Id == EDIT_Group2_ID(5) || Id == EDIT_Group2_ID(6) || Id == EDIT_Group3_ID(5) || Id == EDIT_Group3_ID(6))
 						{
 										if(!WM_IsWindow(hkeyboard)){							
@@ -281,7 +284,34 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 												moveFlag = 1;//WM_MoveWindow(hkeyboard, _keyboardXLeft-keyboardX, _keyboardYTop-keyboardY);												
 												//WM_InvalidateWindow(WM_HBKWIN);											
 										}						
-						}					
+						}		*/
+						if(Id == EDIT_Group2_ID(0) || Id == EDIT_Group2_ID(1) || Id == EDIT_Group2_ID(2) || Id == EDIT_Group2_ID(3) || Id == EDIT_Group2_ID(4)
+								|| Id == EDIT_Group3_ID(0) || Id == EDIT_Group3_ID(1) || Id == EDIT_Group3_ID(2) || Id == EDIT_Group3_ID(3) || Id == EDIT_Group3_ID(4)
+						
+								|| Id == GUI_ID_TEXT_ModeName	)
+						{
+										if(!WM_IsWindow(hkeyboard)){							
+												keyboardX = _keyboardXRight;
+												keyboardY = _keyboardYBot;												
+										}
+										else{
+												hkeyboardFlag = 0;//WM_BringToTop(hkeyboard);
+												moveFlag = 2;											
+												//WM_InvalidateWindow(WM_HBKWIN);											
+										}
+						}
+						else{							
+										if(!WM_IsWindow(hkeyboard)){	
+													
+													keyboardX = _keyboardXLeft;
+													keyboardY = _keyboardYTop;												
+										}
+										else{
+												hkeyboardFlag = 0;//WM_BringToTop(hkeyboard);
+												moveFlag = 1;//WM_MoveWindow(hkeyboard, _keyboardXLeft-keyboardX, _keyboardYTop-keyboardY);												
+												//WM_InvalidateWindow(WM_HBKWIN);											
+										}						
+						}						
 						
       break;		
 		
@@ -521,6 +551,7 @@ void motorMain(void) {
 
 				if(moveFlag == 1){
 						keyboardX = _keyboardXLeft;
+						keyboardY = _keyboardYTop;
 						clearKeyBaord(hkeyboard);
 						WM_DeleteWindow(hkeyboard);
 						hkeyboard = 0;
@@ -530,7 +561,8 @@ void motorMain(void) {
 						GUI_Exec();
 				}
 				else if(moveFlag == 2){			
-						keyboardX = _keyboardXRight;
+						keyboardX = _keyboardXLeft;
+						keyboardY = _keyboardYBot;
 						clearKeyBaord(hkeyboard);
 						WM_DeleteWindow(hkeyboard);
 						hkeyboard = 0;

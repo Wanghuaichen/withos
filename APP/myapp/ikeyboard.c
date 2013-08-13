@@ -45,7 +45,7 @@ static WM_HWIN gKeyBaord;
 static GUI_HOOK gHook;
 #define keyMapShift 3000
 #define scaleFactorX 2
-#define scaleFactorY 2.5
+#define scaleFactorY 2
 static char keys[]=
 {
     '1','2','3','4','5','6','7','8','9','0','-','=',

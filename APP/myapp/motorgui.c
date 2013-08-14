@@ -26,13 +26,14 @@ unsigned char showModeCounter = 0;
 #define OP_SHOW_MODE_MAIN 1
 #define OP_SHOW_MODE 2
 #define OP_MORE_MODES 64
+
 #define OP_GO 128
 #define OP_DELETE_MODE 4
 #define OP_SUBMIT_ADD 8
 #define OP_CONF_OK 16
 #define OP_CONF_CANCEL 32
-#define OP_ 2048
-#define OP_REFRESH_INPUT 4096
+#define OP_MOVE_DOWN 2048
+#define OP_MOVE_UP (4096)
 #define OP_DEFAULT_MODE(i) (OP_GO << i)
 
 unsigned operationCode  = 0;
@@ -340,6 +341,16 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 									selectedListViewItem = LISTVIEW_GetSel(hListView);
 						
 							break;
+						case BUTTON_Id_Up:
+									operationCode |= OP_MOVE_UP;
+									selectedListViewItem = LISTVIEW_GetSel(hListView);
+						
+							break;	
+						case BUTTON_Id_Down:
+									operationCode |= OP_MOVE_DOWN;
+									selectedListViewItem = LISTVIEW_GetSel(hListView);
+						
+							break;							
           }
           break;
       }
@@ -529,7 +540,41 @@ void motorMain(void) {
 				WM_InvalidateWindow(WM_HBKWIN);	
 			
 		}
-	
+
+		if(operationCode & OP_MOVE_UP){
+			
+				operationCode &= ~OP_MOVE_UP;
+				if(selectedListViewItem > 0 && selectedListViewItem < groupIndexCounter){
+						groupIndex[selectedListViewItem] ^= groupIndex[selectedListViewItem - 1];
+						groupIndex[selectedListViewItem-1] ^= groupIndex[selectedListViewItem];
+						groupIndex[selectedListViewItem] ^= groupIndex[selectedListViewItem - 1];
+						refreshGroupIndex();	
+						GUI_EndDialog(hListViewDlg, 0);
+						WM_DeleteWindow(hListViewDlg);
+						hListViewDlg = GUI_CreateDialogBox(_listViewCreate, GUI_COUNTOF(_listViewCreate), &_cbListView, 0, 0, 0);
+						FRAMEWIN_SetTitleVis(hListViewDlg, 0);				
+						WM_BringToTop(hListViewDlg);
+						WM_InvalidateWindow(WM_HBKWIN);	
+				}			
+		}
+		
+		if(operationCode & OP_MOVE_DOWN){
+			
+				operationCode &= ~OP_MOVE_DOWN;
+				if(selectedListViewItem >= 0 && selectedListViewItem < groupIndexCounter - 1){
+						groupIndex[selectedListViewItem] ^= groupIndex[selectedListViewItem + 1];
+						groupIndex[selectedListViewItem+1] ^= groupIndex[selectedListViewItem];
+						groupIndex[selectedListViewItem] ^= groupIndex[selectedListViewItem + 1];
+						refreshGroupIndex();	
+						GUI_EndDialog(hListViewDlg, 0);
+						WM_DeleteWindow(hListViewDlg);
+						hListViewDlg = GUI_CreateDialogBox(_listViewCreate, GUI_COUNTOF(_listViewCreate), &_cbListView, 0, 0, 0);
+						FRAMEWIN_SetTitleVis(hListViewDlg, 0);				
+						WM_BringToTop(hListViewDlg);
+						WM_InvalidateWindow(WM_HBKWIN);	
+				}				
+		}		
+		
 		if(operationCode & 	OP_SUBMIT_ADD){			
 			showModeCounter=0;	
 			operationCode &= ~OP_SUBMIT_ADD;

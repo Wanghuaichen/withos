@@ -7,12 +7,11 @@
 #include "filerw.h"
 
 #define FLASH_SIZE ((8*1024*1024) / 1024)
-#define  BytesPerGroup (ModeNameLenMax + 2 * sizeof(unsigned) * maxstep + 1)
-#define  MaxNumOfGroups  ((FLASH_SIZE - 1) / BytesPerGroup)
+#define  BytesPerGroup (ModeNameLenMax + 2 * sizeof(unsigned) * maxstep)
+#define  MaxNumOfGroups  ((FLASH_SIZE - 1) / (BytesPerGroup+1))
 
-//#define AddrStart (sizeof(unsigned int))
 #define AddrGroupIndex (sizeof(unsigned int))
-#define AddrData (MaxNumOfGroups + AddrGroupIndex)
+#define AddrData (AddrGroupIndex + MaxNumOfGroups*(sizeof(unsigned)))
 
 //char fnamebuf[30];
 //char fileReadBuf[fileReadBufMax];//可以每当touch_child发生之后就把数据读到filereadbuf，当ok之后把数据写入flash，前三组放入下面数组
@@ -57,14 +56,17 @@ void setCount(unsigned int cnt)
 {
 		setInt(0, cnt);
 }
-
+unsigned getAddr(unsigned index)
+{
+		return getInt(AddrGroupIndex + index*(sizeof(unsigned)));
+}
 unsigned char readData(char *modename, unsigned int *speedArr, unsigned int *durationArr, unsigned index)
 {
 		unsigned addr;
 		if(index >= getCount()){
 				return 0;
 		}	
-		addr = getInt(AddrGroupIndex + index);//get the absolute address
+		addr = getAddr(index);//get the absolute address
 		SPI_Flash_Read((char*)modename, addr, ModeNameLenMax);
 		SPI_Flash_Read((char*)speedArr, addr+ModeNameLenMax, maxstep * (sizeof(unsigned)));
 		SPI_Flash_Read((char*)durationArr, addr+ModeNameLenMax+maxstep * (sizeof(unsigned)), maxstep * (sizeof(unsigned)));
@@ -113,7 +115,7 @@ void swapGroupIndexBuf(unsigned index1, unsigned index2)
 
 void refreshGroupIndex(void)
 {
-		SPI_Flash_Write((char*)groupIndex, AddrGroupIndex, groupIndexCounter);
+		SPI_Flash_Write((char*)groupIndex, AddrGroupIndex, MaxNumOfGroups*(sizeof(unsigned)));
 		setCount(groupIndexCounter);
 }
 
@@ -151,6 +153,8 @@ unsigned initData(void)
 		if(cnt == 0){
 				return 0;
 		}
+		SPI_Flash_Read((char*)groupIndex, AddrGroupIndex, MaxNumOfGroups*(sizeof(unsigned)));
+		
 		readData(modeName1, speed1, duration1, 0);
 		_aTable_1[0][0] = "1";
 		_aTable_1[0][1] = modeName1;

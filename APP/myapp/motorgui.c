@@ -28,11 +28,11 @@ unsigned char showModeCounter = 0;
 #define OP_SHOW_MODE 2
 #define OP_MORE_MODES 64
 #define OP_GO 128
-#define OP_ADD_NEW_MODE 4
+#define OP_A 4
 #define OP_SUBMIT_ADD 8
 #define OP_CONF_OK 16
 #define OP_CONF_CANCEL 32
-#define OP_EDIT_MODE 2048
+#define OP_ 2048
 #define OP_REFRESH_INPUT 4096
 #define OP_DEFAULT_MODE(i) (OP_GO << i)
 
@@ -233,10 +233,10 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
             case BUTTON_Id_Mode1:
 								operationCode |= OP_DEFAULT_MODE(1);
 							break;
-            case BUTTON_Id_Mode1:
+            case BUTTON_Id_Mode2:
 							operationCode |= OP_DEFAULT_MODE(2);
 							break;
-            case BUTTON_Id_Mode1:
+            case BUTTON_Id_Mode3:
 							operationCode |= OP_DEFAULT_MODE(3);
 							break;						
           }
@@ -258,6 +258,12 @@ char * _aTable_1[3][2];
 /*{
   { "1", "Default Mode 1" },
 };*/
+
+#define addOrEditFlagEdit 1
+#define addOrEditFlagWrite 0
+unsigned char addOrEditFlag = addOrEditFlagWrite;
+unsigned editIndex = 0;
+
 static void _cbListView(WM_MESSAGE * pMsg) {
   int NCode, Id, itemtot, curitem, i;
   WM_HWIN hDlg, hListBox, hListView;//, hItem;
@@ -302,11 +308,24 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 								if( (i = LISTVIEW_GetSel(hListView)) >= 0){
 										operationCode |= OP_SHOW_MODE;		
 										readData(curModeNameBuf, curSpeed, curDuration, i);
+										addOrEditFlag = addOrEditFlagEdit;
+										editIndex = i;
 								}
-            case BUTTON_Id_AddNewMode:
 									hListViewDlgFlag = 0;
 									hConfigDlgFlag = 1;	
-							break;
+								break;								
+            case BUTTON_Id_AddNewMode:
+									operationCode |= OP_SHOW_MODE;
+									addOrEditFlag = addOrEditFlagWrite;
+									*curModeNameBuf = 0;
+									for(i = 0; i < maxstep; ++i){
+											curSpeed[i] = 0;
+											curDuration[i] = 0;
+									}
+						
+									hListViewDlgFlag = 0;
+									hConfigDlgFlag = 1;	
+								break;
 						case GUI_ID_LISTVIEW:
 							
 							break;
@@ -332,6 +351,7 @@ unsigned char moveFlag = 0;
 unsigned keyboardX = _keyboardXLeft, keyboardY = _keyboardYTop;
 char _cbConfigBuf[10];
 	char bufStr2int[10];
+
 static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 	//static char buf[20];
   int NCode, Id, itemtot, curitem, i;
@@ -344,14 +364,15 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 		case WM_INIT_DIALOG:
 				EDIT_SetDefaultTextAlign(EDIT_CF_LEFT);
 				EDIT_SetMaxLen(WM_GetDialogItem(hDlg, GUI_ID_EDIT_ModeName), 50);
-		
-
 				break;
 		
     case WM_TOUCH_CHILD:
 				Id    = WM_GetId(pMsg->hWinSrc);
 				if((Id == BUTTON_Id_DeleteMode) || (BUTTON_Id_Ok == Id) || (BUTTON_Id_Cancel == Id) || (BUTTON_Id_EditMode == Id)
-							|| (Id == BUTTON_Id_SubmitEdit || (Id == LISTBOX_Id))){
+							|| (Id == BUTTON_Id_SubmitEdit || (Id == LISTBOX_Id))
+							|| (Id == BUTTON_Id_ClearFlash)
+				
+					){
 						break;
 				}
 
@@ -426,7 +447,16 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 										istr2num(&tmp, bufStr2int);
 										curDuration[i] = tmp;			
 								}			
-							}							
+							}
+							{								
+									if(addOrEditFlag == addOrEditFlagWrite){
+											writeData(curModeNameBuf, curSpeed, curDuration);
+											refreshGroupIndex();
+									}
+									else{
+											editData(curModeNameBuf, curSpeed, curDuration, editIndex);					
+									}								
+							}
 						case BUTTON_Id_Cancel:
 							hkeyboardFlag = 0;
 							hListViewDlgFlag = 1;
@@ -449,7 +479,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 *
 *       MainTask
 */
-int istr2num(unsigned *res, char * str);
+
 void motorMain(void) {
 
 	unsigned char ledcnt = 0, i;
@@ -471,53 +501,23 @@ void motorMain(void) {
 			operationCode &= ~OP_SHOW_MODE_MAIN;
 		}
 	
-/*		if(operationCode & 	OP_ADD_NEW_MODE){
-				hmainDlgFlag = 0;
-				hConfigDlg = 1;
-			
-			showModeCounter=0;
-			for(i = 0; i < 10; i++){
-					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
-					EDIT_SetText(hedit, "");
-			}
-			for(i = 0; i < 10; i++){
-					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
-					EDIT_SetText(hedit, "");			
-			}
-			hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(0));
-			WM_SetFocus(hedit);			
-		}		*/
 		if(operationCode & 	OP_SUBMIT_ADD){			
 			showModeCounter=0;	
 			operationCode &= ~OP_SUBMIT_ADD;
-		}
+		}		
+		
 		if(operationCode & 	OP_CONF_OK){
 			operationCode &= ~OP_CONF_OK;
 			showModeCounter=0;
-			//write speed and duration into sdcard  EDIT_Group2_ID(0)
-			//collect data into ram buf
 			
-			//write buf into flash//curModeNameBuf
-			writeData(curModeNameBuf, curSpeed, curDuration);
-			refreshGroupIndex();
-			//if buf is top 3, write it into one of the 3 buf
-			
+			//collect data into ram buf			
+			//write newly added or revised data into flash
+
+			//if buf is top 3, write it into one of the 3 buf			
 			//write buf into ListView Row buf		
 
 		}	
-		
-		
-		
-		if(operationCode & 	OP_DEFAULT_MODE(1)){
-				operationCode &= ~OP_DEFAULT_MODE(1);
-				
-		}
-		if(operationCode & 	OP_EDIT_MODE){
-			operationCode &= ~OP_EDIT_MODE;
-			showModeCounter=0;
-			//获取hConfigDlg所有edit空间，并显示所选mode
-			//把focus放到第一个edit上面
-		}		
+			
 		if(operationCode & 	OP_CONF_CANCEL){
 			operationCode &= ~OP_CONF_CANCEL;
 			showModeCounter=0;
@@ -526,10 +526,7 @@ void motorMain(void) {
 			operationCode &= ~OP_MORE_MODES;
 			;
 		}		
-		if(operationCode & 	OP_GO){
-			operationCode &= ~OP_GO;
-			;
-		}		
+	
 		if(operationCode & 	OP_DEFAULT_MODE(1)){
 			operationCode &= ~OP_DEFAULT_MODE(1);
 		}	
@@ -565,7 +562,7 @@ void motorMain(void) {
 				hkeyboard = 0;
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}			
-    GUI_Exec();//GUI_Delay(1000);
+    GUI_Exec();
 		GUI_TOUCH_Exec();		
     if(hmainDlgFlag && !WM_IsWindow(hmainDlg)){
 				hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
@@ -587,10 +584,6 @@ void motorMain(void) {
 					WM_BringToTop(hConfigDlg);
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}
-				
-
-			
-				
     if(hkeyboardFlag && !WM_IsWindow(hkeyboard)){
 				hkeyboard = CreateKeyBaord(keyboardX, keyboardY);
 				WM_BringToTop(hkeyboard);
@@ -598,28 +591,30 @@ void motorMain(void) {
 				//WM_InvalidateWindow(WM_HBKWIN);	
 		}	
 
-				if(moveFlag == 1){
-						keyboardX = _keyboardXLeft;
-						keyboardY = _keyboardYTop;
-						clearKeyBaord(hkeyboard);
-						WM_DeleteWindow(hkeyboard);
-						hkeyboard = 0;
-						WM_InvalidateWindow(WM_HBKWIN);	
-						hkeyboardFlag = 1;
-						moveFlag = 0;
-						GUI_Exec();
-				}
-				else if(moveFlag == 2){			
-						keyboardX = _keyboardXLeft;
-						keyboardY = _keyboardYBot;
-						clearKeyBaord(hkeyboard);
-						WM_DeleteWindow(hkeyboard);
-						hkeyboard = 0;
-						WM_InvalidateWindow(WM_HBKWIN);	
-						hkeyboardFlag = 1;		
-						moveFlag = 0;
-						GUI_Exec();
-				}
+		if(moveFlag == 1){
+				keyboardX = _keyboardXLeft;
+				keyboardY = _keyboardYTop;
+				clearKeyBaord(hkeyboard);
+				WM_DeleteWindow(hkeyboard);
+				hkeyboard = 0;
+				WM_InvalidateWindow(WM_HBKWIN);	
+				hkeyboardFlag = 1;
+				moveFlag = 0;
+				GUI_Exec();
+		}
+		else if(moveFlag == 2){			
+				keyboardX = _keyboardXLeft;
+				keyboardY = _keyboardYBot;
+				clearKeyBaord(hkeyboard);
+				WM_DeleteWindow(hkeyboard);
+				hkeyboard = 0;
+				WM_InvalidateWindow(WM_HBKWIN);	
+				hkeyboardFlag = 1;		
+				moveFlag = 0;
+				GUI_Exec();
+		}
+				
+				
 	if((operationCode & 	OP_SHOW_MODE) && WM_IsWindow(hConfigDlg)){
 				operationCode &= ~OP_SHOW_MODE;
 			
@@ -638,6 +633,7 @@ void motorMain(void) {
 								int2str(_cbConfigBuf, curDuration[i]);
 								EDIT_SetText(hedit, _cbConfigBuf);
 						}					
+						WM_InvalidateWindow(WM_HBKWIN);	
 	
 		}	
 

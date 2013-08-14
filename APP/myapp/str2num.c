@@ -1,5 +1,5 @@
 #include <string.h>
-
+#include "stringutils.h"
 
 unsigned char isNum(char ch)
 {

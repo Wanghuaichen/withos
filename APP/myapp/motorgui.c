@@ -28,7 +28,7 @@ unsigned char showModeCounter = 0;
 #define OP_SHOW_MODE 2
 #define OP_MORE_MODES 64
 #define OP_GO 128
-#define OP_A 4
+#define OP_DELETE_MODE 4
 #define OP_SUBMIT_ADD 8
 #define OP_CONF_OK 16
 #define OP_CONF_CANCEL 32
@@ -263,9 +263,9 @@ char * _aTable_1[3][2];
 #define addOrEditFlagWrite 0
 unsigned char addOrEditFlag = addOrEditFlagWrite;
 unsigned editIndex = 0;
-
+WM_HWIN hListView;
 static void _cbListView(WM_MESSAGE * pMsg) {
-  int NCode, Id, itemtot, curitem, i;
+  int NCode, Id, itemtot, curitem, i, j;
   WM_HWIN hDlg, hListBox, hListView;//, hItem;
   hDlg = pMsg->hWin;
   hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
@@ -277,7 +277,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 			LISTVIEW_AddColumn(hListView, 100, "Mode Index", GUI_TA_CENTER);
 			LISTVIEW_AddColumn(hListView, 100, "Mode Name", GUI_TA_CENTER);
 			LISTVIEW_SetColumnWidth(hListView, 1, ListViewWidth/2);
-			
+			LISTVIEW_SetRowHeight(hListView, 32);
 			//显示flash中已经存储的数据
 				i = 0;
 				while(readData(curModeNameBuf, curSpeed, curDuration, i)){
@@ -328,6 +328,10 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 								break;
 						case GUI_ID_LISTVIEW:
 							
+							break;
+						case BUTTON_Id_DeleteMode:
+									operationCode |= OP_DELETE_MODE;
+						
 							break;
           }
           break;
@@ -482,7 +486,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 
 void motorMain(void) {
 
-	unsigned char ledcnt = 0, i;
+	unsigned char ledcnt = 0, i, j;
 	unsigned tmp;
 	WM_MESSAGE theMsg;
 	WM_HWIN hedit;
@@ -499,6 +503,23 @@ void motorMain(void) {
   while (1) {
 		if(operationCode & 	OP_SHOW_MODE_MAIN){
 			operationCode &= ~OP_SHOW_MODE_MAIN;
+		}
+		
+		if(operationCode & OP_DELETE_MODE){
+			
+				operationCode &= ~OP_DELETE_MODE;
+								if( (i = LISTVIEW_GetSel(hListView)) >= 0){		
+										LISTBOX_DeleteItem(hListView, i);
+
+										for(j = i; j < groupIndexCounter-1; ++j){
+												groupIndex[j] = groupIndex[j+1];
+										}
+										--groupIndexCounter;
+										refreshGroupIndex();										
+										
+								}			
+								WM_InvalidateWindow(hListView);
+			
 		}
 	
 		if(operationCode & 	OP_SUBMIT_ADD){			

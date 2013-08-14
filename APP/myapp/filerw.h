@@ -3,14 +3,21 @@
 #include "ff.h"
 
 #define maxstep 10
+#define FLASH_SIZE ((8*1024*1024) / 1024)
+#define  BytesPerGroup (ModeNameLenMax + 2 * sizeof(unsigned) * maxstep)
+#define  MaxNumOfGroups  ((FLASH_SIZE - 1) / (BytesPerGroup+1))
 
-//#define fileReadBufMax (maxstep*(sizeof(unsigned))*2)
-//extern FIL theFile;
-//extern char fnamebuf[30];
+#define AddrGroupIndex (sizeof(unsigned int))
+#define AddrData (AddrGroupIndex + MaxNumOfGroups*(sizeof(unsigned)))
+
 #define ModeNameLenMax 30
 extern char curModeNameBuf_test[ModeNameLenMax];
 extern unsigned curDuration_test[maxstep];
 extern unsigned curSpeed_test[maxstep];
+
+extern unsigned groupIndex[MaxNumOfGroups];
+extern unsigned groupIndexCounter;
+
 extern char curModeNameBuf[ModeNameLenMax];
 extern unsigned curDuration[maxstep];
 extern unsigned curSpeed[maxstep];

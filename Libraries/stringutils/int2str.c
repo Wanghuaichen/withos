@@ -2,6 +2,7 @@
 
 void int2str(char *str, unsigned int n)
 {
+	unsigned tmp = n;
 	char *p = str;
 	while(n){
 		*str++ = '0' + n % 10;
@@ -15,7 +16,7 @@ void int2str(char *str, unsigned int n)
 		*p ^= *str;
 		--str;++p;
 	}
-	if(!n){
+	if(!tmp){
 			*p++ = '0';
 			*p = 0;
 	}

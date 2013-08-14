@@ -25,7 +25,7 @@ unsigned char showModeCounter = 0;
 //gui从用户获取的操作指令
 #define OP_NO_OPERATION 0
 #define OP_SHOW_MODE_MAIN 1
-#define OP_SHOW_MODE_CONF 2
+#define OP_SHOW_MODE 2
 #define OP_MORE_MODES 64
 #define OP_GO 128
 #define OP_ADD_NEW_MODE 4
@@ -111,6 +111,7 @@ unsigned char ifAListViewItemIsSelectedFlag = 0;
 #define BUTTON_Id_DeleteMode (GUI_ID_USER+15)
 #define GUI_ID_LISTVIEW (GUI_ID_USER+16)
 #define BUTTON_Id_Back (GUI_ID_USER + 17)
+#define BUTTON_Id_ClearFlash (GUI_ID_USER + 26)
 
 //edit panel
 #define FRAME_ID_confPanel (GUI_ID_USER+18)
@@ -163,7 +164,7 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     800-modeButtonWidth/*10+2*modeButtonWidth+5*2-100*/,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     50+60+60+3*modeButtonWidth+5*3,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     50+40+120+4*modeButtonWidth+5*4,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-
+	{ BUTTON_CreateIndirect,    "clear flash",      BUTTON_Id_ClearFlash,     400,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 };
 
 #define ListViewButtonBackX0 0
@@ -216,22 +217,12 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
   switch (pMsg->MsgId) {		
 		
     case WM_INIT_DIALOG:
-			
-/*      LISTBOX_SetText(hListBox, _ListBox);
-      LISTBOX_AddString(hListBox, "Add New Mode ..");
-      LISTBOX_SetScrollStepH(hListBox, 6);
-      LISTBOX_SetAutoScrollH(hListBox, 1);
-      LISTBOX_SetAutoScrollV(hListBox, 1);
-			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
-			LISTBOX_SetScrollbarWidth(hListBox, 20);
-			WM_InvalidateWindow(WM_HBKWIN);			*/
       break;		
 		
     case WM_NOTIFY_PARENT:
       Id    = WM_GetId(pMsg->hWinSrc);      /* Id of widget */
       NCode = pMsg->Data.v;                 /* Notification code */
 
-		//GUI_MessageBox("This text is shown\nin a message box", "Caption/Title", GUI_MESSAGEBOX_CF_MOVEABLE);
       switch (NCode) {			
         case WM_NOTIFICATION_RELEASED:
           switch (Id) {
@@ -264,6 +255,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
   hDlg = pMsg->hWin;
   hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
 	hListView = WM_GetDialogItem(hDlg, GUI_ID_LISTVIEW);
+	
   switch (pMsg->MsgId) {		
 		
     case WM_INIT_DIALOG:{
@@ -280,11 +272,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 						LISTVIEW_AddRow(hListView, _aTable_1[0]);
 						++i;
 				}			
-			/*i = 0;
-			while(ListViewAddRowFlag){
-				LISTVIEW_AddRow(hListView, _aTable_1[i++]);
-				--ListViewAddRowFlag;
-			}*/
+
 			WM_InvalidateWindow(WM_HBKWIN);	
       break;		
 		}
@@ -302,6 +290,9 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 							hmainDlgFlag = 1;
 							break;								
 						case BUTTON_Id_EditMode:
+								if(ifAListViewItemIsSelectedFlag){
+										operationCode |= OP_SHOW_MODE;									
+								}
             case BUTTON_Id_AddNewMode:
 									hListViewDlgFlag = 0;
 									hConfigDlgFlag = 1;	
@@ -415,6 +406,10 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 							hListViewDlgFlag = 1;
 							//hConfigDlgFlag;
               break;
+						case BUTTON_Id_ClearFlash:
+								clearFlash();
+							break;
+						
           }
       }
       break;
@@ -428,10 +423,11 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 *
 *       MainTask
 */
-
+int istr2num(unsigned *res, char * str);
 void motorMain(void) {
-	
+	char bufStr2int[10];
 	unsigned char ledcnt = 0, i;
+	unsigned tmp;
 	WM_MESSAGE theMsg;
 	WM_HWIN hedit;
 	LED_Init();
@@ -448,22 +444,7 @@ void motorMain(void) {
 		if(operationCode & 	OP_SHOW_MODE_MAIN){
 			;
 		}
-/*		if(operationCode & 	OP_SHOW_MODE_CONF){
-			showModeCounter++;
-			if(showModeCounter == 2){
-					showModeCounter = 0;
-					//do the thing
-					//read from file and write to speed and duration
-					for(i = 0; i < 10; i++){
-							hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
-							EDIT_SetText(hedit, "0");
-					}
-					for(i = 0; i < 10; i++){
-							hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
-							EDIT_SetText(hedit, "0");			
-					}					
-			}
-		}		*/
+	
 /*		if(operationCode & 	OP_ADD_NEW_MODE){
 				hmainDlgFlag = 0;
 				hConfigDlg = 1;
@@ -480,50 +461,33 @@ void motorMain(void) {
 			hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(0));
 			WM_SetFocus(hedit);			
 		}		*/
-		if(operationCode & 	OP_SUBMIT_ADD){
-			
-			
-			showModeCounter=0;
-			for(i = 0; i < 10; i++){//获取所有edit数值，然后存入speed，duration作为暂存
-					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
-					curSpeed[i] = (unsigned)EDIT_GetFloatValue(hedit);				
-			}
-			for(i = 0; i < 10; i++){//获取所有edit数值，然后存入speed，duration作为暂存
-					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
-					curDuration[i] = (unsigned)EDIT_GetFloatValue(hedit);				
-			}
-/*			strcpy(cstrbuf, "speed");
-			hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_TEXT_ModeName);
-			EDIT_GetText(hedit, fnamebuf+5, 30-5-1);
-			writeToFile(speed, fileReadBufMax, fnamebuf);//再把数据存入文件
-			
-			strcpy(cstrbuf, "duration");
-			EDIT_GetText(hedit, fnamebuf+8, 30-8-1);
-			writeToFile(speed, fileReadBufMax, fnamebuf);		*/
-
-			
-		}			
+		if(operationCode & 	OP_SUBMIT_ADD){			
+			showModeCounter=0;			
+		}
 		if(operationCode & 	OP_CONF_OK){
 			showModeCounter=0;
 			//write speed and duration into sdcard  EDIT_Group2_ID(0)
 			//collect data into ram buf
 			hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_EDIT_ModeName);
 			EDIT_GetText(hedit, curModeNameBuf, ModeNameLenMax);
-			for(i = 0; i < maxstep; ++i){
-					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
-					curSpeed[i] = (unsigned)EDIT_GetFloatValue(hedit);
+			for(i = 0; i < 10; i++){//获取所有edit数值，然后存入speed，duration作为暂存
+					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));					
+					EDIT_GetText(hedit, bufStr2int, 10);
+					istr2num(&tmp, bufStr2int);
+					curSpeed[i] = tmp;				
 			}
-			for(i = 0; i < maxstep; ++i){
+			for(i = 0; i < 10; i++){//获取所有edit数值，然后存入speed，duration作为暂存
 					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
-					curDuration[i] = (unsigned)EDIT_GetFloatValue(hedit);
+					EDIT_GetText(hedit, bufStr2int, 10);
+					istr2num(&tmp, bufStr2int);
+					curDuration[i] = tmp;			
 			}			
 			//write buf into flash//curModeNameBuf
-			writeData("tempMode", curSpeed, curDuration);
+			writeData(curModeNameBuf, curSpeed, curDuration);
 			refreshGroupIndex();
 			//if buf is top 3, write it into one of the 3 buf
 			
-			//write buf into ListView Row buf
-			
+			//write buf into ListView Row buf		
 
 		}	
 		if(operationCode & 	OP_EDIT_MODE){
@@ -549,7 +513,7 @@ void motorMain(void) {
 		if(operationCode & 	OP_DEFAULT_MODE(3)){
 			;
 		}		
-		operationCode = 0;		
+		
 		
     if(!hmainDlgFlag && WM_IsWindow(hmainDlg)){
 				GUI_EndDialog(hmainDlg, 0);
@@ -589,13 +553,48 @@ void motorMain(void) {
 				WM_BringToTop(hListViewDlg);
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}		
-    if(hConfigDlgFlag && !WM_IsWindow(hConfigDlg)){
-				hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);					
-				drawEditGroup(editGroupX0, editGroupY0, 799, 479, WM_GetClientWindow(hConfigDlg));
-				GUI_Exec();
-				_setHook(hConfigDlg);//WM_GetClientWindow(hConfigDlg));//到底挂上谁？？
-				WM_BringToTop(hConfigDlg);
-			
+    if(hConfigDlgFlag  && !WM_IsWindow(hConfigDlg)){
+
+					hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);					
+					drawEditGroup(editGroupX0, editGroupY0, 799, 479, WM_GetClientWindow(hConfigDlg));
+					_setHook(hConfigDlg);//WM_GetClientWindow(hConfigDlg));//到底挂上谁？？
+					WM_BringToTop(hConfigDlg);
+				WM_InvalidateWindow(WM_HBKWIN);	
+		}
+				
+
+				
+				
+    if(hkeyboardFlag && !WM_IsWindow(hkeyboard)){
+				hkeyboard = CreateKeyBaord(keyboardX, keyboardY);
+				WM_BringToTop(hkeyboard);
+				//WM_SetStayOnTop(hkeyboard, 1);
+				//WM_InvalidateWindow(WM_HBKWIN);	
+		}	
+
+				if(moveFlag == 1){
+						keyboardX = _keyboardXLeft;
+						keyboardY = _keyboardYTop;
+						clearKeyBaord(hkeyboard);
+						WM_DeleteWindow(hkeyboard);
+						hkeyboard = 0;
+						WM_InvalidateWindow(WM_HBKWIN);	
+						hkeyboardFlag = 1;
+						moveFlag = 0;
+						GUI_Exec();
+				}
+				else if(moveFlag == 2){			
+						keyboardX = _keyboardXLeft;
+						keyboardY = _keyboardYBot;
+						clearKeyBaord(hkeyboard);
+						WM_DeleteWindow(hkeyboard);
+						hkeyboard = 0;
+						WM_InvalidateWindow(WM_HBKWIN);	
+						hkeyboardFlag = 1;		
+						moveFlag = 0;
+						GUI_Exec();
+				}
+	if(operationCode & 	OP_SHOW_MODE){
 				if(ifAListViewItemIsSelectedFlag){						
 						ifAListViewItemIsSelectedFlag = 0;					
 					
@@ -626,41 +625,9 @@ void motorMain(void) {
 								EDIT_SetText(hedit, "0");
 						}						
 				}
+		}			
 
-				
-				WM_InvalidateWindow(WM_HBKWIN);	
-		}		
-    if(hkeyboardFlag && !WM_IsWindow(hkeyboard)){
-				hkeyboard = CreateKeyBaord(keyboardX, keyboardY);
-				WM_BringToTop(hkeyboard);
-				//WM_SetStayOnTop(hkeyboard, 1);
-				//WM_InvalidateWindow(WM_HBKWIN);	
-		}	
-
-				if(moveFlag == 1){
-						keyboardX = _keyboardXLeft;
-						keyboardY = _keyboardYTop;
-						clearKeyBaord(hkeyboard);
-						WM_DeleteWindow(hkeyboard);
-						hkeyboard = 0;
-						WM_InvalidateWindow(WM_HBKWIN);	
-						hkeyboardFlag = 1;
-						moveFlag = 0;
-						GUI_Exec();
-				}
-				else if(moveFlag == 2){			
-						keyboardX = _keyboardXLeft;
-						keyboardY = _keyboardYBot;
-						clearKeyBaord(hkeyboard);
-						WM_DeleteWindow(hkeyboard);
-						hkeyboard = 0;
-						WM_InvalidateWindow(WM_HBKWIN);	
-						hkeyboardFlag = 1;		
-						moveFlag = 0;
-						GUI_Exec();
-				}
-	
-
+		operationCode = 0;
 		delay_ms(15);
 		if(++ledcnt == 60){
 				ledcnt = 0;

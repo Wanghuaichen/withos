@@ -121,7 +121,7 @@ void clearFlash(void)
 {
 		unsigned i = 0;
 		SPI_Flash_Write((char*)&i, 0, sizeof(unsigned));
-		while(1);
+		groupIndexCounter = 0;
 }
 /*void swapData(unsigned index1, unsigned index2)
 {

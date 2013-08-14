@@ -148,8 +148,8 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   //{ BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Run Mode1",      BUTTON_Id_Mode1,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
-	{BUTTON_CreateIndirect,    "Run Mode2",      BUTTON_Id_Mode2,     400 - mainPanelButtonGapX - switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Run Mode2",      BUTTON_Id_Mode2,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
+	{BUTTON_CreateIndirect,    "Run Mode1",      BUTTON_Id_Mode1,     400 - mainPanelButtonGapX - switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	{BUTTON_CreateIndirect,    "Run Mode3",      BUTTON_Id_Mode3,     400 + mainPanelButtonGapX + switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 //{BUTTON_CreateIndirect,    "Stop!",      BUTTON_Id_Stop,     switchButtonX,  switchButtonY(2),  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	//{ LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  5,  labelY+labelHeight*2, 200, 260, 0, 100 },
@@ -229,6 +229,15 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
             case BUTTON_Id_MoreModes:
 							hListViewDlgFlag = 1;
 							hmainDlgFlag = 0;
+							break;		
+            case BUTTON_Id_Mode1:
+								operationCode |= OP_DEFAULT_MODE(1);
+							break;
+            case BUTTON_Id_Mode1:
+							operationCode |= OP_DEFAULT_MODE(2);
+							break;
+            case BUTTON_Id_Mode1:
+							operationCode |= OP_DEFAULT_MODE(3);
 							break;						
           }
           break;
@@ -290,18 +299,16 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 							hmainDlgFlag = 1;
 							break;								
 						case BUTTON_Id_EditMode:
-								if( LISTVIEW_GetSelUnsorted(hListView) >= 0){
+								if( (i = LISTVIEW_GetSel(hListView)) >= 0){
 										operationCode |= OP_SHOW_MODE;		
-									
+										readData(curModeNameBuf, curSpeed, curDuration, i);
 								}
             case BUTTON_Id_AddNewMode:
 									hListViewDlgFlag = 0;
 									hConfigDlgFlag = 1;	
 							break;
 						case GUI_ID_LISTVIEW:
-							ifAListViewItemIsSelectedFlag = 1;
-							i = LISTVIEW_GetSel(hListView);
-							readData(curModeNameBuf, curSpeed, curDuration, i);
+							
 							break;
           }
           break;
@@ -498,6 +505,13 @@ void motorMain(void) {
 			//write buf into ListView Row buf		
 
 		}	
+		
+		
+		
+		if(operationCode & 	OP_DEFAULT_MODE(1)){
+				operationCode &= ~OP_DEFAULT_MODE(1);
+				
+		}
 		if(operationCode & 	OP_EDIT_MODE){
 			operationCode &= ~OP_EDIT_MODE;
 			showModeCounter=0;
@@ -575,7 +589,7 @@ void motorMain(void) {
 		}
 				
 
-				
+			
 				
     if(hkeyboardFlag && !WM_IsWindow(hkeyboard)){
 				hkeyboard = CreateKeyBaord(keyboardX, keyboardY);
@@ -606,10 +620,9 @@ void motorMain(void) {
 						moveFlag = 0;
 						GUI_Exec();
 				}
-	if(operationCode & 	OP_SHOW_MODE){
+	if((operationCode & 	OP_SHOW_MODE) && WM_IsWindow(hConfigDlg)){
 				operationCode &= ~OP_SHOW_MODE;
-				if(ifAListViewItemIsSelectedFlag){						
-						ifAListViewItemIsSelectedFlag = 0;					
+			
 					
 						hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_EDIT_ModeName);
 						EDIT_SetText(hedit, curModeNameBuf);
@@ -625,20 +638,8 @@ void motorMain(void) {
 								int2str(_cbConfigBuf, curDuration[i]);
 								EDIT_SetText(hedit, _cbConfigBuf);
 						}					
-				}
-				else{
-						hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_EDIT_ModeName);
-						EDIT_SetText(hedit, "");					
-						for(i = 0; i < maxstep; ++i){
-								hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
-								EDIT_SetText(hedit, "0");
-						}
-						for(i = 0; i < maxstep; ++i){
-								hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
-								EDIT_SetText(hedit, "0");
-						}						
-				}
-		}			
+	
+		}	
 
 		
 		delay_ms(15);

@@ -15,4 +15,8 @@ void int2str(char *str, unsigned int n)
 		*p ^= *str;
 		--str;++p;
 	}
+	if(!n){
+			*p++ = '0';
+			*p = 0;
+	}
 }

@@ -8,6 +8,9 @@
 //extern FIL theFile;
 //extern char fnamebuf[30];
 #define ModeNameLenMax 30
+extern char curModeNameBuf_test[ModeNameLenMax];
+extern unsigned curDuration_test[maxstep];
+extern unsigned curSpeed_test[maxstep];
 extern char curModeNameBuf[ModeNameLenMax];
 extern unsigned curDuration[maxstep];
 extern unsigned curSpeed[maxstep];
@@ -34,7 +37,7 @@ void deleteData(unsigned index);
 void swapGroupIndexBuf(unsigned index1, unsigned index2);
 void refreshGroupIndex(void);
 unsigned initData(void);
-
+void clearFlash(void);
 void swapData(unsigned index1, unsigned index2);
 
 void writeToFile(void *data, unsigned len, char *fname);

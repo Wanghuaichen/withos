@@ -19,6 +19,9 @@
 unsigned groupIndex[MaxNumOfGroups];
 unsigned groupIndexCounter = 0;
 
+char curModeNameBuf_test[ModeNameLenMax] = "mode name test";
+unsigned curDuration_test[maxstep] = {1,2,3,4,5,6,7,8,9,10};
+unsigned curSpeed_test[maxstep] = {1,2,3,4,5,6,7,8,9,10};
 char curModeNameBuf[ModeNameLenMax];
 unsigned curDuration[maxstep];
 unsigned curSpeed[maxstep];
@@ -112,6 +115,13 @@ void refreshGroupIndex(void)
 {
 		SPI_Flash_Write((char*)groupIndex, AddrGroupIndex, groupIndexCounter);
 		setCount(groupIndexCounter);
+}
+
+void clearFlash(void)
+{
+		unsigned i = 0;
+		SPI_Flash_Write((char*)&i, 0, sizeof(unsigned));
+		while(1);
 }
 /*void swapData(unsigned index1, unsigned index2)
 {

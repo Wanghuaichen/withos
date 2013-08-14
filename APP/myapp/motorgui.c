@@ -118,7 +118,7 @@ WM_HWIN hCurrentObj;
 #define BUTTON_Id_SubmitEdit (GUI_ID_USER+22)
 #define GUI_ID_TEXT_ModeName (GUI_ID_USER+23)
 #define GUI_ID_EDIT_ModeName (GUI_ID_USER + 24)
-#define LISTBOX_Id (GUI_ID_USER+24)
+#define LISTBOX_Id (GUI_ID_USER+25)
 /*********************************************************************
 *
 *       Default contents of list box
@@ -215,14 +215,14 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
 		
     case WM_INIT_DIALOG:
 			
-      LISTBOX_SetText(hListBox, _ListBox);
+/*      LISTBOX_SetText(hListBox, _ListBox);
       LISTBOX_AddString(hListBox, "Add New Mode ..");
       LISTBOX_SetScrollStepH(hListBox, 6);
       LISTBOX_SetAutoScrollH(hListBox, 1);
       LISTBOX_SetAutoScrollV(hListBox, 1);
 			LISTBOX_SetFont(hListBox, &GUI_Font32_ASCII);
 			LISTBOX_SetScrollbarWidth(hListBox, 20);
-			WM_InvalidateWindow(WM_HBKWIN);			
+			WM_InvalidateWindow(WM_HBKWIN);			*/
       break;		
 		
     case WM_NOTIFY_PARENT:
@@ -247,11 +247,17 @@ static void _cbCallback(WM_MESSAGE * pMsg) {
   }
 }
 
-char * _aTable_1[][2] = {
+
+char *bufMotorMain[10] = {
+		"1", "2", "3", "4", "5", "6", "7"
+};;
+unsigned char ListViewAddRowFlag;
+char * _aTable_1[3][2];
+/*{
   { "1", "Default Mode 1" },
-};
+};*/
 static void _cbListView(WM_MESSAGE * pMsg) {
-  int NCode, Id, itemtot, curitem;
+  int NCode, Id, itemtot, curitem, i;
   WM_HWIN hDlg, hListBox, hListView;//, hItem;
   hDlg = pMsg->hWin;
   hListBox = WM_GetDialogItem(hDlg, LISTBOX_Id);
@@ -262,7 +268,20 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 			LISTVIEW_AddColumn(hListView, 100, "Mode Index", GUI_TA_CENTER);
 			LISTVIEW_AddColumn(hListView, 100, "Mode Name", GUI_TA_CENTER);
 			LISTVIEW_SetColumnWidth(hListView, 1, ListViewWidth/2);
-			LISTVIEW_AddRow(hListView, _aTable_1[0]);
+			WM_InvalidateWindow(WM_HBKWIN);	
+				i = 0;
+				while(readData(curModeName, curSpeed, curDuration, i)){
+						
+						_aTable_1[0][0] = bufMotorMain[i];
+						_aTable_1[0][1] = curModeName;
+						LISTVIEW_AddRow(hListView, _aTable_1[0]);
+						++i;
+				}			
+			/*i = 0;
+			while(ListViewAddRowFlag){
+				LISTVIEW_AddRow(hListView, _aTable_1[i++]);
+				--ListViewAddRowFlag;
+			}*/
       break;		
 		}
 		
@@ -328,7 +347,7 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 						if(Id == EDIT_Group2_ID(0) || Id == EDIT_Group2_ID(1) || Id == EDIT_Group2_ID(2) || Id == EDIT_Group2_ID(3) || Id == EDIT_Group2_ID(4)
 								|| Id == EDIT_Group3_ID(0) || Id == EDIT_Group3_ID(1) || Id == EDIT_Group3_ID(2) || Id == EDIT_Group3_ID(3) || Id == EDIT_Group3_ID(4)
 						
-								|| Id == GUI_ID_TEXT_ModeName	)
+								|| Id == GUI_ID_EDIT_ModeName	)
 						{
 										if(!WM_IsWindow(hkeyboard)){							
 												keyboardX = _keyboardXRight;
@@ -378,8 +397,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 							//do sth and go back
               break;
             case BUTTON_Id_Ok:
-							//test(hedit);//operationCode |= OP_SUBMIT_ADD;	
-							break;
+							operationCode |= OP_CONF_OK;//test(hedit);//operationCode |= OP_SUBMIT_ADD;	
+							ListViewAddRowFlag = 1;
 						case BUTTON_Id_Cancel:
 							hkeyboardFlag = 0;
 							hListViewDlgFlag = 1;
@@ -397,9 +416,11 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 *
 *       MainTask
 */
+
 void motorMain(void) {
 	
 	unsigned char ledcnt = 0, i;
+
 	WM_HWIN hedit;
 	LED_Init();
   GUI_Init();
@@ -407,7 +428,8 @@ void motorMain(void) {
   WM_SetCreateFlags(WM_CF_MEMDEV);  /* Use memory devices on all windows to avoid flicker */	
 	//hConfigDlg = GUI_CreateDialogBox(_configDialogCreate, GUI_COUNTOF(_configDialogCreate), &_cbCallbackConfigPanel, 0, 0, 0);	
 	//hmainDlg = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), &_cbCallback, 0, 0, 0);
-	
+	initData();
+
 	LED0 = 0;
   while (1) {
 		if(operationCode & 	OP_SHOW_MODE_MAIN){
@@ -470,7 +492,26 @@ void motorMain(void) {
 		}			
 		if(operationCode & 	OP_CONF_OK){
 			showModeCounter=0;
-			//write speed and duration into sdcard
+			//write speed and duration into sdcard  EDIT_Group2_ID(0)
+			//collect data into ram buf
+			hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_EDIT_ModeName);
+			EDIT_GetText(hedit, curModeNameBuf, ModeNameLenMax);
+			for(i = 0; i < maxstep; ++i){
+					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group2_ID(i));
+					curSpeed[i] = (unsigned)EDIT_GetFloatValue(hedit);
+			}
+			for(i = 0; i < maxstep; ++i){
+					hedit = WM_GetDialogItem(hConfigDlg, EDIT_Group3_ID(i));
+					curDuration[i] = (unsigned)EDIT_GetFloatValue(hedit);
+			}			
+			//write buf into flash
+			writeData(curModeNameBuf, curSpeed, curDuration);
+			refreshGroupIndex();
+			//if buf is top 3, write it into one of the 3 buf
+			
+			//write buf into ListView Row buf
+			
+
 		}	
 		if(operationCode & 	OP_EDIT_MODE){
 			showModeCounter=0;
@@ -532,6 +573,8 @@ void motorMain(void) {
     if(hListViewDlgFlag && !WM_IsWindow(hListViewDlg)){
 				hListViewDlg = GUI_CreateDialogBox(_listViewCreate, GUI_COUNTOF(_listViewCreate), &_cbListView, 0, 0, 0);
 				FRAMEWIN_SetTitleVis(hListViewDlg, 0);
+
+				
 				WM_BringToTop(hListViewDlg);
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}		

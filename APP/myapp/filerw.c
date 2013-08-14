@@ -70,9 +70,10 @@ unsigned char readData(char *modename, unsigned int *speedArr, unsigned int *dur
 
 unsigned char writeData(char *modename, unsigned int *speedArr, unsigned int *durationArr)
 {		
-		unsigned cnt = getCount();
-		unsigned addr = AddrData + cnt * BytesPerGroup;
-		if(cnt >= MaxNumOfGroups){
+		//unsigned cnt = getCount();
+		//groupIndexCounter is initiated during startup in initData()
+		unsigned addr = AddrData + groupIndexCounter * BytesPerGroup;
+		if(groupIndexCounter >= MaxNumOfGroups){
 				return 0;
 		}
 		SPI_Flash_Write((char*)modename, addr, ModeNameLenMax);
@@ -132,7 +133,7 @@ void refreshGroupIndex(void)
 		SPI_Flash_Write((char*)buf, StartByte + index2 * fileReadBufMax, fileReadBufMax / 2);
 		SPI_Flash_Write((char*)(buf+fileReadBufMax / 2), StartByte + index2 * fileReadBufMax + fileReadBufMax / 2, fileReadBufMax / 2);	
 }*/
-
+extern char * _aTable_1[3][2];
 unsigned initData(void)
 {
 		unsigned cnt = getCount(), i = 0;
@@ -141,15 +142,23 @@ unsigned initData(void)
 				return 0;
 		}
 		readData(modeName1, speed1, duration1, 0);
+		_aTable_1[0][0] = "1";
+		_aTable_1[0][1] = modeName1;
 		if(1 == cnt){
 				return 1;
 		}
 		readData(modeName2, speed2, duration2, 1);
+		_aTable_1[1][0] = "2";
+		_aTable_1[1][1] = modeName2;		
 		if(2 == cnt){
 				return 2;
 		}	
-		readData(modeName3, speed3, duration3, 1);
-		return 3;
+		readData(modeName3, speed3, duration3, 2);
+		_aTable_1[2][0] = "3";
+		_aTable_1[2][1] = modeName3;		
+
+		i = 3;
+		return cnt;
 }
 /*
 void getFileList(char **fnamelist)

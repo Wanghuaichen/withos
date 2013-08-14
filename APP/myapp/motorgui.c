@@ -312,7 +312,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 							hmainDlgFlag = 1;
 							break;								
 						case BUTTON_Id_EditMode:
-								if( (i = LISTVIEW_GetSel(hListView)) >= 0){
+								if( (i = LISTVIEW_GetSel(hListView)) >= 0 && i < groupIndexCounter){
 										operationCode |= OP_SHOW_MODE;		
 										readData(curModeNameBuf, curSpeed, curDuration, i);
 										addOrEditFlag = addOrEditFlagEdit;
@@ -690,8 +690,7 @@ void motorMain(void) {
 				
 				
 	if((operationCode & 	OP_SHOW_MODE) && WM_IsWindow(hConfigDlg)){
-				operationCode &= ~OP_SHOW_MODE;
-			
+				operationCode &= ~OP_SHOW_MODE;			
 					
 						hedit = WM_GetDialogItem(hConfigDlg, GUI_ID_EDIT_ModeName);
 						EDIT_SetText(hedit, curModeNameBuf);

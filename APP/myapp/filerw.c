@@ -6,8 +6,6 @@
 #include <string.h>
 #include "filerw.h"
 
-
-
 //char fnamebuf[30];
 //char fileReadBuf[fileReadBufMax];//可以每当touch_child发生之后就把数据读到filereadbuf，当ok之后把数据写入flash，前三组放入下面数组
 unsigned groupIndex[MaxNumOfGroups];

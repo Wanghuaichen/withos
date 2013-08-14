@@ -185,38 +185,6 @@
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>230</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Users\wansong\Desktop\guiProgramming\withos\APP\myapp\motorgui.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>440</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Users\wansong\Desktop\guiProgramming\withos\APP\myapp\motorgui.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
       </Breakpoint>
       <DebugFlag>
         <trace>0</trace>
@@ -282,7 +250,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>57</TopLine>
+      <TopLine>58</TopLine>
       <CurrentLine>62</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\stm32f10x_it.c</PathWithFileName>
@@ -392,10 +360,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>42</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>499</TopLine>
-      <CurrentLine>513</CurrentLine>
+      <TopLine>439</TopLine>
+      <CurrentLine>465</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\APP\myapp\motorgui.c</PathWithFileName>
       <FilenameWithoutPath>motorgui.c</FilenameWithoutPath>
@@ -410,7 +378,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>19</TopLine>
+      <TopLine>20</TopLine>
       <CurrentLine>27</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\APP\myapp\editgroup.c</PathWithFileName>
@@ -456,10 +424,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>50</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>5</TopLine>
-      <CurrentLine>9</CurrentLine>
+      <TopLine>23</TopLine>
+      <CurrentLine>10</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\APP\myapp\filerw.c</PathWithFileName>
       <FilenameWithoutPath>filerw.c</FilenameWithoutPath>
@@ -730,7 +698,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>175</TopLine>
+      <TopLine>176</TopLine>
       <CurrentLine>181</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\HARDWARE\FLASH\flash.c</PathWithFileName>
@@ -1370,8 +1338,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>88</TopLine>
+      <CurrentLine>94</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\UCOS-II\PORTS\os_cpu_a.asm</PathWithFileName>
       <FilenameWithoutPath>os_cpu_a.asm</FilenameWithoutPath>
@@ -1395,7 +1363,7 @@
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1761</TopLine>
-      <CurrentLine>1763</CurrentLine>
+      <CurrentLine>1762</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\UCOS-II\SOURCE\os_core.c</PathWithFileName>
       <FilenameWithoutPath>os_core.c</FilenameWithoutPath>
@@ -6306,7 +6274,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>308</TopLine>
+      <TopLine>309</TopLine>
       <CurrentLine>313</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\Widget\BUTTON.c</PathWithFileName>
@@ -6770,7 +6738,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>102</TopLine>
+      <TopLine>103</TopLine>
       <CurrentLine>117</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\Widget\DIALOG.c</PathWithFileName>
@@ -6930,7 +6898,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>708</TopLine>
+      <TopLine>709</TopLine>
       <CurrentLine>713</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\Widget\EDIT.c</PathWithFileName>
@@ -7154,8 +7122,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>387</TopLine>
-      <CurrentLine>394</CurrentLine>
+      <TopLine>388</TopLine>
+      <CurrentLine>398</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\Widget\FRAMEWIN.c</PathWithFileName>
       <FilenameWithoutPath>FRAMEWIN.c</FilenameWithoutPath>
@@ -9458,7 +9426,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>333</TopLine>
+      <TopLine>334</TopLine>
       <CurrentLine>338</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\Widget\WIDGET.c</PathWithFileName>
@@ -10018,8 +9986,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1593</TopLine>
-      <CurrentLine>1598</CurrentLine>
+      <TopLine>667</TopLine>
+      <CurrentLine>677</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\WM\WM.c</PathWithFileName>
       <FilenameWithoutPath>WM.c</FilenameWithoutPath>
@@ -11074,8 +11042,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>18</TopLine>
-      <CurrentLine>45</CurrentLine>
+      <TopLine>20</TopLine>
+      <CurrentLine>43</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\uCGUI\WM\WM_SendToParent.c</PathWithFileName>
       <FilenameWithoutPath>WM_SendToParent.c</FilenameWithoutPath>

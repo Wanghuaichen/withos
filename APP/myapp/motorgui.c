@@ -23,7 +23,6 @@ WM_HWIN hListViewDlg;
 unsigned char showModeCounter = 0;
 
 //gui从用户获取的操作指令
-#define OP_NO_OPERATION 0
 #define OP_SHOW_MODE_MAIN 1
 #define OP_SHOW_MODE 2
 #define OP_MORE_MODES 64
@@ -36,7 +35,7 @@ unsigned char showModeCounter = 0;
 #define OP_REFRESH_INPUT 4096
 #define OP_DEFAULT_MODE(i) (OP_GO << i)
 
-unsigned operationCode  = OP_NO_OPERATION;
+unsigned operationCode  = 0;
 WM_HWIN hCurrentObj;
 //unsigned selectedItemInListView = -1;
 unsigned char ifAListViewItemIsSelectedFlag = 0;
@@ -65,8 +64,8 @@ unsigned char ifAListViewItemIsSelectedFlag = 0;
 #define switchButtonHeight 60
 #define switchButtonWidth 100
 
-#define configButtonWidth 100
-#define configButtonHeight 60
+#define configButtonWidth 150
+#define configButtonHeight 90
 
 #define progBarX 0
 #define progBarY gapYProgbarUp
@@ -147,7 +146,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   //{ BUTTON_CreateIndirect,    "Default MODE 1",      BUTTON_Id_DefaultMode1,     modeButtonX,  modeButtonY(1),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
   //{ BUTTON_CreateIndirect,    "Default MODE 2",      BUTTON_Id_DefaultMode2,     modeButtonX,  modeButtonY(2),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "Default MODE 3",      BUTTON_Id_DefaultMode3,     modeButtonX,  modeButtonY(3),  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
-	{ BUTTON_CreateIndirect,    "More Modes",      BUTTON_Id_MoreModes,     0,  420,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
+	{ BUTTON_CreateIndirect,    "More Modes",  BUTTON_Id_MoreModes,     0,  lcdHeight - 20 -configButtonHeight,  configButtonWidth,  configButtonHeight, WM_CF_SHOW},
 	{BUTTON_CreateIndirect,    "Run Mode2",      BUTTON_Id_Mode2,     400 - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	{BUTTON_CreateIndirect,    "Run Mode1",      BUTTON_Id_Mode1,     400 - mainPanelButtonGapX - switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
 	{BUTTON_CreateIndirect,    "Run Mode3",      BUTTON_Id_Mode3,     400 + mainPanelButtonGapX + switchButtonWidth - switchButtonWidth/2,  240 - switchButtonHeight/2,  switchButtonWidth,  switchButtonHeight, WM_CF_SHOW},
@@ -155,12 +154,16 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 	//{ LISTBOX_CreateIndirect,   0,                LISTBOX_Id,  5,  labelY+labelHeight*2, 200, 260, 0, 100 },
 };
 
+#define ConfButtonWidth 80
+#define ConfButtonHeight 60
+
+
 static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_confPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
   
-  { EDIT_CreateIndirect, 			0, GUI_ID_EDIT_ModeName, editGroupX0+100, editGroupY0-32, 200, 32, WM_CF_SHOW},
+  { EDIT_CreateIndirect, 			0, GUI_ID_EDIT_ModeName, 400-150, editGroupY0-32, 300, 50, WM_CF_SHOW},
 	{ TEXT_CreateIndirect,      "Mode Name:",     GUI_ID_TEXT_ModeName,    editGroupX0,  editGroupY0-32,  200,  32, TEXT_CF_LEFT },
-  { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     0/*10+modeButtonWidth+5-100*/,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
+  { BUTTON_CreateIndirect,    "OK",      BUTTON_Id_Ok,     0/*10+modeButtonWidth+5-100*/,  lcdHeight - ConfButtonHeight -10,  ConfButtonWidth,  ConfButtonHeight, WM_CF_SHOW},
 	{ BUTTON_CreateIndirect,    "CANCEL",      BUTTON_Id_Cancel,     800-modeButtonWidth/*10+2*modeButtonWidth+5*2-100*/,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "EDIT MODE",      BUTTON_Id_EditMode,     50+60+60+3*modeButtonWidth+5*3,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
 	//{ BUTTON_CreateIndirect,    "SUBMIT",      BUTTON_Id_SubmitEdit,     50+40+120+4*modeButtonWidth+5*4,  400,  modeButtonWidth,  modeButtonHeight, WM_CF_SHOW},
@@ -172,8 +175,7 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 #define ListViewButtonBackWidth 60
 #define ListViewButtonBackHeight 480
 
-#define ListViewButtonWidth 70
-#define ListViewButtonHeight 40
+
 #define ListViewX0 (ListViewButtonBackX0  + ListViewButtonBackWidth + 10)
 #define ListViewY0 (ListViewButtonBackY0 + 40)
 #define ListViewWidth lcdWidth - 180
@@ -181,13 +183,16 @@ static const GUI_WIDGET_CREATE_INFO _configDialogCreate[] = {
 #define ListViewButtonGapX 12
 #define ListViewButtonGapY 15
 
+#define ListViewButtonWidth (lcdWidth - (ListViewX0+ListViewWidth)-10)//70
+#define ListViewButtonHeight ((lcdHeight - 4*ListViewButtonGapY)/5)
+
 #define ListViewButtonX0 (ListViewX0 + ListViewWidth + ListViewButtonGapX)
 
-#define ListViewButtonUpY0 (ListViewY0+ListViewButtonGapY+40)
-#define ListViewButtonDownY0 (ListViewButtonUpY0 + ListViewButtonGapY+ListViewButtonHeight)
-#define ListViewButtonAddNewModeY0 (ListViewButtonDownY0 + ListViewButtonGapY+ListViewButtonHeight)
-#define ListViewButtonEditModeY0 (ListViewButtonAddNewModeY0 + ListViewButtonGapY+ListViewButtonHeight)
-#define ListViewButtonDeleteModeY0 (ListViewButtonEditModeY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonUpY0 0//(ListViewY0+ListViewButtonGapY+40)
+#define ListViewButtonDownY0 (ListViewButtonHeight+ListViewButtonGapY)//(ListViewButtonUpY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonAddNewModeY0 (2*(ListViewButtonHeight+ListViewButtonGapY))//(ListViewButtonDownY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonEditModeY0 (3*(ListViewButtonHeight+ListViewButtonGapY))//(ListViewButtonAddNewModeY0 + ListViewButtonGapY+ListViewButtonHeight)
+#define ListViewButtonDeleteModeY0 (4*(ListViewButtonHeight+ListViewButtonGapY))//(ListViewButtonEditModeY0 + ListViewButtonGapY+ListViewButtonHeight)
 
 static const GUI_WIDGET_CREATE_INFO _listViewCreate[] = {
 	{FRAMEWIN_CreateIndirect,  "Config Panel",    FRAME_ID_ListViewPanel,                  0,  0, lcdWidth - 1, lcdHeight - 1, 0 },
@@ -264,6 +269,7 @@ char * _aTable_1[3][2];
 unsigned char addOrEditFlag = addOrEditFlagWrite;
 unsigned editIndex = 0;
 WM_HWIN hListView;
+unsigned selectedListViewItem = 0;
 static void _cbListView(WM_MESSAGE * pMsg) {
   int NCode, Id, itemtot, curitem, i, j;
   WM_HWIN hDlg, hListBox, hListView;//, hItem;
@@ -331,6 +337,7 @@ static void _cbListView(WM_MESSAGE * pMsg) {
 							break;
 						case BUTTON_Id_DeleteMode:
 									operationCode |= OP_DELETE_MODE;
+									selectedListViewItem = LISTVIEW_GetSel(hListView);
 						
 							break;
           }
@@ -458,7 +465,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 											refreshGroupIndex();
 									}
 									else{
-											editData(curModeNameBuf, curSpeed, curDuration, editIndex);					
+											editData(curModeNameBuf, curSpeed, curDuration, editIndex);	
+											editIndex = -1;
 									}								
 							}
 						case BUTTON_Id_Cancel:
@@ -508,17 +516,17 @@ void motorMain(void) {
 		if(operationCode & OP_DELETE_MODE){
 			
 				operationCode &= ~OP_DELETE_MODE;
-								if( (i = LISTVIEW_GetSel(hListView)) >= 0){		
-										LISTBOX_DeleteItem(hListView, i);
+				for(j = selectedListViewItem; j < groupIndexCounter-1; ++j)
+						groupIndex[j] = groupIndex[j+1];
+				--groupIndexCounter;
+				refreshGroupIndex();	
 
-										for(j = i; j < groupIndexCounter-1; ++j){
-												groupIndex[j] = groupIndex[j+1];
-										}
-										--groupIndexCounter;
-										refreshGroupIndex();										
-										
-								}			
-								WM_InvalidateWindow(hListView);
+				GUI_EndDialog(hListViewDlg, 0);
+				WM_DeleteWindow(hListViewDlg);
+				hListViewDlg = GUI_CreateDialogBox(_listViewCreate, GUI_COUNTOF(_listViewCreate), &_cbListView, 0, 0, 0);
+				FRAMEWIN_SetTitleVis(hListViewDlg, 0);				
+				WM_BringToTop(hListViewDlg);
+				WM_InvalidateWindow(WM_HBKWIN);	
 			
 		}
 	

@@ -51,6 +51,114 @@ static char keys[]=
     '+','.','/','-','*'
 };
 
+
+#define WindowWidth 300
+#define WindowHeight 400
+#define TitleHeight 10
+#define TotalNum 21
+#define KeyGapRatioX 200
+#define KeyGapRatioY 160
+#define KeyMarginRatioH 10
+#define KeyMarginRatioV 10
+#define ButtonXYRatio (1.0)
+#define ClientHeight (WindowHeight - TitleHeight)
+#define ClientWidth WindowWidth
+#define XYRatio (ClientWidth/ClientHeight)
+unsigned YNum;
+unsigned XNum;// = (YNum*XYRatio/ButtonXYRatio);
+unsigned ButtonWidth;// (ClientWidth / ((2/KeyMarginRatioH) + (XNum) + ((XNum-1)/KeyGapRatioX)))
+unsigned ButtonHeight;// (ClientHeight / ((2/KeyMarginRatioV) + (YNum) + ((YNum-1)/KeyGapRatioY)))
+unsigned MarginH;// (ButtonWidth / KeyMarginRatioH)
+unsigned MarginV;// (ButtonHeight / KeyMarginRatioV)
+unsigned GapX;// (ButtonWidth / KeyGapRatioX)
+unsigned GapY;// (ButtonHeight / KeyGapRatioY)
+unsigned FunctionKeyWidth;// (ButtonWidth*2+GapX)
+#define ErrorX 0
+#define ErrorY 0
+void configButtonArray(void)
+{
+		double tmpYNum, a, b, c, delta;
+		double theRatio;
+		theRatio = XYRatio;
+		a = 1.0*ClientWidth / ClientHeight + 1.0*ClientWidth / ClientHeight/KeyGapRatioY;
+		b = 1.0*2*ClientWidth / ClientHeight/KeyMarginRatioV - 1.0*ClientWidth / ClientHeight/KeyGapRatioY - 1.0*2*ButtonXYRatio/KeyMarginRatioH + 1.0*ButtonXYRatio/KeyGapRatioX;
+		c = -1.0*ButtonXYRatio*TotalNum*(1+1.0/KeyGapRatioX);
+		delta = sqrt(b*b - 4*a*c);
+		tmpYNum = (-b + delta) / 2 / a;
+		YNum = (unsigned)tmpYNum;
+		XNum = (unsigned)(TotalNum / YNum)+1;
+		tmpYNum = ((double)ClientWidth / ((2/(double)KeyMarginRatioH) + ((double)XNum) + (((double)XNum-1)/(double)KeyGapRatioX)));
+		ButtonWidth = (unsigned)tmpYNum;
+		tmpYNum = ((double)ClientHeight / ((2/(double)KeyMarginRatioV) + ((double)YNum) + (((double)YNum-1)/(double)KeyGapRatioY)));
+		ButtonHeight = (unsigned)tmpYNum;
+		
+		MarginH = (unsigned)ButtonWidth / KeyMarginRatioH;
+		MarginV = (unsigned)(ButtonHeight / KeyMarginRatioV);
+		GapX = (unsigned)(ButtonWidth / KeyGapRatioX);
+		GapY = (unsigned)(ButtonHeight / KeyGapRatioY);
+}
+
+
+void createNumKeys(KEYBAORDCFG* kbcfg)
+//创建按键
+{
+    int x0,y0,xSize,ySize,xSpan,ySpan;
+    int i,starX,startY,num;
+    WM_HWIN hWin;
+    BUTTON_Handle hbtn;
+    char tmp[20],*keyMap;
+		configButtonArray();
+    num=kbcfg->num;
+    hWin=kbcfg->hWin;
+    keyMap=kbcfg->keymap;
+		for(i = 0; i < num; ++i){
+				ii = (i/XNum)+1;
+				jj = (i%(unsigned char)XNum) + 1;
+				y0 = 	MarginV + (ii-1)*(ButtonHeight+GapY);
+				x0 = 	MarginH + (jj-1)*(ButtonWidth+GapX);
+				BUTTON_CreateAsChild(x0,y0,ButtonWidth,ButtonHeight,hWin,keyMap[i]+keyMapShift,BUTTON_CF_SHOW);
+		}		
+
+ /*   hbtn=BUTTON_CreateAsChild(x0=starX,y0=y0+ySpan+ySize,(xSize*3+2*xSpan),ySize,hWin,20+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"Shift");
+    hbtn=BUTTON_CreateAsChild(x0=x0+3*xSpan+3*xSize,y0,(xSize*6+5*xSpan),ySize,hWin,' '+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"");
+
+    hbtn=BUTTON_CreateAsChild(x0=starX+12*xSize+12*xSpan,y0=startY,xSize,ySize,hWin,8+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"bs");
+    hbtn=BUTTON_CreateAsChild(x0,y0+ySpan+ySize,xSize*2,3*ySize+2*ySpan,hWin,13+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"En");*/
+
+}
+
+WM_HWIN CreateNumKeyBaord(unsigned x0, unsigned y0)
+{
+    WM_HWIN hFW,hWin;
+    KEYBAORDCFG kbcfg;
+
+    hFW=FRAMEWIN_Create("KeyBaord", &_cbKeyBaord, WM_CF_SHOW,x0, y0,WindowWidth,WindowHeight);
+    FRAMEWIN_SetMoveable(hFW,FRAMEWIN_SF_MOVEABLE);
+    //FRAMEWIN_AddCloseButton(hFW,FRAMEWIN_BUTTON_RIGHT,1);
+    hWin=WM_GetClientWindow(hFW);
+    gKeyBaord=hFW;
+		FRAMEWIN_SetTitleHeight(hFW, TitleHeight);
+
+    gCurrentKeyMap=keys;
+    kbcfg.hWin=hWin;
+    kbcfg.keymap=gCurrentKeyMap;
+    kbcfg.x0=8;
+		kbcfg.y0=10;
+    kbcfg.xSize=15*scaleFactorX;
+    kbcfg.ySize=18*scaleFactorY;
+    kbcfg.xSpan=2*scaleFactorX;
+    kbcfg.ySpan=3*scaleFactorY;
+    kbcfg.num=sizeof(keys)/sizeof(char);
+    createKeys(&kbcfg);
+
+    //WM_SetCallback(hWin,_cbKeyBaord);
+		return hFW;
+}
+
 /*******************************************************************
 *
 * callbacks
@@ -164,69 +272,6 @@ static char keys[]=
     }
 }
 
-/*
-void createKeys(KEYBAORDCFG* kbcfg)
-//创建按键
-{
-    int x0,y0,xSize,ySize,xSpan,ySpan;
-    int i,starX,startY,num;
-    WM_HWIN hWin;
-    BUTTON_Handle hbtn;
-    char tmp[20],*keyMap;
-
-    x0=kbcfg->x0;
-    y0=kbcfg->y0;
-    xSize=kbcfg->xSize;
-    ySize=kbcfg->ySize;
-
-    xSpan=kbcfg->xSpan;
-    ySpan=kbcfg->ySpan;
-    num=kbcfg->num;
-
-    hWin=kbcfg->hWin;
-    keyMap=kbcfg->keymap;
-
-    starX=x0;
-    startY=y0;
-    for (i=0; i<num; i++)
-    {
-        hbtn=BUTTON_CreateAsChild(x0,y0,xSize,ySize,hWin,keyMap[i]+keyMapShift,BUTTON_CF_SHOW);
-
-        tmp[0]=keyMap[i];
-				tmp[1] = 0;
-        BUTTON_SetText(hbtn,tmp);
-
-        x0=x0+xSize+xSpan;
-        if ((i+1)%12==0)
-        {
-            y0=y0+ySize+ySpan;
-            x0=starX;
-        }
-    }
-    //hbtn=BUTTON_CreateAsChild(x0,y0,xSize*2+xSpan,ySize,hWin,25,BUTTON_CF_SHOW);
-    //BUTTON_SetText(hbtn,"Shift");
-
-    hbtn=BUTTON_CreateAsChild(x0,y0,xSize,ySize,hWin,GUI_KEY_UP,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"up");
-
-    hbtn=BUTTON_CreateAsChild(x0=starX,y0=y0+ySpan+ySize,(xSize*3+2*xSpan),ySize,hWin,20+keyMapShift,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"Shift");
-    hbtn=BUTTON_CreateAsChild(x0=x0+3*xSpan+3*xSize,y0,(xSize*6+5*xSpan),ySize,hWin,' '+keyMapShift,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"");
-
-    hbtn=BUTTON_CreateAsChild(x0=x0+7*xSpan+7*xSize,y0,xSize,ySize,hWin,GUI_KEY_LEFT,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"lf");
-    hbtn=BUTTON_CreateAsChild(x0=x0+xSpan+xSize,y0,xSize,ySize,hWin,GUI_KEY_DOWN,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"dn");
-    hbtn=BUTTON_CreateAsChild(x0=x0+xSpan+xSize,y0,xSize,ySize,hWin,GUI_KEY_RIGHT,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"ri");
-
-    hbtn=BUTTON_CreateAsChild(x0=starX+12*xSize+12*xSpan,y0=startY,xSize,ySize,hWin,8+keyMapShift,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"bs");
-    hbtn=BUTTON_CreateAsChild(x0,y0+ySpan+ySize,xSize*2,3*ySize+2*ySpan,hWin,13+keyMapShift,BUTTON_CF_SHOW);
-    BUTTON_SetText(hbtn,"En");
-
-}
 
 void clearKeyBaord(WM_HWIN hWin)
 {
@@ -239,32 +284,3 @@ void clearKeyBaord(WM_HWIN hWin)
         WM_DeleteWindow(hCWin);
     }
 }
-
-WM_HWIN CreateKeyBaord(unsigned x0, unsigned y0)
-{
-    WM_HWIN hFW,hWin;
-    KEYBAORDCFG kbcfg;
-
-    hFW=FRAMEWIN_Create("KeyBaord", &_cbKeyBaord, WM_CF_SHOW,x0, y0,240*scaleFactorX,130*scaleFactorY);
-    FRAMEWIN_SetMoveable(hFW,FRAMEWIN_SF_MOVEABLE);
-    //FRAMEWIN_AddCloseButton(hFW,FRAMEWIN_BUTTON_RIGHT,1);
-    hWin=WM_GetClientWindow(hFW);
-    gKeyBaord=hFW;
-		FRAMEWIN_SetTitleHeight(hFW, 30);
-    //WM_SetStayOnTop(hFW,0);
-
-    gCurrentKeyMap=keys;
-    kbcfg.hWin=hWin;
-    kbcfg.keymap=gCurrentKeyMap;
-    kbcfg.x0=8;
-		kbcfg.y0=10;
-    kbcfg.xSize=15*scaleFactorX;
-    kbcfg.ySize=18*scaleFactorY;
-    kbcfg.xSpan=2*scaleFactorX;
-    kbcfg.ySpan=3*scaleFactorY;
-    kbcfg.num=sizeof(keys)/sizeof(char);
-    createKeys(&kbcfg);
-
-    //WM_SetCallback(hWin,_cbKeyBaord);
-		return hFW;
-}*/

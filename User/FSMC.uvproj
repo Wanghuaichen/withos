@@ -432,19 +432,9 @@
               <FilePath>..\APP\myapp\motordrive.c</FilePath>
             </File>
             <File>
-              <FileName>motorgui.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\myapp\motorgui.c</FilePath>
-            </File>
-            <File>
               <FileName>editgroup.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\editgroup.c</FilePath>
-            </File>
-            <File>
-              <FileName>ikeyboard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\myapp\ikeyboard.c</FilePath>
             </File>
             <File>
               <FileName>str2num.c</FileName>
@@ -460,6 +450,16 @@
               <FileName>testMyButtonArray.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\testMyButtonArray.c</FilePath>
+            </File>
+            <File>
+              <FileName>motorgui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\motorgui.c</FilePath>
+            </File>
+            <File>
+              <FileName>ikeyboard.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\ikeyboard.c</FilePath>
             </File>
           </Files>
         </Group>

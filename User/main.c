@@ -28,7 +28,7 @@ int main(void)
 	LED_Init();
 	delay_init();
 
-	OSTaskCreate(testSize,	   //task pointer
+	OSTaskCreate(motorMain,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&MainTask_STK[MainTask_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority	

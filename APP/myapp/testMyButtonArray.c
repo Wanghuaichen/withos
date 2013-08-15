@@ -1,3 +1,4 @@
+#include "math.h"
 #include "lcd.h"
 #include "GUI.h"
 #include "WM.h"
@@ -19,114 +20,268 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "GUI.h"
+#include "WM.h"
+#include "BUTTON.h"
+#include "DIALOG.h"
+#include "LISTBOX.h"
+#include "EDIT.h"
+#include "SLIDER.h"
+#include "FRAMEWIN.h"
+#include "RADIO.h"
+#include "SCROLLBAR.h"
+#include "TEXT.h"
+#include "MULTIEDIT.h"
+#include "LISTVIEW.h"
+#include "MULTIPAGE.h"
+#include "GUI_HOOK.h"
+#include "FRAMEWIN_Private.h"
 
-#define WindowWidth 400
-#define WindowHeight 400
-#define TitleHeight 10
-#define TotalNum 24
+#include <string.h>
+#include <ctype.h>
+
+#define NULL 0
+#include "keyboard.h"
+
+
+/*******************************************************************
+*
+* function declare
+*/
+
+void clearKeyBaord(WM_HWIN hWin);
+void createKeys(KEYBAORDCFG* kbcfg);
+
+/*******************************************************************
+*
+* 键盘的按键配置和键盘布局全局变量
+*/
+
+extern EDIT_Handle hEdtDebug,hEdtMsgC;
+
+static WM_HWIN ghTarget;
+static char* gCurrentKeyMap;
+static U8 gShift;
+static WM_HWIN gKeyBaord;
+static GUI_HOOK gHook;
+#define keyMapShift 3000
+#define scaleFactorX 2
+#define scaleFactorY 2
+static char keys[]=
+{
+    '1','2','3','4','5','6','7','8','9','0',
+    '+','.','/','-','*'
+};
+
+unsigned WindowWidth = 700;
+unsigned WindowHeight = 400;
+unsigned TitleHeight = 10;
+unsigned TotalNum = 32;
 #define KeyGapRatioX 200
 #define KeyGapRatioY 160
-#define KeyMarginRatioH 90
-#define KeyMarginRatioV 90
-#define ButtonXYRatio (1)
-
-//XYRatio = XNum/YNum * (2/KeyMarginRatioH + ) / () * ButtonXYRatio
+#define KeyMarginRatioH 10
+#define KeyMarginRatioV 10
+#define ButtonXYRatio (1.0)
 #define ClientHeight (WindowHeight - TitleHeight)
 #define ClientWidth WindowWidth
 #define XYRatio (ClientWidth/ClientHeight)
+unsigned YNum;
+unsigned XNum;// = (YNum*XYRatio/ButtonXYRatio);
+unsigned ButtonWidth;// (ClientWidth / ((2/KeyMarginRatioH) + (XNum) + ((XNum-1)/KeyGapRatioX)))
+unsigned ButtonHeight;// (ClientHeight / ((2/KeyMarginRatioV) + (YNum) + ((YNum-1)/KeyGapRatioY)))
+unsigned MarginH;// (ButtonWidth / KeyMarginRatioH)
+unsigned MarginV;// (ButtonHeight / KeyMarginRatioV)
+unsigned GapX;// (ButtonWidth / KeyGapRatioX)
+unsigned GapY;// (ButtonHeight / KeyGapRatioY)
+unsigned FunctionKeyWidth;// (ButtonWidth*2+GapX)
+#define ErrorX 0
+#define ErrorY 0
+void configButtonArray(void)
+{
+		double tmpYNum, a, b, c, delta;
+		double theRatio;
+		theRatio = XYRatio;
+		a = 1.0*ClientWidth / ClientHeight + 1.0*ClientWidth / ClientHeight/KeyGapRatioY;
+		b = 1.0*2*ClientWidth / ClientHeight/KeyMarginRatioV - 1.0*ClientWidth / ClientHeight/KeyGapRatioY - 1.0*2*ButtonXYRatio/KeyMarginRatioH + 1.0*ButtonXYRatio/KeyGapRatioX;
+		c = -1.0*ButtonXYRatio*TotalNum*(1+1.0/KeyGapRatioX);
+		delta = sqrt(b*b - 4*a*c);
+		tmpYNum = (-b + delta) / 2 / a;
+		YNum = (unsigned)tmpYNum;
+		XNum = (unsigned)(TotalNum / YNum)+1;
+		tmpYNum = ((double)ClientWidth / ((2/(double)KeyMarginRatioH) + ((double)XNum) + (((double)XNum-1)/(double)KeyGapRatioX)));
+		ButtonWidth = (unsigned)tmpYNum;
+		tmpYNum = ((double)ClientHeight / ((2/(double)KeyMarginRatioV) + ((double)YNum) + (((double)YNum-1)/(double)KeyGapRatioY)));
+		ButtonHeight = (unsigned)tmpYNum;
+		
+		MarginH = (unsigned)ButtonWidth / KeyMarginRatioH;
+		MarginV = (unsigned)(ButtonHeight / KeyMarginRatioV);
+		GapX = (unsigned)(ButtonWidth / KeyGapRatioX);
+		GapY = (unsigned)(ButtonHeight / KeyGapRatioY);
+}
 
-/*#define YNum ((2*ButtonXYRatio/KeyMarginRatioH - 2*XYRatio/KeyMarginRatioV + XYRatio/KeyGapRatioY - ButtonXYRatio/KeyGapRatioX+(ButtonXYRatio+ButtonXYRatio/KeyGapRatioX)*TotalNum) / (ButtonXYRatio+ButtonXYRatio/KeyGapRatioX+XYRatio+XYRatio/KeyGapRatioY))
-#define XNum (TotalNum / YNum)
-#define ButtonWidth ((ClientWidth) / (2/KeyMarginRatioH+XNum+(XNum-1)/KeyGapRatioX))
-#define ButtonHeight (ButtonWidth / ButtonXYRatio)
 
-#define MarginH (ButtonWidth / KeyMarginRatioH)
-#define MarginV (ButtonHeight / KeyMarginRatioV)
+void createNumKeys(KEYBAORDCFG* kbcfg)
+//创建按键
+{
+    int x0,y0,xSize,ySize,xSpan,ySpan;
+    int i,starX,startY,num, ii, jj;
+    WM_HWIN hWin;
+    BUTTON_Handle hbtn;
+    char tmp[20],*keyMap;
 
-#define GapX (ButtonWidth / KeyGapRatioX)
-#define GapY (ButtonHeight / KeyGapRatioY)*/
+		configButtonArray();
+    num=kbcfg->num;
+    hWin=kbcfg->hWin;
+    keyMap=kbcfg->keymap;
+		for(i = 0; i < num; ++i){
+				ii = (i/XNum)+1;
+				jj = (i%(unsigned char)XNum) + 1;
+				y0 = 	MarginV + (ii-1)*(ButtonHeight+GapY);
+				x0 = 	MarginH + (jj-1)*(ButtonWidth+GapX);
+				hbtn = BUTTON_CreateAsChild(x0,y0,ButtonWidth,ButtonHeight,hWin,keyMap[i]+keyMapShift,BUTTON_CF_SHOW);
+			  tmp[0]=keyMap[i];
+				tmp[1] = 0;
+        BUTTON_SetText(hbtn,tmp);
+		}		
+		
+		y0 += (ButtonHeight+GapY);
+		x0 = MarginH;
+    hbtn=BUTTON_CreateAsChild(x0, y0,((XNum)*ButtonWidth+(XNum-1)*GapX)/2, ButtonHeight,hWin,20+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"English");
+		x0 += ((XNum)*ButtonWidth+(XNum-1)*GapX)/2 +GapX;
+    hbtn=BUTTON_CreateAsChild(x0,y0,((XNum)*ButtonWidth+(XNum-1)*GapX)-((XNum)*ButtonWidth+(XNum-1)*GapX)/2-GapX/*ClientWidth - 2*MarginH -GapX + ((XNum)*ButtonWidth+(XNum-1)*GapX)/2-((XNum)*ButtonWidth+(XNum-1)*GapX)*/, ButtonHeight,hWin,8+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"backspace");
+		y0 += (ButtonHeight+GapY);
+		x0 = MarginH;
+    hbtn=BUTTON_CreateAsChild(x0,y0,(XNum)*ButtonWidth+(XNum-1)*GapX,ButtonHeight,hWin,13+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"Enter");
 
-#if (XYRatio*1*1) > (TotalNum)
-#ifndef YNum
-#define YNum 1
-#endif
-#endif
-#if (XYRatio *2*2) > (TotalNum)
-#ifndef YNum
-#define YNum 2
-#endif
-#endif
-#if (XYRatio *3*3) > (TotalNum)
-#ifndef YNum
-#define YNum 3
-#endif
-#endif
-#if (XYRatio *4*4) > (TotalNum)
-#ifndef YNum
-#define YNum 4
-#endif
-#endif
-#if (XYRatio *5*5) > (TotalNum)
-#ifndef YNum
-#define YNum 5
-#endif
-#endif
-#if (XYRatio *6*6) > (TotalNum)
-#ifndef YNum
-#define YNum 6
-#endif
-#endif
-#if (XYRatio *7*7) > (TotalNum)
-#ifndef YNum
-#define YNum 7
-#endif
-#endif
-#if (XYRatio *8*8) > (TotalNum)
-#ifndef YNum
-#define YNum 8
-#endif
-#endif
-#if (XYRatio *9*9) > (TotalNum)
-#ifndef YNum
-#define YNum 9
-#endif
-#endif
-#ifndef YNum
-#define YNum 10
-#endif
+}
 
-#define XNum (YNum*XYRatio/ButtonXYRatio)
+WM_HWIN CreateNumKeyBaord(unsigned x0, unsigned y0)
+{
+    WM_HWIN hFW,hWin;
+    KEYBAORDCFG kbcfg;
+		WindowWidth = 300;
+		WindowHeight = 400;
+		TitleHeight = 10;	
+		TotalNum = 21;
+    hFW=FRAMEWIN_Create("KeyBaord", &_cbKeyBaord, WM_CF_SHOW,x0, y0,WindowWidth,WindowHeight);
+    FRAMEWIN_SetMoveable(hFW,FRAMEWIN_SF_MOVEABLE);
+    //FRAMEWIN_AddCloseButton(hFW,FRAMEWIN_BUTTON_RIGHT,1);
+    hWin=WM_GetClientWindow(hFW);
+    gKeyBaord=hFW;
+		FRAMEWIN_SetTitleHeight(hFW, TitleHeight);
 
-#define ButtonWidth (ClientWidth / ((2/KeyMarginRatioH) + (XNum) + ((XNum-1)/KeyGapRatioX)))
-#define ButtonHeight (ClientHeight / ((2/KeyMarginRatioV) + (YNum) + ((YNum-1)/KeyGapRatioY)))
+    gCurrentKeyMap=keys;
+    kbcfg.hWin=hWin;
+    kbcfg.keymap=gCurrentKeyMap;
+    kbcfg.x0=8;
+		kbcfg.y0=10;
+    kbcfg.xSize=15*scaleFactorX;
+    kbcfg.ySize=18*scaleFactorY;
+    kbcfg.xSpan=2*scaleFactorX;
+    kbcfg.ySpan=3*scaleFactorY;
+    kbcfg.num=sizeof(keys)/sizeof(char);
+    createNumKeys(&kbcfg);
 
-#define MarginH (ButtonWidth / KeyMarginRatioH)
-#define MarginV (ButtonHeight / KeyMarginRatioV)
+    //WM_SetCallback(hWin,_cbKeyBaord);
+		return hFW;
+}
+void createAlphaKeys(KEYBAORDCFG* kbcfg)
+//创建按键
+{
+    int x0,y0,xSize,ySize,xSpan,ySpan;
+    int i,starX,startY,num, ii, jj;
+    WM_HWIN hWin;
+    BUTTON_Handle hbtn;
+    char tmp[20],*keyMap;
 
-#define GapX (ButtonWidth / KeyGapRatioX)
-#define GapY (ButtonHeight / KeyGapRatioY)
+		configButtonArray();
+    num=kbcfg->num;
+    hWin=kbcfg->hWin;
+    keyMap=kbcfg->keymap;
+		for(i = 0; i < num; ++i){
+				ii = (i/XNum)+1;
+				jj = (i%(unsigned char)XNum) + 1;
+				y0 = 	MarginV + (ii-1)*(ButtonHeight+GapY);
+				x0 = 	MarginH + (jj-1)*(ButtonWidth+GapX);
+				hbtn = BUTTON_CreateAsChild(x0,y0,ButtonWidth,ButtonHeight,hWin,'a'+i+keyMapShift,BUTTON_CF_SHOW);
+			  tmp[0]='a'+i;
+				tmp[1] = 0;
+        BUTTON_SetText(hbtn,tmp);
+		}		
+		
+		y0 += (ButtonHeight+GapY);
+		x0 = MarginH;
+    hbtn=BUTTON_CreateAsChild(x0, y0,((XNum)*ButtonWidth+(XNum-1)*GapX)/2, ButtonHeight,hWin,20+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"Num");
+		x0 += ((XNum)*ButtonWidth+(XNum-1)*GapX)/2 +GapX;
+    hbtn=BUTTON_CreateAsChild(x0,y0,((XNum)*ButtonWidth+(XNum-1)*GapX)-((XNum)*ButtonWidth+(XNum-1)*GapX)/2-GapX/*ClientWidth - 2*MarginH -GapX + ((XNum)*ButtonWidth+(XNum-1)*GapX)/2-((XNum)*ButtonWidth+(XNum-1)*GapX)*/, ButtonHeight,hWin,8+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"backspace");
+		y0 += (ButtonHeight+GapY);
+		x0 = MarginH;
+    hbtn=BUTTON_CreateAsChild(x0,y0,(XNum)*ButtonWidth+(XNum-1)*GapX,ButtonHeight,hWin,13+keyMapShift,BUTTON_CF_SHOW);
+    BUTTON_SetText(hbtn,"Enter");
 
-#define FunctionKeyWidth (ButtonWidth*2+GapX)
-#define ErrorX 20
-#define ErrorY 20
+}
+WM_HWIN CreateAlphaKeyBaord(unsigned x0, unsigned y0)
+{
+    WM_HWIN hFW,hWin;
+    KEYBAORDCFG kbcfg;
+		WindowWidth = 300;
+		WindowHeight = 400;
+		TitleHeight = 10;	
+		TotalNum = 38;
+    hFW=FRAMEWIN_Create("KeyBaord", &_cbKeyBaord, WM_CF_SHOW,x0, y0,WindowWidth,WindowHeight);
+    FRAMEWIN_SetMoveable(hFW,FRAMEWIN_SF_MOVEABLE);
+    //FRAMEWIN_AddCloseButton(hFW,FRAMEWIN_BUTTON_RIGHT,1);
+    hWin=WM_GetClientWindow(hFW);
+    gKeyBaord=hFW;
+		FRAMEWIN_SetTitleHeight(hFW, TitleHeight);
+
+    gCurrentKeyMap=keys;
+    kbcfg.hWin=hWin;
+    kbcfg.keymap=gCurrentKeyMap;
+    kbcfg.x0=8;
+		kbcfg.y0=10;
+    kbcfg.xSize=15*scaleFactorX;
+    kbcfg.ySize=18*scaleFactorY;
+    kbcfg.xSpan=2*scaleFactorX;
+    kbcfg.ySpan=3*scaleFactorY;
+    kbcfg.num=26;
+    createAlphaKeys(&kbcfg);
+
+    //WM_SetCallback(hWin,_cbKeyBaord);
+		return hFW;
+}
+
+extern unsigned YNum;
+extern unsigned XNum;// = (YNum*XYRatio/ButtonXYRatio);
+extern unsigned ButtonWidth;// (ClientWidth / ((2/KeyMarginRatioH) + (XNum) + ((XNum-1)/KeyGapRatioX)))
+extern unsigned ButtonHeight;// (ClientHeight / ((2/KeyMarginRatioV) + (YNum) + ((YNum-1)/KeyGapRatioY)))
+extern unsigned MarginH;// (ButtonWidth / KeyMarginRatioH)
+extern unsigned MarginV;// (ButtonHeight / KeyMarginRatioV)
+extern unsigned GapX;// (ButtonWidth / KeyGapRatioX)
+extern unsigned GapY;// (ButtonHeight / KeyGapRatioY)
+extern unsigned FunctionKeyWidth;// (ButtonWidth*2+GapX)
+
+
 #include "led.h"
 #include "delay.h"
 //#define _dbging
+WM_HWIN CreateNumKeyBaord(unsigned x0, unsigned y0);
 void testSize(void)
 {
     WM_HWIN hFW,hWin,hbtn;
 		unsigned char i, ii, jj, ledcnt = 0;
 		unsigned x0, y0;
 	
-#define stringX 100
-#define stringY 40
-#define stringHeight 16
-
-	GUI_Init();
+		GUI_Init();
 	
 		LED_Init();
-#ifndef _dbging	
-		FRAMEWIN_SetDefaultTitleHeight(TitleHeight);
+		CreateAlphaKeyBaord(0 , 0);
+/*		FRAMEWIN_SetDefaultTitleHeight(TitleHeight);
     hFW=FRAMEWIN_Create("KeyBaord", 0, WM_CF_SHOW,0, 0,WindowWidth+ErrorX,WindowHeight+ErrorY);
 		hWin=WM_GetClientWindow(hFW);
 		for(i = 0; i < TotalNum; ++i){
@@ -135,8 +290,8 @@ void testSize(void)
 				y0 = 	MarginV + (ii-1)*(ButtonHeight+GapY);
 				x0 = 	MarginH + (jj-1)*(ButtonWidth+GapX);
 				BUTTON_CreateAsChild(x0,y0,ButtonWidth,ButtonHeight,hWin,1,BUTTON_CF_SHOW);
-		}
-		#endif
+		}*/
+
 		LED0 = 0;
 		while(1){
 				delay_ms(15);
@@ -146,40 +301,5 @@ void testSize(void)
 				}			
 				GUI_Exec();
 				GUI_TOUCH_Exec();	
-
-#ifdef _dbging				
-GUI_DispStringAt("TotalNum        ", stringX, stringY);
-GUI_DispDecMin(TotalNum);
-
-GUI_DispStringAt("KeyGapRatioX        ", stringX, stringY+1*stringHeight);
-GUI_DispDecMin(KeyGapRatioX);
-
-GUI_DispStringAt("KeyGapRatioY        ", stringX, stringY+2*stringHeight);
-GUI_DispDecMin(KeyGapRatioY);
-
-GUI_DispStringAt("KeyMarginRatioH        ", stringX, stringY+2*stringHeight);
-GUI_DispDecMin(KeyMarginRatioH);
-
-GUI_DispStringAt("KeyMarginRatioV        ", stringX, stringY+3*stringHeight);
-GUI_DispDecMin(KeyMarginRatioV);
-
-GUI_DispStringAt("WindowHeight - TitleHeight        ", stringX, stringY+4*stringHeight);
-GUI_DispDecMin(WindowHeight - TitleHeight);
-
-GUI_DispStringAt("YNum        ", stringX, stringY+5*stringHeight);
-GUI_DispDecMin(YNum);
-
-GUI_DispStringAt("TotalNum//XYRatio//ButtonXYRatio        ", stringX, stringY+6*stringHeight);
-GUI_DispDecMin(TotalNum/XYRatio/ButtonXYRatio);
-
-GUI_DispStringAt("KeyButtonWidth (ClientWidth // ((2/KeyMarginRatioH) + (XNum) + ((XNum-1)//KeyGapRatioX)))        ", stringX, stringY+7*stringHeight);
-GUI_DispDecMin(ButtonWidth);
-
-GUI_DispStringAt("(ClientHeight / ((2/KeyMarginRatioV) + (YNum) + ((YNum-1)/KeyGapRatioY)))        ", stringX, stringY+8*stringHeight);
-GUI_DispDecMin(ButtonHeight);
-
-GUI_DispStringAt("KeyMarginRatioH        ", stringX, stringY+9*stringHeight);
-GUI_DispDecMin(KeyMarginRatioH);	
-#endif
 		}
 }

@@ -366,9 +366,9 @@ void test(EDIT_Handle);
 //自动改变键盘位置相关变量
 #include "stringutils.h"
 #define _keyboardXLeft 0
-#define _keyboardXRight 360
+#define _keyboardXRight 450
 #define _keyboardYTop 0
-#define _keyboardYBot 240
+#define _keyboardYBot 0
 unsigned char moveFlag = 0;
 unsigned keyboardX = _keyboardXLeft, keyboardY = _keyboardYTop;
 char _cbConfigBuf[10];
@@ -406,7 +406,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 						{
 										if(!WM_IsWindow(hkeyboard)){							
 												keyboardX = _keyboardXRight;
-												keyboardY = _keyboardYBot;												
+												keyboardY = _keyboardYBot;	
+												moveFlag = 0;
 										}
 										else{
 												hkeyboardFlag = 0;//WM_BringToTop(hkeyboard);
@@ -418,7 +419,8 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 										if(!WM_IsWindow(hkeyboard)){	
 													
 													keyboardX = _keyboardXLeft;
-													keyboardY = _keyboardYTop;												
+													keyboardY = _keyboardYTop;	
+													moveFlag = 0;
 										}
 										else{
 												hkeyboardFlag = 0;
@@ -502,7 +504,6 @@ static void _cbCallbackConfigPanel(WM_MESSAGE * pMsg) {
 *
 *       MainTask
 */
-
 void motorMain(void) {
 
 	unsigned char ledcnt = 0, i, j;
@@ -659,7 +660,7 @@ void motorMain(void) {
 				WM_InvalidateWindow(WM_HBKWIN);	
 		}
     if(hkeyboardFlag && !WM_IsWindow(hkeyboard)){
-				hkeyboard = CreateKeyBaord(keyboardX, keyboardY);
+				hkeyboard = CreateNumKeyBaord(keyboardX, keyboardY);
 				WM_BringToTop(hkeyboard);
 				//WM_SetStayOnTop(hkeyboard, 1);
 				//WM_InvalidateWindow(WM_HBKWIN);	

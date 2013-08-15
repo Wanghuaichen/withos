@@ -456,6 +456,11 @@
               <FileType>1</FileType>
               <FilePath>..\APP\myapp\filerw.c</FilePath>
             </File>
+            <File>
+              <FileName>testMyButtonArray.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\myapp\testMyButtonArray.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

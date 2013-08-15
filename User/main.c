@@ -19,7 +19,7 @@ void MainTask3(void);
 void testnotify(void);
 #define MainTask_STK_SIZE 3072
 OS_STK  MainTask_STK[MainTask_STK_SIZE];
-
+void testSize(void);
 int main(void)
 {
 	SysTick_Configuration(); 
@@ -28,7 +28,7 @@ int main(void)
 	LED_Init();
 	delay_init();
 
-	OSTaskCreate(motorMain,	   //task pointer
+	OSTaskCreate(testSize,	   //task pointer
 					(void *)0,	       //parameter
 					(OS_STK *)&MainTask_STK[MainTask_STK_SIZE-1],//task stack top pointer
 					START_TASK_Prio ); //task priority	
